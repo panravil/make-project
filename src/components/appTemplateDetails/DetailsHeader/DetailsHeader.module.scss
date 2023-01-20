@@ -1,0 +1,245 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.appHeader {
+  .companyNameContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2.4rem;
+
+    @media ($bp-md) {
+      margin-bottom: 6.4rem;
+    }
+
+    .appLogo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 3.2rem;
+
+      .appIcon {
+        width: 8rem;
+        height: 8rem;
+      }
+
+      .templateIcon {
+        height: 8rem;
+
+        > div {
+          width: 8rem;
+          height: 8rem;
+        }
+      }
+    }
+
+    h1 {
+      margin-bottom: 0;
+    }
+  }
+
+  .appDetailsContainer {
+    @media ($bp-md) {
+      display: flex;
+      justify-content: space-between;
+
+      > div:not(:last-child) {
+        margin-right: 4rem;
+
+        @media ($bp-xl) {
+          margin-right: 9.8rem;
+        }
+      }
+    }
+
+    .appDescription {
+      width: 100%;
+      margin-bottom: 4rem;
+
+      @media ($bp-md) {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+      }
+
+      .headerRow {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2.4rem;
+
+        .descriptionHeader {
+          margin-right: 2.4rem;
+          margin-bottom: 0;
+        }
+      }
+
+      .aboutShareWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 2.4rem;
+
+        @media ($bp-md) {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        div {
+          margin-bottom: 0;
+        }
+
+        .shareDrawerWrapper {
+          width: auto;
+
+          @media ($bp-md) {
+            margin-left: 2.4rem;
+          }
+        }
+      }
+
+      .bodyText {
+        p:last-child {
+          margin-bottom: 0;
+        }
+
+        &.truncated {
+          display: -webkit-box;
+
+          // https://stackoverflow.com/questions/3922739/limit-text-length-to-n-lines-using-css
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 4; /* number of lines to show */
+          line-clamp: 4;
+          -webkit-box-orient: vertical;
+        }
+      }
+
+      .truncateArrow {
+        @include primaryLink();
+
+        width: 1.6rem;
+        margin-top: 1.6rem;
+        margin-bottom: 2.4rem;
+
+        @media ($bp-md) {
+          margin-bottom: 6.4rem;
+        }
+
+        &:not(.truncated) {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .appsIncludedWrapper {
+        .appsContainer {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: -1.6rem;
+
+          > * {
+            margin-top: 1.6rem;
+          }
+        }
+
+        margin-bottom: 2.4rem;
+
+        @media ($bp-md) {
+          margin-bottom: 6.4rem;
+        }
+      }
+    }
+  }
+
+  .categoriesWrapper {
+    margin-bottom: 4rem;
+
+    @media ($bp-md) {
+      width: fit-content;
+      height: fit-content;
+      padding: 3.2rem 4rem;
+      border-radius: $global-radius;
+      background-color: $background-color;
+    }
+
+    @media ($bp-md) {
+      margin-bottom: 0;
+    }
+
+    .categoriesTitle {
+      margin-bottom: 2.4rem;
+      white-space: nowrap;
+      color: $secondary-color;
+    }
+  }
+
+  .category {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.6rem;
+    white-space: nowrap;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .placeholderImage {
+      width: 3.2rem;
+      height: 3.2rem;
+      margin-right: 1.2rem;
+      border-radius: 50%;
+      background-color: $secondary-color;
+    }
+  }
+
+  .partnersInfo {
+    @media ($bp-md) {
+      margin-bottom: 6.4rem;
+    }
+  }
+
+  .buttonContainer {
+    display: flex;
+
+    .appTryButton {
+      margin-bottom: 2.4rem;
+
+      @media ($bp-md) {
+        margin-bottom: 0;
+      }
+    }
+
+    .buttonCaption {
+      margin-bottom: 0;
+
+      @media ($bp-md) {
+        margin-left: 3.2rem;
+        text-align: center;
+      }
+    }
+
+    &.desktop {
+      display: none;
+
+      @media ($bp-md) {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    &.mobile {
+      display: block;
+
+      @media ($bp-md) {
+        display: none;
+      }
+    }
+  }
+
+  .showToggle {
+    visibility: visible;
+  }
+
+  .hideToggle {
+    visibility: hidden;
+  }
+}

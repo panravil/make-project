@@ -1,0 +1,128 @@
+@import "base/variables";
+@import "base/normalize";
+@import "base/base-styles";
+@import "base/typography";
+@import "modules/animation";
+@import "modules/section";
+@import "modules/buttons";
+@import "modules/forms";
+@import "modules/lists";
+@import "modules/tables";
+@import "modules/slick-slider";
+
+html {
+  scroll-behavior: smooth;
+}
+
+#grnhse_app {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  > iframe {
+    margin-left: -10px;
+
+    @media (min-width: 689px) {
+      margin-left: -30px;
+    }
+  }
+}
+
+.image-embed,
+.video-embed {
+  padding-top: 1.2rem;
+  padding-bottom: 3.6rem;
+}
+
+.make-embed-wrapper {
+  padding-bottom: 3.6rem;
+}
+
+.yt-lite {
+  margin-bottom: 3.6rem;
+}
+
+[class*="WebinarHeader_formWrapper"] {
+  .sticky-outer-wrapper .sticky-inner-wrapper,
+  .sticky-outer-wrapper.released .sticky-inner-wrapper {
+    @media (max-width: 1024px) {
+      position: relative !important;
+      transform: translate3d(0, 0, 0) !important;
+    }
+  }
+}
+
+[class*="BlogContent"] {
+  blockquote {
+    position: relative;
+    padding: 3rem 0 1rem;
+    font-size: 24px;
+
+    &::before {
+      content: "“";
+      position: absolute;
+      top: -0.2rem;
+      left: -4.5rem;
+      z-index: -1;
+      font-size: 15.5rem;
+      line-height: 1;
+      font-family: Sailec-Bold;
+      color: #e38eff;
+      opacity: 0.56;
+      touch-action: none;
+    }
+  }
+
+  ul:has(.image-embed) {
+    --gap: 2rem;
+
+    @media ($bp-xl) {
+      --gap: 4rem;
+    }
+
+    display: flex;
+    flex-flow: wrap;
+    gap: var(--gap);
+    align-items: center;
+    justify-content: center;
+    padding: 1.8rem 0 0 0;
+    margin: 0 0 3.6rem;
+    list-style: none;
+
+    @media ($bp-md) {
+      margin: 0 calc(-2 * var(--gap)) 3.6rem;
+    }
+
+    li,
+    p,
+    div {
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+
+    @media ($bp-sm) {
+      li {
+        max-width: calc(25% - var(--gap));
+      }
+
+      li:first-child:nth-last-child(1),
+      li:first-child:nth-last-child(1) {
+        max-width: calc(1000% - var(--gap));
+      }
+
+      li:first-child:nth-last-child(2),
+      li:first-child:nth-last-child(2) ~ li {
+        max-width: calc(50% - var(--gap));
+      }
+
+      li:first-child:nth-last-child(3),
+      li:first-child:nth-last-child(3) ~ li {
+        max-width: calc(33.3333% - var(--gap));
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+// Styling for the Table and Header
+.tableWrapper {
+  font-size: 1.3rem;
+
+  @include horizontalScrollRow();
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+
+    .tableHeader {
+      .thStyles {
+        padding: 2.2rem 0.8rem;
+        border-radius: $global-radius $global-radius 0 0;
+
+        &.comparisonHeader {
+          justify-content: flex-start;
+          padding: 1.2rem 0.8rem 0.8rem;
+          color: $primary-color;
+        }
+
+        &:not(:last-child) {
+          margin-right: 0.8rem;
+        }
+
+        &:not(:first-child) {
+          max-width: 30.2rem;
+          border: 1px solid $border-color;
+          border-bottom: none;
+          background-color: $background-color;
+        }
+
+        &:last-child {
+          background-color: $make-background-color;
+        }
+      }
+    }
+  }
+}
+
+// Styling for the individual Stat Rows
+.statsRow {
+  padding: 0;
+
+  .titleColumn {
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 0.8rem;
+    margin-right: 0.8rem;
+    overflow: hidden;
+    text-align: start;
+    text-overflow: ellipsis;
+    color: $secondary-color;
+    border-bottom: 1px solid $border-color;
+  }
+
+  &:last-child {
+    .titleColumn {
+      border-radius: 0;
+    }
+  }
+
+  .statTd {
+    max-width: 30.2rem;
+    padding: 1.6rem 0.8rem;
+    color: $table-base-text-color;
+    border: 1px solid;
+    border-top: none;
+
+    &:not(:last-child) {
+      margin-right: 0.8rem;
+    }
+
+    .checkmarkWrapper {
+      width: 2.4rem;
+      height: 2.4rem;
+      padding: 0.4rem;
+      color: $light-text-color;
+      border-radius: 50%;
+      background-color: $comparison-checkmarks;
+    }
+
+    .closeWrapper {
+      width: 2.4rem;
+      height: 2.4rem;
+      padding: 0.5rem;
+      color: $placeholder-color;
+      border: 1px solid $placeholder-color;
+      border-radius: 50%;
+
+      &:not(:last-child) {
+        border-color: $border-color;
+        background-color: $background-color;
+      }
+    }
+
+    &:not(:first-child) {
+      color: $secondary-color;
+      border-color: $border-color;
+      background-color: $background-color;
+    }
+
+    &:last-child {
+      background-color: $make-background-color;
+    }
+  }
+
+  &:last-child > * {
+    border-radius: 0 0 $global-radius $global-radius;
+  }
+}
+
+// setting min width to title column
+// TODO: When sorting out mobile resizing,
+// These will need to be adjusted
+.oneCol {
+  width: 22.5rem;
+
+  @media ($bp-sm) {
+    width: 30rem;
+  }
+}
+
+.twoCol {
+  width: 15rem;
+
+  @media ($bp-sm) {
+    width: 23.5rem;
+  }
+
+  @media ($bp-md) {
+    width: 30rem;
+  }
+}
+
+.threeCol {
+}
+
+.fourCol {
+}
+
+.fiveCol {
+  width: 22.5rem;
+
+  @media ($bp-md) {
+    width: 15rem;
+  }
+
+  @media ($bp-lg) {
+    width: 20rem;
+  }
+}

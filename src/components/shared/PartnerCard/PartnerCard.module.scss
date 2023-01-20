@@ -1,0 +1,198 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+@mixin partnerCardImage() {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56%;
+  margin-bottom: 1.6rem;
+  overflow: hidden;
+  border-radius: $global-radius;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain !important;
+    padding: 4rem !important;
+    margin: auto;
+    vertical-align: center;
+  }
+}
+
+.partnerCard {
+  margin-bottom: 1.6rem;
+
+  .contentWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 1.6rem;
+    text-align: left;
+    border-radius: $global-radius;
+
+    @include cardLink();
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+  }
+
+  .matchMeCardWrapper {
+    display: none;
+    text-align: center;
+
+    @media ($bp-xxl) {
+      display: block;
+    }
+
+    .title {
+      font: normal normal normal 16px/16px Sailec-Bold;
+      letter-spacing: -0.48px;
+    }
+
+    .description {
+      margin-bottom: 1rem;
+      font-size: 12px;
+    }
+
+    .matchMeCardBtn {
+      min-height: auto;
+      padding: 1.25rem 1rem 1rem;
+      margin-bottom: 0;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .image {
+    @include partnerCardImage ();
+  }
+
+  .imageMatchMe {
+    @include partnerCardImage ();
+
+    img {
+      padding: 0 !important;
+    }
+  }
+
+  .templateIcon {
+    margin-bottom: 2.4rem;
+  }
+
+  .title {
+    display: -webkit-box;
+    margin-bottom: 0.8rem;
+    overflow: hidden;
+
+    // https://stackoverflow.com/questions/3922739/limit-text-length-to-n-lines-using-css
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    line-clamp: 2; // number of lines to show
+    -webkit-box-orient: vertical;
+  }
+
+  .location {
+    margin-bottom: 1.6rem;
+    color: $text-color;
+  }
+
+  .description {
+    display: -webkit-box;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $text-color;
+    -webkit-line-clamp: 3;
+    line-clamp: 3; // number of lines to show
+    -webkit-box-orient: vertical;
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      display: inline;
+      font-weight: normal;
+      font-size: 1.4rem;
+      line-height: 1.8rem;
+      font-family: inherit;
+      color: inherit;
+    }
+
+    p {
+      display: inline;
+    }
+  }
+
+  .ratingRow {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .ratingWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 1.6rem;
+    margin-right: 1.6rem;
+
+    svg {
+      flex-shrink: 0;
+      width: 1.6rem;
+      height: 1.6rem;
+      margin-right: 0.4rem;
+      color: $review-star-color;
+    }
+
+    .ratingSpan {
+      color: $secondary-color;
+    }
+
+    .ratingLight {
+      color: $secondary-color;
+      opacity: 0.5;
+    }
+  }
+
+  .locationWrapper {
+    margin-bottom: 1.6rem;
+  }
+
+  .tiers {
+    padding: 0.25rem 1rem;
+    color: #fff;
+    border-radius: 1rem;
+
+    &.certified {
+      background: linear-gradient(253deg, #e24dff 0%, #ac53c6 100%);
+    }
+
+    &.bronze {
+      background: linear-gradient(70deg, #b7513b 0%, #f9b989 100%);
+    }
+
+    &.gold {
+      background: linear-gradient(254deg, #ebcaca 0%, #b28e7b 100%);
+    }
+
+    &.silver {
+      background: linear-gradient(63deg, #9da1c1 0%, #dfdff8 100%);
+    }
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.6rem;
+    margin-top: auto;
+  }
+}

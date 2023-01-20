@@ -1,0 +1,225 @@
+/* start: offer list */
+
+#wrapper {
+  max-width: initial;
+}
+
+#wrapper #wrapper {
+  padding: 0 0 0 10px !important;
+}
+
+@media (min-width: 689px) {
+  #wrapper #wrapper {
+    padding-left: 20px !important;
+  }
+}
+
+#wrapper + #footer {
+  display: none;
+}
+
+#main {
+  padding-top: 0;
+}
+
+#logo {
+  display: none;
+}
+
+#logo + h1 {
+  display: none;
+}
+
+.accessible #content {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 40px;
+}
+
+.level-0 {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-bottom: 16px;
+}
+
+.accessible .level-0 h3 {
+  display: none !important;
+  font-size: 18px;
+  line-height: 28px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.level-0 .opening {
+  padding: 24px;
+  gap: 16px;
+  background: #faf8f8;
+  border-radius: 10px;
+  flex: 0 0 auto;
+  width: 100%;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .level-0 .opening {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+.level-0 .opening[department_id] a {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #0d0929;
+}
+
+@media (min-width: 768px) {
+  .level-0 .opening[department_id] a {
+    width: 50%;
+    flex: 0 0 50%;
+  }
+}
+
+.level-0 .opening[department_id] a:hover {
+  text-decoration: none;
+  color: #fe00fe;
+}
+
+.level-0 .opening[department_id] br {
+  display: none;
+}
+
+.level-0 .opening[department_id] span {
+  font-style: normal;
+  display: block;
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0;
+  line-height: 22px;
+  color: #0d0929;
+}
+
+@media (min-width: 768px) {
+  .level-0 .opening[department_id] span {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.level-0 .opening[department_id] span:after {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #0d0929;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .level-0 .opening[department_id] span:after {
+    width: 50%;
+  }
+}
+
+.level-0 .opening[department_id="4048543003"] span:after {
+  content: "CVD";
+}
+
+.level-0 .opening[department_id="4048544003"] span:after {
+  content: "Demand Generation";
+}
+
+.level-0 .opening[department_id="4026327003"] span:after {
+  content: "Ecosystem";
+}
+
+.level-0 .opening[department_id="4002189003"] span:after {
+  content: "Engineering";
+}
+
+.level-0 .opening[department_id="4002191003"] span:after {
+  content: "People";
+}
+
+.level-0 .opening[department_id="4002190003"] span:after {
+  content: "Product";
+}
+
+.level-0 .opening[department_id="4002186003"] span:after {
+  content: "Sales";
+}
+
+#board_title {
+  color: transparent;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  display: inline-block;
+  letter-spacing: -10rem;
+  color: transparent;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+#board_title::before {
+  color: #0d0929;
+  content: "Filter by";
+  letter-spacing: initial;
+  white-space: nowrap;
+}
+
+#filter-count + section {
+  padding-top: 40px;
+}
+
+.filter-container {
+  margin-bottom: 20px;
+}
+
+.filter-container .filter-label {
+  display: none;
+}
+
+.accessible .filter-container {
+  height: auto;
+  margin-right: 20px;
+}
+
+.select2-container .select2-choice {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 12px;
+}
+
+.select2-container .select2-choice .select2-arrow b {
+  background-position: 0 7px;
+}
+
+/* end: offer list */
+
+/* start: offer detail */
+.app-title {
+  font-size: 36px;
+  line-height: 44px;
+}
+
+.app-title ~ .location {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.company-name {
+  display: none;
+}
+
+.company-name + a {
+  display: none;
+}
+
+/* end: ofer detail */

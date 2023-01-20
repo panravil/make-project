@@ -1,0 +1,106 @@
+@import "@styles/base/variables";
+@import "@styles/base/mixins";
+
+.fileInput {
+  label > div {
+    @include inputSelect();
+
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5rem;
+    padding: 0.8rem 1.6rem;
+    margin-top: 0.8rem;
+    margin-bottom: 2.4rem;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    font-family: $font-regular;
+    text-align: left;
+    color: $placeholder-color;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid rgb(238 47 238 / 60%);
+      outline: 0;
+    }
+
+    &:focus {
+      border: 1px solid $primary-color;
+      outline: 0;
+    }
+
+    img {
+      display: inline-block;
+      max-height: 80%;
+      margin-right: 0.5rem;
+      opacity: 0.4;
+    }
+  }
+
+  input {
+    &[type="file"] {
+      position: absolute;
+      z-index: -1;
+      width: 0.1px;
+      height: 0.1px;
+      overflow: hidden;
+      opacity: 0;
+    }
+  }
+}
+
+.requestFormContainer {
+  flex: 1;
+  width: 100%;
+  padding: 3.2rem 1.6rem;
+  text-align: left;
+  border-radius: $global-radius;
+  background-color: $background-color;
+
+  @media ($bp-md) {
+    padding: 3.2rem;
+    margin: 0;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+
+    @media ($bp-lg) {
+      flex-direction: row;
+
+      > *:first-child {
+        margin-right: 2.4rem;
+      }
+    }
+  }
+
+  .phoneNumber {
+    width: 100%;
+
+    @media ($bp-lg) {
+      flex: 2;
+    }
+  }
+
+  .dropdownLabel {
+    margin-bottom: 0.8rem;
+  }
+
+  .dropdownContainer {
+    @media ($bp-lg) {
+      flex: 1;
+    }
+  }
+
+  button {
+    margin-bottom: 0;
+  }
+
+  .agreementText {
+    margin-top: 2.4rem;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

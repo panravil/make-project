@@ -1,0 +1,77 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.authorCardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media ($bp-sm) {
+    flex-direction: row;
+  }
+
+  .imageContainer {
+    position: relative;
+    flex-shrink: 0;
+    width: 16.6rem;
+    height: 16.6rem;
+    margin-bottom: 2.4rem;
+    overflow: hidden;
+    border-radius: 50%;
+
+    @media ($bp-sm) {
+      margin-right: 2.4rem;
+      margin-bottom: 0;
+    }
+
+    @media ($bp-md) {
+      margin-right: 6.4rem;
+    }
+  }
+
+  .authorBio {
+    flex: 1;
+    width: 100%;
+    max-width: 61.9rem;
+
+    .authorName,
+    .authorDescription {
+      margin-bottom: 2.4rem;
+    }
+  }
+
+  &.webinars {
+    justify-content: flex-start;
+    padding: 2rem 0;
+
+    &:last-child {
+      padding-bottom: 6.4rem;
+
+      @media ($bp-lg) {
+        padding-bottom: 0;
+      }
+    }
+
+    .imageContainer {
+      width: 7.4rem;
+      height: 7.4rem;
+
+      @media ($bp-md) {
+        margin-right: 2.4rem;
+      }
+    }
+
+    .authorName {
+      font-size: 18px;
+    }
+
+    .authorName,
+    .authorDescription {
+      margin-bottom: 0.6rem;
+    }
+
+    .authorDescription {
+      font-size: 0.9em;
+    }
+  }
+}

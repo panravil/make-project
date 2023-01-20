@@ -1,0 +1,140 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.pageImageRow {
+  display: flex;
+  flex-direction: column;
+
+  h1,
+  h2 {
+    max-width: 96rem;
+  }
+
+  p {
+    max-width: 76.8rem;
+  }
+
+  .pageImageRowDescription {
+    width: 100%;
+    margin-bottom: 4rem;
+
+    .pageImageRowLink {
+      margin-bottom: 4rem;
+    }
+
+    .testimonialContainer {
+      max-width: 37rem;
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+      margin-left: 4.8rem;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .pageImageRowImage {
+    width: 100%;
+  }
+
+  .pageImageRowImage:not(.slider) {
+    img {
+      border-radius: $global-radius;
+    }
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  @mixin desktopRender() {
+    flex-direction: row;
+    align-items: center;
+
+    .pageImageRowDescription {
+      width: 42%;
+      margin-right: 6.4rem;
+      margin-bottom: 0;
+    }
+
+    .pageImageRowImage {
+      width: 58%;
+    }
+
+    &.imageOnly {
+      .pageImageRowImage {
+        width: 100%;
+      }
+    }
+
+    &.imageLeft {
+      flex-direction: row-reverse;
+
+      .pageImageRowDescription {
+        margin-right: 0;
+        margin-left: 6.4rem;
+      }
+    }
+
+    .desktopOnly {
+      display: block;
+    }
+
+    .mobileOnly {
+      display: none;
+    }
+  }
+
+  &.indexZero {
+    @media ($bp-lg) {
+      @include desktopRender();
+    }
+  }
+
+  &:not(.indexZero) {
+    @media ($bp-md) {
+      @include desktopRender();
+    }
+  }
+
+  &.gartner-magic-quadrant-eipaas {
+    @media ($bp-lg) {
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .pageImageRowDescription {
+      @media ($bp-lg) {
+        width: 60%;
+        padding-top: 2rem;
+      }
+    }
+
+    .pageImageRowImage {
+      max-width: 375px;
+
+      @media ($bp-lg) {
+        width: 30%;
+        max-width: 462px;
+      }
+    }
+
+    h1 {
+      font-size: 3.6rem;
+      line-height: 4.4rem;
+    }
+
+    @media ($bp-lg) {
+      .pageImageRowDescription {
+        width: 60%;
+        padding-top: 2rem;
+      }
+
+      h1 {
+        font-size: 4.8rem;
+        line-height: 5.8rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,364 @@
+section,
+.section {
+  width: 100%;
+  height: 100%;
+  color: $text-color;
+  background: $background-color;
+
+  &.error {
+    text-align: center;
+  }
+
+  // CHECK BLOG VARIABLES
+  &.footer-gradient {
+    background-image: $footer-gradient-background;
+  }
+
+  &.grey {
+    background: $grey-background;
+  }
+
+  &.grey-to-white-gradient {
+    background-image: $grey-to-white-gradient-background;
+  }
+
+  &.white-to-grey-gradient {
+    background-image: $white-to-grey-gradient-background;
+  }
+
+  &.grey-to-white-to-grey-gradient {
+    background-image: $grey-to-white-to-grey-gradient-background;
+  }
+
+  &.white-to-grey-to-white-gradient {
+    background-image: $white-to-grey-to-white-gradient-background;
+  }
+
+  &.grey-to-white-to-white-gradient {
+    background-color: $grey-to-white-to-white-gradient-background;
+  }
+
+  &.white-to-grey-to-grey-gradient {
+    background-image: $white-to-grey-to-grey-gradient-background;
+  }
+
+  &.grey-to-grey-to-white-gradient {
+    background-image: $grey-to-grey-to-white-gradient-background;
+  }
+
+  &.white-to-white-to-grey-gradient {
+    background-image: $white-to-white-to-grey-gradient-background;
+  }
+
+  &.pre-footer {
+    background-image: $pre-footer-background;
+  }
+
+  &.pre-footer-large {
+    background-image: $pre-footer-large-background;
+  }
+
+  &.dark-background {
+    background: $dark-background-color;
+  }
+
+  &.dark-hero-background {
+    background: transparent;
+  }
+
+  &.blur-gradient,
+  &.body-gradient,
+  &.featured-blog-gradient,
+  &.popular-blog-gradient,
+  &.footer-gradient,
+  &.body-gradient,
+  &.grey,
+  &.grey-to-white-gradient,
+  &.white-to-grey-gradient,
+  &.grey-to-white-to-grey-gradient,
+  &.white-to-grey-to-white-gradient,
+  &.grey-to-white-to-white-gradient,
+  &.white-to-grey-to-grey-gradient,
+  &.grey-to-grey-to-white-gradient,
+  &.white-to-white-to-grey-gradient,
+  &.pre-footer,
+  &.pre-footer-large,
+  &.dark-background,
+  &.dark-hero-background {
+    > .container {
+      background-color: transparent;
+    }
+  }
+
+  // CARDS
+  .card-background {
+    color: $text-color;
+    background-color: $page-card-background-color-grey;
+  }
+
+  &.grey,
+  &.grey-to-grey-to-white-gradient,
+  &.white-to-grey-to-grey-gradient,
+  &.white-to-grey-gradient,
+  &.white-to-grey-to-white-gradient {
+    .card-background {
+      color: $text-color;
+      background-color: $page-card-background-color-white;
+    }
+  }
+
+  &.pre-footer,
+  &.pre-footer-large,
+  &.dark-background,
+  &.dark-hero-background {
+    color: $light-text-color;
+
+    h1:not(.primary),
+    h2:not(.primary),
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    .heading {
+      color: $light-heading-color;
+    }
+
+    input,
+    select,
+    textarea {
+      @include inputSelect();
+
+      color: $light-color;
+      border-color: $light-input-select-border-color;
+      background-color: $dark-background-color;
+
+      &:focus,
+      &:hover {
+        // background-color: $light-input-select-focus-background-color;
+        border: 1px solid $light-input-select-focus-border-color;
+        outline: 0;
+      }
+
+      &:active {
+        // background-color: $light-input-select-active-background-color;
+        border: 1px solid $light-input-select-active-border-color;
+        outline: 0;
+      }
+    }
+
+    ::placeholder {
+      color: $light-placeholder-color;
+    }
+
+    a,
+    .link {
+      @include lightLink();
+    }
+
+    a.bold {
+      @include primaryLink();
+    }
+
+    .card-background {
+      color: $light-text-color;
+      background-color: $page-card-background-color-dark-mode;
+    }
+  }
+
+  &.white-override {
+    color: $text-color;
+
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6,
+    .heading {
+      color: $heading-color;
+    }
+
+    input,
+    select,
+    textarea {
+      @include inputSelect();
+    }
+
+    ::placeholder {
+      color: $placeholder-color;
+    }
+
+    a,
+    .link {
+      @include primaryLink();
+    }
+  }
+
+  &.add-padding-top {
+    > .container:first-of-type {
+      padding-top: 8rem;
+
+      @media ($bp-md) {
+        padding-top: 12.8rem;
+      }
+    }
+  }
+
+  &.add-padding-bottom {
+    > .container:last-of-type {
+      padding-bottom: 8rem;
+
+      @media ($bp-md) {
+        padding-bottom: 12.8rem;
+      }
+    }
+  }
+}
+
+.container {
+  position: relative;
+  max-width: 144rem;
+  padding-top: 4rem;
+  padding-right: 2.4rem;
+  padding-bottom: 4rem;
+  padding-left: 2.4rem;
+  margin: 0 auto;
+
+  @media ($bp-md) {
+    padding-top: 6.4rem;
+    padding-right: 4rem;
+    padding-bottom: 6.4rem;
+    padding-left: 4rem;
+  }
+
+  @media ($bp-lg) {
+    padding-right: 8rem;
+    padding-left: 8rem;
+  }
+
+  &:not(.less-margin-horizontal) {
+    @media ($bp-xl) {
+      padding-right: 12.8rem;
+      padding-left: 12.8rem;
+    }
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.rowToCol {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  @mixin desktopCol() {
+    flex-direction: row;
+
+    > * {
+      margin-bottom: 0;
+    }
+
+    &.gap {
+      width: calc(100% + 3.2rem);
+      margin-right: -3.2rem;
+
+      > * {
+        margin-right: 3.2rem;
+      }
+
+      &.half {
+        width: calc(100% + 1.6rem);
+        margin-right: -1.6rem;
+
+        > * {
+          margin-right: 1.6rem;
+        }
+      }
+    }
+  }
+
+  &.sm {
+    @media ($bp-sm) {
+      @include desktopCol();
+    }
+  }
+
+  &.md {
+    @media ($bp-md) {
+      @include desktopCol();
+    }
+  }
+
+  &.lg {
+    @media ($bp-lg) {
+      @include desktopCol();
+    }
+  }
+
+  &.xl {
+    @media ($bp-xl) {
+      @include desktopCol();
+    }
+  }
+}
+
+.column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.pageTabSection {
+  width: 100%;
+  padding-top: 2rem;
+
+  .tabTitleRow {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2.4rem;
+    margin-bottom: 4.8rem;
+
+    @media ($bp-md) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  .tabTitle {
+    @include tabTitle();
+
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+
+    @media ($bp-md) {
+      padding-bottom: 1.6rem;
+    }
+  }
+
+  .tabItemsRow {
+    @include cardRowWrap();
+  }
+
+  .ctaLink {
+    margin-top: 4.8rem;
+  }
+}

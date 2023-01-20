@@ -1,0 +1,108 @@
+@import "@styles/base/variables";
+@import "@styles/base/mixins.scss";
+
+$navbar-height: 8rem;
+
+// Styling for the Modal component
+.modalBackground {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: $navbar-height;
+  background-color: $disabled-area-color;
+
+  .modal {
+    position: relative;
+    z-index: 10002;
+    max-width: 76.8rem;
+    max-height: 100%;
+    padding: 4rem;
+    margin: 2.4rem;
+    overflow-y: auto;
+    border-radius: $global-radius;
+    background-color: $background-color;
+    -webkit-overflow-scrolling: touch;
+
+    &.layoutModal {
+      width: 90%;
+      min-width: 36rem;
+      max-width: 100%;
+
+      @media ($bp-sm) {
+        width: 35%;
+      }
+
+      @media ($bp-xl) {
+        width: 25%;
+      }
+    }
+
+    &.noPadding {
+      padding: 0;
+    }
+
+    &.forceScroll {
+      overflow-y: scroll;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .close {
+      @include secondaryLink();
+
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+
+    &.videoPlayerModal {
+      width: 100%;
+      max-width: 84rem;
+      padding: 0;
+
+      @media ($bp-xl) {
+        max-width: 66vw;
+      }
+
+      .videoPlayer {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        background-color: $secondary-color;
+
+        iframe {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+      }
+
+      .close {
+        top: 0.8rem;
+        right: 0.8rem;
+
+        @include lightLink();
+      }
+    }
+  }
+}
+
+// Styling for the disabled background area of the modal
+.disabledArea {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10001;
+}

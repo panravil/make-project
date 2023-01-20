@@ -1,0 +1,118 @@
+// Tables
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  display: flex;
+  flex-direction: column;
+  min-width: fit-content;
+}
+
+tbody {
+  tr {
+    padding: 1.2rem;
+  }
+}
+
+tr {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+th,
+td {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+table.default {
+  thead {
+    tr:first-child {
+      padding: 2.4rem 1.2rem;
+      color: $light-text-color;
+      background: $primary-color;
+    }
+  }
+
+  tbody {
+    // define height as needed
+    min-height: 20rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  tr {
+    background-color: $table-row-background-color;
+
+    &:nth-child(2n) {
+      background-color: $table-row-background-color-alternate;
+    }
+  }
+}
+
+// Tables in content
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+p + table,
+ul + table,
+ol + table {
+  display: table;
+  margin-bottom: 4rem;
+  vertical-align: top;
+  border-color: $border-color;
+  background-color: $grey-background;
+  caption-side: bottom;
+
+  thead,
+  tbody,
+  tfoot,
+  tr,
+  th,
+  td {
+    border-width: 0;
+    border-style: solid;
+    border-color: inherit;
+  }
+
+  > thead {
+    vertical-align: bottom;
+  }
+
+  > tbody {
+    vertical-align: inherit;
+  }
+
+  tr {
+    display: table-row;
+  }
+
+  th,
+  td {
+    display: table-cell;
+  }
+
+  tr:first-child th {
+    border-top-width: 1px;
+  }
+
+  > :not(caption) > * > * {
+    padding: 1.2rem;
+    text-align: unset;
+    border-bottom-width: 1px;
+  }
+
+  p,
+  ul,
+  ol {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

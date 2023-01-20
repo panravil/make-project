@@ -1,0 +1,662 @@
+// Mixins
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+@mixin accessibilityFocus() {
+  outline: 0;
+
+  &:hover,
+  &:active {
+    outline: 0;
+  }
+
+  &:focus-visible {
+    // &:focus {
+    outline-width: 2px;
+    outline-style: inset;
+    outline-color: $primary-color;
+  }
+}
+
+@mixin primaryLink() {
+  @include accessibilityFocus();
+
+  color: $primary-color;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: $primary-color-hover;
+  }
+
+  &:active {
+    color: $primary-color-active;
+  }
+}
+
+@mixin boldLink() {
+  @include primaryLink();
+
+  font-size: 1.6rem;
+  line-height: 1.25;
+  font-family: $font-semibold;
+  text-transform: uppercase;
+}
+
+@mixin secondaryLink() {
+  @include primaryLink();
+
+  color: $secondary-color;
+
+  &:hover,
+  &:focus {
+    color: $primary-color-hover;
+  }
+
+  &:active {
+    color: $primary-color-active;
+  }
+}
+
+@mixin lightLink() {
+  @include primaryLink();
+
+  color: $light-color;
+
+  &:hover,
+  &:focus {
+    color: $light-color-hover;
+  }
+
+  &:active {
+    color: $light-color-active;
+  }
+}
+
+@mixin homeMenuLink() {
+  @include primaryLink();
+
+  color: $secondary-color;
+
+  &:hover,
+  &:focus {
+    color: $secondary-color-hover;
+  }
+
+  &:active {
+    color: $secondary-color-active;
+  }
+}
+
+@mixin homeMenuLinkTop() {
+  @include primaryLink();
+
+  color: $home-menu-color;
+
+  &:hover,
+  &:focus {
+    color: $home-menu-color-hover;
+  }
+
+  &:active {
+    color: $home-menu-color-active;
+  }
+}
+
+@mixin cardLink() {
+  &:hover,
+  &:active {
+    padding: 1.4rem;
+    border: 0.2rem solid $primary-color;
+
+    // outline-width: 2px;
+    // outline-style: inset;
+    // outline-color: $primary-color;
+  }
+}
+
+@mixin cardLinkLarge() {
+  &:hover,
+  &:active {
+    padding: 2.2rem;
+    border: 0.2rem solid $primary-color;
+  }
+}
+
+@mixin gradientTextBackgroundClip() {
+  display: inline-block;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  // border: 0;
+}
+
+@mixin tabTitle {
+  @include primaryLink();
+
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  text-align: center;
+  color: $disabled-link-color;
+  border-bottom: 0.4rem solid $border-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $primary-color;
+    border-color: $primary-color;
+    outline: 0;
+  }
+
+  &.selectedTab {
+    @include gradientTextBackgroundClip();
+
+    border-image: $gradient-color;
+    border-image-slice: 1;
+
+    // display: inline-block;
+    // color: transparent;
+    // border: 0;
+    border-bottom: 0.4rem solid;
+    background-image: $gradient-color;
+  }
+}
+
+@mixin inputSelect() {
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  font-family: $font-regular;
+  color: $secondary-color;
+  border: 1px solid $input-select-border-color;
+  border-radius: $global-radius;
+  background-color: $background-color;
+  outline: 0;
+
+  &:focus,
+  &:hover {
+    // background-color: $input-select-focus-background-color;
+    border: 1px solid $input-select-focus-border-color;
+    outline: 0;
+  }
+
+  &:active {
+    // background-color: $input-select-active-background-color;
+    border: 1px solid $input-select-active-border-color;
+    outline: 0;
+  }
+
+  &.disabled {
+    color: $light-text-color;
+    border: $input-select-disabled-border-color;
+    background-color: $input-select-disabled-background-color;
+  }
+}
+
+@mixin dropdownOption() {
+  color: $secondary-color;
+  background-color: $background-color;
+  cursor: pointer;
+
+  span {
+    color: $text-color;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: $dropdown-option-focus-background-color;
+  }
+
+  &:active {
+    background-color: $dropdown-option-active-background-color;
+  }
+
+  &.disabled {
+    color: $light-text-color;
+    background-color: $input-select-disabled-background-color;
+  }
+}
+
+@mixin inputSelectGradient() {
+  .gradientBorder {
+    width: 100%;
+    border-radius: $global-radius;
+    background: $gradient-color;
+
+    &:hover,
+    &:focus {
+      background: $gradient-color-hover;
+      opacity: 0.8;
+    }
+
+    &:active {
+      background: $gradient-color-active;
+      opacity: 0.9;
+    }
+
+    .gradientWrapper {
+      position: relative;
+      border: solid 1px transparent;
+      border-radius: $global-radius;
+      background-clip: padding-box;
+      background-color: $background-color;
+
+      > .gradientInputSelect {
+        height: 4.8rem;
+        margin-bottom: 0;
+        border: 0;
+      }
+
+      // > .gradientInputSelect,
+      // > .gradientInputSelect span,
+      ::placeholder {
+        margin-bottom: 0;
+        color: transparent;
+        border-color: transparent;
+        background-image: $gradient-color;
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+    }
+  }
+}
+
+@mixin negativeRowMargins {
+  margin-right: -2.4rem;
+  margin-left: -2.4rem;
+
+  @media ($bp-md) {
+    margin-right: -4rem;
+    margin-left: -4rem;
+  }
+
+  @media ($bp-lg) {
+    margin-right: -8rem;
+    margin-left: -8rem;
+  }
+
+  @media ($bp-xl) {
+    margin-right: -12.8rem;
+    margin-left: -12.8rem;
+  }
+}
+
+@mixin negativeRowPaddings {
+  padding-right: 2.4rem;
+  padding-left: 2.4rem;
+
+  @media ($bp-md) {
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+
+  @media ($bp-lg) {
+    padding-right: 8rem;
+    padding-left: 8rem;
+  }
+
+  @media ($bp-xl) {
+    padding-right: 12.8rem;
+    padding-left: 12.8rem;
+  }
+}
+
+@mixin horizontalScrollRow() {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  margin-top: -4rem;
+  margin-bottom: -4rem;
+  overflow-x: scroll;
+  mask-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / 0%),
+    rgb(0 0 0 / 20%) 1.2rem,
+    rgb(0 0 0 / 100%) 2.4rem,
+    rgb(0 0 0 / 100%) calc(100% - 2.4rem),
+    rgb(0 0 0 / 20%) calc(100% - 1.2rem),
+    rgb(0 0 0 / 0%)
+  );
+  mask-image: linear-gradient(
+    to left,
+    rgb(0 0 0 / 0%),
+    rgb(0 0 0 / 20%) 1.2rem,
+    rgb(0 0 0 / 100%) 2.4rem,
+    rgb(0 0 0 / 100%) calc(100% - 2.4rem),
+    rgb(0 0 0 / 20%) calc(100% - 1.2rem),
+    rgb(0 0 0 / 0%)
+  );
+
+  @include negativeRowMargins();
+  @include negativeRowPaddings();
+
+  &:not(.showScrollbar) {
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  @media ($bp-md) {
+    mask-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0%),
+      rgb(0 0 0 / 20%) 2rem,
+      rgb(0 0 0 / 100%) 4rem,
+      rgb(0 0 0 / 100%) calc(100% - 4rem),
+      rgb(0 0 0 / 20%) calc(100% - 2rem),
+      rgb(0 0 0 / 0%)
+    );
+    mask-image: linear-gradient(
+      to left,
+      rgb(0 0 0 / 0%),
+      rgb(0 0 0 / 20%) 2rem,
+      rgb(0 0 0 / 100%) 4rem,
+      rgb(0 0 0 / 100%) calc(100% - 4rem),
+      rgb(0 0 0 / 20%) calc(100% - 2rem),
+      rgb(0 0 0 / 0%)
+    );
+  }
+
+  @media ($bp-lg) {
+    mask-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0%),
+      rgb(0 0 0 / 20%) 4rem,
+      rgb(0 0 0 / 100%) 8rem,
+      rgb(0 0 0 / 100%) calc(100% - 8rem),
+      rgb(0 0 0 / 20%) calc(100% - 4rem),
+      rgb(0 0 0 / 0%)
+    );
+    mask-image: linear-gradient(
+      to left,
+      rgb(0 0 0 / 0%),
+      rgb(0 0 0 / 20%) 4rem,
+      rgb(0 0 0 / 100%) 8rem,
+      rgb(0 0 0 / 100%) calc(100% - 8rem),
+      rgb(0 0 0 / 20%) calc(100% - 4rem),
+      rgb(0 0 0 / 0%)
+    );
+  }
+
+  @media ($bp-xl) {
+    mask-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0%),
+      rgb(0 0 0 / 20%) 6.4rem,
+      rgb(0 0 0 / 100%) 12.8rem,
+      rgb(0 0 0 / 100%) calc(100% - 12.8rem),
+      rgb(0 0 0 / 20%) calc(100% - 6.4rem),
+      rgb(0 0 0 / 0%)
+    );
+    mask-image: linear-gradient(
+      to left,
+      rgb(0 0 0 / 0%),
+      rgb(0 0 0 / 100%) 12.8rem,
+      rgb(0 0 0 / 100%) calc(100% - 12.8rem),
+      rgb(0 0 0 / 25%) calc(100% - 6.4rem),
+      rgb(0 0 0 / 0%)
+    );
+  }
+}
+
+@mixin horizontalScrollRowArrow {
+  position: absolute;
+  top: 0;
+  right: -2.4rem;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  cursor: pointer;
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    transform: rotate(-90deg);
+  }
+
+  @media ($bp-md) {
+    right: -3.2rem;
+  }
+
+  @media ($bp-lg) {
+    right: -7.2rem;
+  }
+
+  @media ($bp-xl) {
+    right: -12rem;
+  }
+
+  &.leftArrow {
+    right: unset;
+    left: -2.4rem;
+
+    svg {
+      transform: rotate(90deg);
+    }
+
+    @media ($bp-md) {
+      left: -3.2rem;
+    }
+
+    @media ($bp-lg) {
+      left: -7.2rem;
+    }
+
+    @media ($bp-xl) {
+      left: -12rem;
+    }
+  }
+}
+
+@mixin cardRowWrap {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -1.6rem;
+
+  @media ($bp-md) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 102%;
+    margin-right: -2%;
+  }
+}
+
+@mixin cardRowWrapColumn {
+  width: 100%;
+  margin-bottom: 1.6rem;
+
+  &.twoColumns {
+    @media ($bp-md) {
+      flex-basis: 48%;
+      margin-right: 2%;
+    }
+  }
+
+  &.threeColumns {
+    @media ($bp-lg) {
+      flex-basis: 31.333333%;
+    }
+  }
+
+  &.fourColumns {
+    @media ($bp-xl) {
+      flex-basis: 23%;
+    }
+  }
+}
+
+@mixin simpleRowWrapColumn {
+  width: 100%;
+  margin-bottom: 1.6rem;
+  overflow: hidden;
+
+  @media ($bp-sm) {
+    flex-basis: 48%;
+    max-width: 35.7rem;
+    margin-right: 2%;
+  }
+
+  @media ($bp-md) {
+    flex-basis: 31.333333%;
+  }
+}
+
+@mixin searchRowWrap {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -1.6rem;
+
+  @media ($bp-sm) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: -2%;
+  }
+}
+
+@mixin searchRowWrapColumn {
+  width: 100%;
+  margin-bottom: 1.6rem;
+  overflow: hidden;
+
+  @media ($bp-sm) {
+    flex-basis: 48%;
+    margin-right: 2%;
+  }
+
+  @media ($bp-md) {
+    flex-basis: 31.333333%;
+  }
+
+  @media ($bp-lg) {
+    flex-basis: 48%;
+  }
+
+  @media ($bp-xl) {
+    flex-basis: 31.333333%;
+  }
+}
+
+@mixin searchRowWrapSmall {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: -1.6rem;
+  margin-bottom: -3.2rem;
+
+  @media ($bp-md) {
+    margin-right: -3.2rem;
+  }
+}
+
+@mixin searchRowWrapColumnSmall {
+  margin-right: 1.6rem;
+  margin-bottom: 3.2rem;
+
+  @media ($bp-md) {
+    margin-right: 3.2rem;
+  }
+}
+
+@mixin searchResultsStyles {
+  .headerContainer {
+    // margin-bottom: 6.4rem;
+    margin-bottom: 4.8rem;
+
+    h2 {
+      width: 100%;
+      max-width: 96rem;
+      margin-right: auto;
+      margin-left: auto;
+
+      @media ($bp-md) {
+        text-align: center;
+      }
+    }
+
+    p {
+      width: 100%;
+      max-width: 76.8rem;
+      margin-right: auto;
+      margin-left: auto;
+      text-align: left;
+
+      @media ($bp-md) {
+        text-align: center;
+      }
+    }
+  }
+
+  .searchInput {
+    width: 100%;
+    max-width: 32.7rem;
+    margin: 0 auto;
+
+    // margin-bottom: 4rem;
+    margin-bottom: 4.8rem;
+  }
+
+  .searchResults {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: -1.6rem;
+
+    @media ($bp-sm) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-right: -2%;
+    }
+
+    .appWrapper,
+    .templateWrapper,
+    .triggerWrapper {
+      width: 100%;
+      margin-bottom: 1.6rem;
+
+      @media ($bp-sm) {
+        flex-basis: 48%;
+        max-width: 37.8rem;
+
+        // max-width: 35.7rem;
+        margin-right: 2%;
+      }
+
+      @media ($bp-md) {
+        flex-basis: 31.333333%;
+      }
+    }
+
+    .appWrapper {
+      @media ($bp-lg) {
+        flex-basis: 23%;
+      }
+    }
+  }
+
+  .filteredResults {
+    text-align: center;
+  }
+
+  .loadMore,
+  .linkWrapper {
+    margin: 4.8rem auto 0;
+    text-align: center;
+
+    @include boldLink();
+  }
+
+  .loadLess {
+    margin-top: 2.4rem;
+  }
+}

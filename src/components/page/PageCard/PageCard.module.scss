@@ -1,0 +1,125 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.pageCardContainer {
+  @include cardRowWrapColumn();
+
+  display: flex;
+  flex-direction: row;
+  padding: 2.4rem;
+  text-align: left;
+  border-radius: $global-radius;
+
+  &.linkContainer {
+    &.cardGradientBorder {
+      .cardGradientContent {
+        @include cardLinkLarge();
+      }
+    }
+
+    &:not(.cardGradientBorder) {
+      @include cardLinkLarge();
+    }
+  }
+
+  .pageCardImage {
+    display: flex;
+    flex-shrink: 0;
+    width: 6.4rem;
+    margin-right: 2.4rem;
+  }
+
+  .pageCardText {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .pageCardTitle {
+    margin-bottom: 0.8rem;
+  }
+
+  .pageCardSubtitle {
+    margin-bottom: 0.8rem;
+  }
+
+  .pageCardDesription {
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .pageCardLink {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 1.6rem;
+    text-align: right;
+  }
+
+  &.cardImageTop {
+    flex-direction: column;
+
+    .pageCardImage {
+      margin-bottom: 2.4rem;
+    }
+  }
+
+  &.cardGradientBorder {
+    padding: 0;
+
+    // COOL VERSION WITH NO EXTRA DIVS BUT BREAKS ON SAFARI
+    // position: relative;
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   border-radius: $global-radius;
+    //   padding: 1px;
+    //   background: $gradient-color;
+    //   -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    //     linear-gradient(#fff 0 0);
+    //   -webkit-mask-composite: xor;
+    //   mask-composite: exclude;
+    // }
+    // SIMPLE VERSION
+    background: $gradient-color;
+
+    .cardGradientContent {
+      padding: 2.3rem;
+      border: solid 1px transparent;
+      border-radius: $global-radius;
+      background-clip: padding-box;
+    }
+  }
+
+  &.horizontalScrollRow {
+    // max-width: 28.4rem;
+    // max-width: 27.2rem;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 27.75rem;
+    margin-bottom: 0;
+
+    &:not(:last-child) {
+      margin-right: 2.4rem;
+    }
+  }
+
+  &.smallCard {
+    align-items: center;
+
+    .pageCardText {
+      justify-content: center;
+    }
+  }
+}

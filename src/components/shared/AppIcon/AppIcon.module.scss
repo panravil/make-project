@@ -1,0 +1,25 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.iconBackground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  background-color: $text-color;
+
+  .iconWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 66.6%;
+    height: 66.6%;
+
+    div {
+      width: 100%;
+    }
+  }
+}

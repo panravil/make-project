@@ -1,0 +1,342 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+@mixin matchMeCardWrap {
+  position: fixed;
+  bottom: 25%;
+  left: -75px;
+  z-index: 10;
+  width: 150px !important;
+  padding: 0;
+  margin: 0;
+  border-radius: $global-radius;
+  box-shadow: 0 0 20px #1d053326;
+}
+
+.advancedDesktopOnly {
+  display: none;
+}
+
+@media ($bp-lg) {
+  .advancedDesktopOnly {
+    display: block;
+  }
+
+  .advancedMobileOnly {
+    display: none;
+  }
+}
+
+.cardSection {
+  margin-top: 4.8rem;
+
+  .cardRow {
+    @include cardRowWrap();
+  }
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+
+  .partnerFiltersRow {
+    display: none;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 2.4rem;
+
+    > *:not(:last-child) {
+      margin-right: 3.2rem;
+    }
+
+    @media ($bp-lg) {
+      display: flex;
+    }
+  }
+
+  .searchInput {
+    width: 100%;
+    max-width: 32.7rem;
+    margin-bottom: 2.4rem;
+  }
+
+  input {
+    background-color: $background-color;
+  }
+
+  .searchFormWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+
+    @media ($bp-lg) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .searchForm {
+      width: 100%;
+      max-width: 32.7rem;
+      margin-bottom: 2.4rem;
+
+      @media ($bp-lg) {
+        margin-right: 4rem;
+      }
+    }
+
+    .resultsWrapper {
+      width: 100%;
+    }
+
+    .filteredResults {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+
+      .filteredResultsCaption {
+        flex: 1;
+        flex-shrink: 0;
+      }
+
+      .filterDropdown {
+        margin-right: 0;
+      }
+    }
+
+    .missingPartners {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .partnerCard {
+        flex: 1;
+        width: 100%;
+        max-width: 32.7rem;
+        margin-bottom: 2.4rem;
+      }
+
+      .missingWrapper {
+        flex: 2;
+      }
+
+      @media ($bp-lg) {
+        flex-direction: row;
+
+        .partnerCard {
+          max-width: unset;
+          margin-right: 4.8rem;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .matchMeCardWrap {
+      @include matchMeCardWrap;
+    }
+
+    .searchCategoriesFilter {
+      .subcategory {
+        @include primaryLink();
+
+        margin-bottom: 1.6rem;
+        margin-left: 5.6rem;
+        color: $text-color;
+
+        &.selectedOption {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .currentItems {
+      $gap-sm: 2rem;
+      $gap-lg: 4rem;
+
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: -$gap-sm;
+
+      @media ($bp-sm) {
+        margin-right: ((-$gap-sm) * 0.5);
+        margin-left: ((-$gap-sm) * 0.5);
+      }
+
+      @media ($bp-lg) {
+        margin-top: -$gap-lg;
+        margin-right: ((-$gap-lg) * 0.5);
+        margin-left: ((-$gap-lg) * 0.5);
+      }
+
+      .currentListItem {
+        flex: 0 0 auto;
+        max-width: 100%;
+        margin-top: $gap-sm;
+
+        @media ($bp-sm) {
+          width: 50%;
+          padding-right: ($gap-sm * 0.5);
+          padding-left: ($gap-sm * 0.5);
+        }
+
+        @media ($bp-lg) {
+          width: 33.3%;
+          padding-right: ($gap-lg * 0.5);
+          padding-left: ($gap-lg * 0.5);
+          margin-top: $gap-lg;
+        }
+      }
+
+      .matchMeCardWrap {
+        @include matchMeCardWrap;
+      }
+
+      &.infinitOnRow {
+        justify-content: center;
+
+        .currentListItem {
+          width: auto;
+        }
+      }
+    }
+
+    .loadMore {
+      margin: 4.8rem auto 0;
+      text-align: center;
+
+      &:focus,
+      &:active {
+        color: $primary-color;
+        border-color: $primary-color;
+        background-color: $background-color;
+      }
+    }
+
+    .loadLess {
+      margin-top: 2.4rem;
+    }
+  }
+
+  // SPECIFIC FOR NO CATEGORIES
+  &.noCategoriesAdvanced {
+    .searchInput {
+      margin-right: auto;
+      margin-left: auto;
+
+      @media ($bp-lg) {
+        margin-bottom: 12.8rem;
+      }
+    }
+
+    .searchForm {
+      @media ($bp-lg) {
+        display: none;
+      }
+    }
+  }
+
+  // SPECIFIC FOR SEARCH INDEX PAGES
+  &:not(.pageSection) {
+    .searchFormWrapper {
+      align-items: center;
+
+      @media ($bp-md) {
+        align-items: center;
+
+        .emptyResults {
+          text-align: center;
+        }
+      }
+
+      @media ($bp-lg) {
+        align-items: flex-start;
+
+        .emptyResults {
+          text-align: left;
+        }
+      }
+
+      .suggestedTitle {
+        margin-bottom: 4rem;
+      }
+
+      .currentItems {
+        justify-content: center;
+
+        &.small {
+          .currentListItem {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+
+  // Page Section Specific
+  &.pageSection {
+    .searchFormWrapper {
+      align-items: center;
+      text-align: center;
+
+      .emptyResults {
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      @media ($bp-lg) {
+        flex-direction: column;
+        align-items: center;
+
+        .searchForm {
+          margin-right: 0;
+        }
+      }
+
+      .horizontalScrollRowWrapper {
+        position: relative;
+        margin-bottom: 4.8rem;
+
+        .arrowIcon {
+          @include horizontalScrollRowArrow();
+          @include secondaryLink();
+        }
+      }
+
+      .pageSectionCategoriesFilter {
+        @include horizontalScrollRow();
+
+        width: 100vw;
+        max-width: 144rem;
+
+        .pageSectionCategory {
+          @include secondaryLink();
+
+          &:hover,
+          &:active {
+            border-color: $primary-color;
+          }
+
+          box-sizing: border-box;
+          padding: 0.8rem 2.4rem;
+          margin: 0 0.4rem;
+          white-space: nowrap;
+          border: 1px solid $page-section-category-border-color;
+          border-radius: $global-radius;
+          background: $page-section-category-background-color;
+
+          &.categorySelected {
+            color: $light-color;
+            background-color: $secondary-color;
+
+            &:hover {
+              color: $primary-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

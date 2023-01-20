@@ -1,0 +1,26 @@
+{
+  "title": "XXXXXX",
+  "titleTemplate": "%s | XXXXXX | XXXXXXX",
+  "description": "XXXXXXX",
+  "openGraph": {
+    "title": "XXXXX | XXXXX",
+    "description": "XXXXX",
+    "type": "website",
+    "locale": "en_IE",
+    "url": "XXXXX",
+    "site_name": "XXXXXX",
+    "images": [
+      {
+        "url": "https://www.XXXXXXXX.com/SEO/card-new.png",
+        "width": 800,
+        "height": 600,
+        "alt": "XXXXXXX"
+      }
+    ]
+  },
+  "twitter": {
+    "handle": "XXXXXX",
+    "site": "XXXXXXX",
+    "cardType": "summary_large_image"
+  }
+}

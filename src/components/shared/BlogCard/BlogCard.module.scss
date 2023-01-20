@@ -1,0 +1,79 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.blogCardContainer {
+  @include cardRowWrapColumn();
+
+  &.slider {
+    margin-bottom: 0;
+  }
+
+  .contentWrapper {
+    padding: 1.6rem;
+    border-radius: $global-radius;
+    background-color: $page-card-background-color-grey !important;
+
+    @include cardLink();
+  }
+
+  .contentWrapper:hover {
+    background-color: $page-card-background-color-white !important;
+  }
+
+  .blogImage {
+    position: relative;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    margin: 0 auto;
+    margin-bottom: 1.6rem;
+    overflow: hidden;
+    border-radius: $global-radius;
+
+    .imageContainer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.8rem;
+      background-color: $secondary-color;
+
+      .imageWrapper {
+        width: 100%;
+      }
+
+      .topicWrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 1.6rem;
+        margin: -0.4rem;
+
+        .topic {
+          padding: 0.4rem 0.8rem;
+          margin: 0.4rem;
+          color: $secondary-color;
+          border-radius: $global-radius;
+          background-color: $background-color;
+        }
+      }
+    }
+  }
+
+  .publishDate {
+    margin-bottom: 0.8rem;
+    color: $caption-color;
+  }
+
+  .blogTitle {
+    margin-bottom: 0;
+    color: $secondary-color;
+  }
+}

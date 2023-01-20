@@ -1,0 +1,40 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.layoutModal {
+  .imageContainer {
+    position: relative;
+    width: 100%;
+
+    > span {
+      position: unset !important;
+    }
+
+    .headerImage {
+      position: relative !important;
+      width: 100% !important;
+      height: unset !important;
+      object-fit: contain;
+    }
+  }
+
+  .headerContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 3rem;
+    font-size: 3rem;
+    font-family: $font-heading-button;
+    letter-spacing: -0.04em;
+    white-space: pre;
+  }
+
+  .content {
+    padding: 3rem;
+    text-align: center;
+
+    button {
+      margin: 3rem auto 0;
+    }
+  }
+}

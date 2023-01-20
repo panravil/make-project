@@ -1,0 +1,167 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.videoSection {
+  @media ($bp-md) {
+    text-align: center;
+  }
+
+  .videoSectionHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h1,
+    h2 {
+      max-width: 96rem;
+    }
+
+    p {
+      max-width: 76.8rem;
+    }
+  }
+
+  .videoImageContainer {
+    max-width: 76.8rem;
+    margin: 0 auto 3.2rem;
+    cursor: pointer;
+
+    .videoImage {
+      position: relative;
+      padding-bottom: 56.25%;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: $global-radius;
+
+      .videoPlaceholderContainer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        .textOverlay {
+          position: absolute;
+          top: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          color: $secondary-color;
+
+          .iconWrapper {
+            width: 1.8rem;
+            height: 1.8rem;
+            margin-right: 0.8rem;
+          }
+
+          .noIconWrapper {
+            display: none;
+          }
+        }
+      }
+
+      .missingPlaceholderImage {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $primary-color;
+        background-color: $secondary-color;
+
+        .iconWrapper {
+          width: 1.8rem;
+          height: 1.8rem;
+          margin-right: 0.8rem;
+        }
+      }
+    }
+  }
+
+  .videoCaptionContainer {
+    @include horizontalScrollRow();
+
+    align-items: center;
+
+    @media ($bp-md) {
+      justify-content: center;
+    }
+
+    .videoCaptionTitle {
+      margin-right: 2.4rem;
+      color: $secondary-color;
+    }
+
+    .company {
+      padding: 0.8rem 1.6rem;
+      margin-right: 0.8rem;
+      white-space: nowrap;
+      border-radius: 4rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .captionsList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 2.4rem;
+    font-family: $font-regular;
+
+    .perk {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+
+      .iconWrapper {
+        width: 1.6rem;
+        height: 1.6rem;
+        margin-right: 0.8rem;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 0.8rem;
+      }
+    }
+
+    @media ($bp-md) {
+      flex-direction: row;
+
+      .perk:not(:last-child) {
+        margin-right: 2.4rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .video {
+    margin-top: 2.4rem;
+    border-radius: 1rem;
+  }
+
+  .align-center {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .align-left {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  .align-right {
+    margin-right: 0;
+    margin-left: auto;
+  }
+}

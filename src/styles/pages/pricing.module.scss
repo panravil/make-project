@@ -1,0 +1,28 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.planCardSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media ($bp-sm) {
+    @include horizontalScrollRow();
+
+    align-items: unset;
+  }
+}
+
+.showMobile {
+  @media ($bp-md) {
+    display: none;
+  }
+}
+
+.showDesktop {
+  display: none;
+
+  @media ($bp-md) {
+    display: unset;
+  }
+}

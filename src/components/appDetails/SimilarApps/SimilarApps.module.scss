@@ -1,0 +1,20 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.similarApps {
+  .similarAppHeader {
+    margin-bottom: 6.4rem;
+
+    @media ($bp-md) {
+      text-align: center;
+    }
+  }
+
+  .appContainer {
+    @include cardRowWrap();
+
+    .appCardWrapper {
+      @include simpleRowWrapColumn();
+    }
+  }
+}

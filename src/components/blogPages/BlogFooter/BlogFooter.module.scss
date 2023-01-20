@@ -1,0 +1,78 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.blogFooterContainer {
+  .blogFooter {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4.8rem;
+    border-radius: 1rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 0.1rem;
+      border-radius: $global-radius;
+      background: $gradient-color;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    .blogFooterTitle {
+      margin-bottom: 2.4rem;
+    }
+
+    .blogFooterDescription {
+      max-width: 76.8rem;
+      margin-bottom: 6.4rem;
+
+      // line-height: 2.8rem;
+    }
+
+    .blogFooterTitle,
+    .blogFooterDescription {
+      width: 100%;
+      text-align: center;
+    }
+
+    .subscribeForm {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .submitButton {
+        margin-bottom: 0;
+      }
+    }
+
+    @media ($bp-md) {
+      padding: 9.6rem;
+
+      .subscribeForm {
+        flex-direction: row;
+        justify-content: center;
+
+        .subscribeInput {
+          max-width: 33rem;
+          margin-right: 1.6rem;
+
+          input {
+            margin-bottom: 0;
+          }
+        }
+
+        .submitButton {
+          max-width: 13.2rem;
+        }
+      }
+    }
+  }
+}

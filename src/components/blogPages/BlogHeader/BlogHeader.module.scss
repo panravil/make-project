@@ -1,0 +1,35 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.blogDetailsContainer {
+  .headerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .blogTitle {
+      width: 100%;
+      max-width: 96rem;
+      margin-bottom: 2.4rem;
+      text-align: center;
+    }
+
+    .socialContainer {
+      margin-top: 6.4rem;
+
+      .socialIcon {
+        &:not(:last-child) {
+          margin-right: 2.4rem;
+        }
+      }
+    }
+  }
+
+  .imageContainer {
+    position: relative;
+    width: 100%;
+    max-width: 118.4rem;
+    overflow: hidden;
+    border-radius: $global-radius;
+  }
+}

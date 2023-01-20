@@ -1,0 +1,194 @@
+@import "@styles/base/mixins.scss";
+
+// Typography
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+body {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.375;
+  font-family: $font-light;
+  letter-spacing: 0;
+  color: $text-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.heading {
+  margin-top: 0;
+  margin-bottom: 2.4rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: $heading-color;
+}
+
+// LANDING HEADERS
+h1,
+.h1 {
+  font-size: 4.8rem;
+  line-height: 5.8rem;
+  font-family: $font-heading-button;
+  letter-spacing: -0.04em;
+}
+
+// PAGE HEADERS
+h2,
+.h2 {
+  font-size: 3rem;
+  line-height: 4.4rem;
+  font-family: $font-heading-button;
+  letter-spacing: -0.04em;
+}
+
+h3,
+.h3 {
+  font-size: 2.4rem;
+  line-height: 3rem;
+  font-family: $font-heading-button;
+  letter-spacing: -0.04em;
+}
+
+// SECTION HEADERS
+h4,
+.h4 {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  font-family: $font-light;
+}
+
+// CARD HEADERS
+h5,
+.h5 {
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+  font-family: $font-light;
+}
+
+// I DOUBT WE USE THIS ONE
+h6,
+.h6 {
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  font-family: $font-light;
+}
+
+// Larger than medium
+@media ($bp-md) {
+  // LANDING HEADERS
+  h1,
+  .h1 {
+    font-size: 7.2rem;
+    line-height: 8rem;
+  }
+
+  // PAGE HEADERS
+  h2,
+  .h2 {
+    font-size: 4.8rem;
+    line-height: 5.8rem;
+  }
+
+  h3,
+  .h3 {
+    font-size: 3.6rem;
+    line-height: 4.4rem;
+  }
+
+  // SECTION HEADERS
+  h4,
+  .h4 {
+    font-size: 2.4rem;
+    line-height: 3rem;
+  }
+
+  // CARD HEADERS, LARGER TEXT
+  h5,
+  .h5 {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+
+  // I DOUBT WE USE THIS ONE
+  h6,
+  .h6 {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+  }
+}
+
+p,
+.p {
+  margin-top: 0;
+
+  // color: $text-color;
+  margin-bottom: 2.4rem;
+}
+
+.body-large {
+  @media ($bp-md) {
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+  }
+}
+
+caption,
+.caption {
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+}
+
+small,
+.small {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+
+  @media ($bp-md) {
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+  }
+}
+
+.font-regular {
+  font-family: $font-light;
+}
+
+b,
+.b,
+strong,
+optgroup {
+  font-weight: 400;
+  font-family: $font-bold;
+}
+
+// Links
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+a,
+.link {
+  @include primaryLink();
+
+  text-decoration: none;
+
+  &.secondary {
+    @include secondaryLink();
+  }
+
+  &.bold {
+    @include boldLink();
+  }
+
+  &.disabled {
+    color: $disabled-link-color;
+    pointer-events: none;
+  }
+}

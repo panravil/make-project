@@ -1,0 +1,292 @@
+// Variables
+// --------------
+@use "sass:math";
+@use "sass:color";
+
+// Breakpoints
+// --------------
+
+$bp-xs: "min-width: 375px" !default;
+$bp-sm: "min-width: 512px" !default;
+$bp-md: "min-width: 768px" !default;
+$bp-lg: "min-width: 1024px" !default;
+$bp-xl: "min-width: 1280px" !default;
+$bp-xxl: "min-width: 1440px" !default;
+
+// Colors
+// --------------
+
+$primary-color: #ee2fee !default;
+$primary-color-hover: rgb(238 47 238 / 60%) !default;
+$primary-color-active: rgb(238 47 238 / 80%) !default;
+
+// Secondary Hover Active
+$secondary-color: #240342 !default;
+$secondary-color-hover: rgb(36 3 66 / 60%) !default;
+$secondary-color-active: rgb(36 3 66 / 80%) !default;
+
+// Light Hover Active
+$light-color: #fff !default;
+$light-color-hover: rgb(255 255 255 / 60%) !default;
+$light-color-active: rgb(255 255 255 / 80%) !default;
+
+// Gradient Hover Active
+$gradient-color: radial-gradient(
+  100.03% 140.18% at 0% 85.53%,
+  #f0f 0%,
+  #6d00cc 95.31%
+);
+$gradient-color-hover: radial-gradient(
+  100.03% 140.18% at 0% 85.53%,
+  rgb(254 0 254 / 60%) 8.4%,
+  rgb(104 0 199 / 60%) 80.9%
+);
+$gradient-color-active: radial-gradient(
+  100.03% 140.18% at 0% 85.53%,
+  rgb(254 0 254 / 80%) 8.4%,
+  rgb(104 0 199 / 80%) 80.9%
+);
+
+// Home Menu Hover Active
+$home-menu-color: rgb(255 255 255 / 20%) !default;
+$home-menu-color-hover: rgb(255 255 255 / 60%) !default;
+$home-menu-color-active: rgb(255 255 255 / 40%) !default;
+
+// Disabled Button
+$disabled-button-color: rgb(36 3 66 / 60%) !default;
+$disabled-button-background: rgb(36 3 66 / 2%) !default;
+$disabled-button-border: rgb(36 3 66 / 20%) !default;
+
+// Disabled Links
+$disabled-link-color: rgb(36 3 66 / 40%) !default;
+
+// Input Select
+$input-select-border-color: rgb(36 3 66 / 30%) !default;
+$input-select-focus-border-color: rgb(238 47 238 / 60%) !default;
+$input-select-focus-background-color: rgb(238 47 238 / 2%) !default;
+$input-select-active-border-color: rgb(238 47 238 / 80%) !default;
+$input-select-active-background-color: rgb(238 47 238 / 5%) !default;
+$input-select-disabled-background-color: #240342 !default;
+$input-select-disabled-border-color: #240342 !default;
+$placeholder-color: rgb(36 3 66 / 40%) !default;
+
+// Light Input Colors
+$light-input-select-border-color: rgb(255 255 255 / 30%) !default;
+$light-input-select-focus-border-color: rgb(255 255 255 / 60%) !default;
+$light-input-select-focus-background-color: rgb(255 255 255 / 2%) !default;
+$light-input-select-active-border-color: rgb(255 255 255 / 80%) !default;
+$light-input-select-active-background-color: rgb(255 255 255 / 5%) !default;
+$light-placeholder-color: rgb(255 255 255 / 40%) !default;
+
+// Upping the dropdown option background colors for visibility
+$dropdown-option-focus-background-color: rgb(238 47 238 / 5%) !default;
+$dropdown-option-active-background-color: rgb(238 47 238 / 10%) !default;
+
+// Background colors
+$background-color: #fff !default;
+$light-background-color: rgb(255 255 255 / 80%) !default;
+$grey-background: #f5f0f0 !default;
+$disabled-area-color: rgb(36 3 66 / 60%) !default;
+$cookie-background-color: #666 !default;
+
+// TODO: AWAIT CONFIRMATION ESPECIALLY LIGHTHOUSE
+$dark-background-color: #240342 !default;
+
+// $dark-background-color: #31005c !default;
+
+// Card backgrounds
+$app-card-background-color: rgb(255 255 255 / 40%) !default;
+$price-card-background-color: rgb(36 3 66 / 2%) !default;
+$page-section-category-background-color: rgb(255 255 255 / 20%);
+$page-section-category-border-color: rgb(36 3 66 / 20%);
+
+// Section Dependend Card Backgrounds
+$page-card-background-color-grey: #f5f0f0 !default;
+$page-card-background-color-white: #fff !default;
+$page-card-background-color-dark-mode: rgb(255 255 255 / 10%) !default;
+
+// Gradient Backgrounds
+$footer-gradient-background: linear-gradient(0deg, #0d0929 0%, #f0f 100%);
+$grey-to-white-gradient-background: linear-gradient(
+  180deg,
+  #f5f0f0 0%,
+  #fff 100%
+);
+$white-to-grey-gradient-background: linear-gradient(
+  180deg,
+  #fff 0%,
+  #f5f0f0 100%
+);
+$grey-to-white-to-grey-gradient-background: linear-gradient(
+  180deg,
+  #f5f0f0 0%,
+  #fff 12.8rem,
+  #fff calc(100% - 12.8rem),
+  #f5f0f0 100%
+);
+$white-to-grey-to-white-gradient-background: linear-gradient(
+  180deg,
+  #fff 0%,
+  #f5f0f0 12.8rem,
+  #f5f0f0 calc(100% - 12.8rem),
+  #fff 100%
+);
+$grey-to-white-to-white-gradient-background: linear-gradient(
+  180deg,
+  #f5f0f0 0%,
+  #fff 12.8rem,
+  #fff 100%
+);
+$white-to-grey-to-grey-gradient-background: linear-gradient(
+  180deg,
+  #fff 0%,
+  #f5f0f0 12.8rem,
+  #f5f0f0 100%
+);
+$grey-to-grey-to-white-gradient-background: linear-gradient(
+  180deg,
+  #f5f0f0 0%,
+  #f5f0f0 calc(100% - 12.8rem),
+  #fff 100%
+);
+$white-to-white-to-grey-gradient-background: linear-gradient(
+  180deg,
+  #fff 0%,
+  #fff calc(100% - 12.8rem),
+  #f5f0f0 100%
+);
+$pre-footer-background: radial-gradient(
+  47.57% 76.58% at 19.72% -8.31%,
+  #f407f5 0%,
+  $secondary-color 100%
+);
+$pre-footer-large-background: radial-gradient(
+  54.95% 48.73% at 23.16% 29.11%,
+  rgb(244 7 245 / 80%) 0%,
+  #240342 91.15%
+);
+
+// Text Colors
+$heading-color: #240342 !default;
+$text-color: rgb(36 3 66 / 80%) !default;
+$caption-color: rgb(13 9 41 / 60%) !default;
+$button-text-color: #fff !default;
+$error-color: #eb5249 !default;
+$review-star-color: #f90 !default;
+$light-gray: #777 !default;
+
+// Light Text Colors
+$light-text-color: rgb(255 255 255 / 80%) !default;
+$light-heading-color: #fff !default;
+$hero-heading-color: #f0f !default;
+
+// Borders
+$border-color: rgb(36 3 66 / 10%) !default;
+
+// Light Borders
+$light-border-color: rgb(225 225 225 / 40%) !default;
+
+// Pricing Tables
+// --------------
+
+$table-free-background: #f5f0f0 !default;
+$table-core-background: rgb(238 47 238 / 60%) !default;
+$table-pro-background: rgb(238 47 238 / 80%) !default;
+$table-teams-background: #ee2fee !default;
+$table-enterprise-background: #240342 !default;
+$table-base-text-color: #fff !default;
+$table-free-text-color: #ee2fee !default;
+$free-checkmark-background-color: rgb(238 47 238 / 80%) !default;
+$white-checkmark-background-color: #fff !default;
+$dark-cell-border-color: rgb(255 255 255 / 20%) !default;
+
+// Comparison Tables
+$make-background-color: rgb(245 240 240 / 50%) !default;
+$comparison-checkmarks: #6822c5 !default;
+
+// These will be removed
+$table-row-background-color: rgb(238 47 238 / 2%) !default;
+$table-row-background-color-alternate: rgb(238 47 238 / 5%) !default;
+
+// Box Shadow
+$box-shadow: 0.4rem 0.4rem 4rem rgb(22 22 38 / 6%) !default;
+
+// Border Radius
+// --------------
+
+$global-radius: 1rem;
+
+// Typography
+// --------------
+
+@font-face {
+  font-style: normal;
+  font-family: Sailec-Bold;
+  font-display: swap;
+  src: url("/fonts/Sailec/Sailec-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-style: normal;
+  font-family: Inter;
+  font-display: swap;
+  src: url("/fonts/Inter/Inter-VariableFont.woff2") format("woff2");
+}
+
+@font-face {
+  font-style: normal;
+  font-family: Inter-Bold;
+  font-display: swap;
+  src: url("/fonts/Inter/static/Inter-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-style: normal;
+  font-family: Inter-SemiBold;
+  font-display: swap;
+  src: url("/fonts/Inter/static/Inter-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-style: normal;
+  font-family: Inter-Light;
+  font-display: swap;
+  src: url("/fonts/Inter/static/Inter-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-style: normal;
+  font-family: Inter-Medium;
+  font-display: swap;
+  src: url("/fonts/Inter/static/Inter-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-style: normal;
+  font-family: Inter-Regular;
+  font-display: swap;
+  src: url("/fonts/Inter/static/Inter-Regular.woff2") format("woff2");
+}
+
+$font-family: "Inter", helvetica, arial, sans-serif !default;
+
+// H1 H2 H3 Button
+$font-heading-button: "Sailec-Bold", helvetica, arial, sans-serif !default;
+
+// H1 H2 H3
+$font-heading: "Sailec-Bold", helvetica, arial, sans-serif !default;
+
+// Font weight 700
+$font-bold: "Inter-Bold", helvetica, arial, sans-serif !default;
+
+// Font weight 600
+$font-semibold: "Inter-SemiBold", helvetica, arial, sans-serif !default;
+
+// Font weight 500
+$font-light: "Inter-Light", helvetica, arial, sans-serif !default;
+
+// Font weight 500
+$font-medium: "Inter-Medium", helvetica, arial, sans-serif !default;
+
+// Font weight 400
+$font-regular: "Inter-Regular", helvetica, arial, sans-serif !default;

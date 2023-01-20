@@ -1,0 +1,28 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.pageColumnSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h1,
+  h2 {
+    max-width: 96rem;
+  }
+
+  p {
+    max-width: 76.8rem;
+  }
+
+  .ctaLink {
+    margin-top: 2.4rem;
+  }
+
+  .pageColumnSectionImage {
+    width: 100%;
+    margin-top: 2.4rem;
+  }
+}

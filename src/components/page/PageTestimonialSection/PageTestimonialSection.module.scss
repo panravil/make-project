@@ -1,0 +1,34 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.pageTestimonialSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h1,
+  h2 {
+    max-width: 96rem;
+  }
+
+  p {
+    max-width: 76.8rem;
+  }
+
+  .ctaLink {
+    margin-top: 2.4rem;
+  }
+
+  .pageTestimonialSectionImage {
+    margin-top: 2.4rem;
+
+    > div > div > div {
+      padding-right: 2.4rem;
+      padding-left: 2.4rem;
+
+      // min-height: 18rem;
+    }
+  }
+}

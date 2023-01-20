@@ -1,0 +1,104 @@
+// Forms
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+textarea,
+select {
+  box-shadow: none;
+}
+
+// Removes awkward default styles on some inputs for iOS
+input {
+  &[type="email"],
+  &[type="number"],
+  &[type="search"],
+  &[type="text"],
+  &[type="tel"],
+  &[type="url"],
+  &[type="password"] {
+    appearance: none;
+    appearance: none;
+    appearance: none;
+  }
+}
+
+textarea,
+select {
+  appearance: none;
+  appearance: none;
+  appearance: none;
+}
+
+input {
+  &[type="email"]:focus,
+  &[type="number"]:focus,
+  &[type="search"]:focus,
+  &[type="text"]:focus,
+  &[type="tel"]:focus,
+  &[type="url"]:focus,
+  &[type="password"]:focus {
+    border: 1px solid $primary-color;
+    outline: 0;
+  }
+}
+
+textarea:focus,
+select:focus {
+  border: 1px solid $primary-color;
+  outline: 0;
+}
+
+fieldset {
+  padding: 0;
+  border-width: 0;
+}
+
+input {
+  &[type="checkbox"],
+  &[type="radio"] {
+    display: inline;
+  }
+}
+
+// Template Styling
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
+  font-family: $font-regular;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  @include inputSelect();
+
+  appearance: none;
+  width: 100%;
+  padding: 0.8rem 1.6rem;
+  margin-bottom: 2.4rem;
+  text-align: left;
+}
+
+input,
+textarea {
+  cursor: text;
+}
+
+input,
+select {
+  height: 5rem;
+}
+
+select {
+  cursor: pointer;
+}
+
+::placeholder {
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  font-family: $font-regular;
+  color: $placeholder-color;
+}

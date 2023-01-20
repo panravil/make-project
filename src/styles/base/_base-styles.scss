@@ -1,0 +1,63 @@
+@import "@styles/base/mixins.scss";
+
+// Base Styles
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// NOTE
+// html is set to 62.5% so that all the REM measurements throughout Skeleton
+// are based on 10px sizing. So basically 1.5rem = 15px :)
+
+html {
+  font-size: 62.5%;
+
+  @media (min-width: 2240px) {
+    font-size: 72.9166666667%;
+  }
+
+  @media (min-width: 2560px) {
+    font-size: 83.3333333333%;
+  }
+
+  @media (min-width: 2880px) {
+    font-size: 93.75%;
+  }
+
+  @media (min-width: 3200px) {
+    font-size: 104.166666667%;
+  }
+
+  @media (min-width: 3520px) {
+    font-size: 114.583333333%;
+  }
+
+  @media (min-width: 3840px) {
+    font-size: 125%;
+  }
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+// Accessibility
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+* {
+  @include accessibilityFocus();
+}
+
+// Misc
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+hr {
+  width: 100%;
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+  border-width: 0;
+  border-top: 1px solid $border-color;
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,44 @@
+// Lists
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+main {
+  ul {
+    list-style: circle outside;
+  }
+
+  ol {
+    padding-left: 0;
+    margin-top: 0;
+    list-style: decimal outside;
+  }
+
+  ul {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 2.4rem;
+
+    ul,
+    ol {
+      margin: 1.6rem 0 1.6rem 2.4rem;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  ol {
+    ol,
+    ul {
+      margin: 1.6rem 0 1.6rem 2.4rem;
+    }
+  }
+
+  li {
+    margin-bottom: 1.6rem;
+    margin-left: 2.4rem;
+  }
+}

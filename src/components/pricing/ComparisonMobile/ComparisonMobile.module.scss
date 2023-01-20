@@ -1,0 +1,152 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+// Styling for all chart columns
+.free {
+  background-color: $table-free-background;
+}
+
+.core {
+  background-color: $table-core-background;
+}
+
+.pro {
+  background-color: $table-pro-background;
+}
+
+.teams {
+  background-color: $table-teams-background;
+}
+
+.enterprise {
+  background-color: $table-enterprise-background;
+}
+
+// Styling for Chart Header
+.headerContainer {
+  margin-bottom: 3.2rem;
+}
+
+// Styling for Table
+.tableWrapper {
+  margin-right: -2.4rem;
+  margin-left: -2.4rem;
+  font-size: 1.3rem;
+
+  @media ($bp-sm) {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @media ($bp-md) {
+    padding-bottom: 6.4rem;
+  }
+
+  table {
+    table-layout: fixed;
+
+    .tableHeader {
+      .thStyles {
+        padding: 1.9rem 0;
+        color: $table-base-text-color;
+
+        &.free {
+          color: $table-free-text-color;
+        }
+      }
+    }
+
+    .tdTitle {
+      padding: 1.9rem 1.2rem 1.2rem;
+      white-space: normal;
+
+      td {
+        justify-content: flex-start;
+        margin-right: 1rem;
+        font-size: 1.3rem;
+        text-align: left;
+        color: $secondary-color;
+      }
+
+      .titleRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .iconWrapper {
+          width: 1.6rem;
+          height: 1.6rem;
+
+          @include primaryLink();
+        }
+      }
+    }
+
+    .statsRow {
+      padding: 0;
+
+      .statTd {
+        width: 4.94rem;
+        min-height: 5.6rem;
+        padding: 1.2rem 0.8rem;
+        color: $table-base-text-color;
+
+        &.free {
+          color: $table-free-text-color;
+        }
+
+        .checkmarkWrapper {
+          width: 2.4rem;
+          height: 2.4rem;
+          padding: 0.4rem;
+          border-radius: 50%;
+        }
+
+        &.free {
+          color: $table-free-text-color;
+          border-color: $border-color;
+
+          .checkmarkWrapper {
+            color: $table-free-background;
+            background-color: $free-checkmark-background-color;
+          }
+        }
+
+        &.core {
+          .checkmarkWrapper {
+            color: $table-core-background;
+          }
+        }
+
+        &.pro {
+          .checkmarkWrapper {
+            color: $table-pro-background;
+          }
+        }
+
+        &.teams {
+          .checkmarkWrapper {
+            color: $table-teams-background;
+          }
+        }
+
+        &.enterprise {
+          .checkmarkWrapper {
+            color: $table-enterprise-background;
+          }
+        }
+
+        &.core,
+        &.pro,
+        &.teams,
+        &.enterprise {
+          border-color: $dark-cell-border-color;
+
+          .checkmarkWrapper {
+            background-color: $white-checkmark-background-color;
+          }
+        }
+      }
+    }
+  }
+}

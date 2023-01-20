@@ -1,0 +1,141 @@
+// hero background
+#hero-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100vh;
+  background: $dark-background-color;
+}
+
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+canvas {
+  z-index: 0;
+  display: block;
+}
+
+// hero background css only
+.hero-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100vh;
+  background: #240342;
+  background: linear-gradient(-250deg, #240342, #7c038e, #240342, #fe00fe);
+  background-size: 400% 400%;
+  animation: gradientBG 35s linear infinite;
+  animation-direction: alternate;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// animate from right
+.animate-right {
+  opacity: 0;
+  transform: translateX(-8rem);
+
+  &.fire-animation {
+    opacity: 1;
+    transform: translateX(0);
+    animation: animateRight 1s ease-out;
+  }
+}
+
+@keyframes animateRight {
+  from {
+    opacity: 0;
+    transform: translateX(-8rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// animate from left
+.animate-left {
+  opacity: 0;
+  transform: translateX(8rem);
+
+  &.fire-animation {
+    opacity: 1;
+    transform: translateX(0);
+    animation: animateLeft 1s ease-out;
+  }
+}
+
+@keyframes animateLeft {
+  from {
+    opacity: 0;
+    transform: translateX(8rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// animate from bottom
+.animate-bottom {
+  opacity: 0;
+  transform: translateY(8rem);
+
+  &.fire-animation {
+    opacity: 1;
+    transform: translateY(0);
+    animation: animateBottom 1s ease-out;
+  }
+}
+
+@keyframes animateBottom {
+  from {
+    opacity: 0;
+    transform: translateY(8rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

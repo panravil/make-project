@@ -1,0 +1,57 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.requestFormContainer {
+  flex: 1;
+  width: 100%;
+  padding: 3.2rem 1.6rem;
+  text-align: left;
+  border-radius: $global-radius;
+  background-color: $background-color;
+
+  @media ($bp-md) {
+    padding: 3.2rem;
+    margin: 0;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+
+    @media ($bp-lg) {
+      flex-direction: row;
+
+      > *:first-child {
+        margin-right: 2.4rem;
+      }
+    }
+  }
+
+  .formTitle {
+    margin-bottom: 3.2rem;
+  }
+
+  .phoneNumber {
+    width: 100%;
+
+    @media ($bp-lg) {
+      flex: 2;
+    }
+  }
+
+  .dropdownLabel {
+    margin-bottom: 0.8rem;
+  }
+
+  .dropdownContainer {
+    @media ($bp-lg) {
+      flex: 1;
+    }
+  }
+
+  .agreementText {
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

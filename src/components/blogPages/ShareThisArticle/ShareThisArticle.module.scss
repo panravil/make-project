@@ -1,0 +1,38 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.shareArticleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .shareIcons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: -0.8rem;
+
+    .shareItem {
+      @include secondaryLink();
+
+      display: flex;
+      display: flex;
+      align-items: center;
+      height: 4rem;
+      padding: 1rem 1.6rem;
+      margin: 0.8rem;
+      border-radius: 4rem;
+      background-color: $background-color;
+
+      .iconWrapper {
+        display: flex;
+        align-items: center;
+        width: 2.4rem;
+        height: 2.4rem;
+        margin-right: 1.2rem;
+      }
+    }
+  }
+}

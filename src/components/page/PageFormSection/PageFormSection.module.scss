@@ -1,0 +1,106 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.pageColumnSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1,
+  h2 {
+    max-width: 96rem;
+  }
+
+  p {
+    max-width: 76.8rem;
+  }
+
+  .ctaLink {
+    margin-top: 2.4rem;
+  }
+
+  .description {
+    margin-bottom: 2.4rem;
+  }
+
+  .descriptionColumn,
+  .formColumn {
+    width: 100%;
+    max-width: 76.8rem;
+  }
+
+  .descriptionColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4.8rem;
+    text-align: center;
+  }
+
+  .logosRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% + 2.4rem);
+    margin: -1.2rem;
+    margin-right: -1.2rem;
+  }
+
+  .businessLogo {
+    position: relative;
+    flex-shrink: 0;
+    margin: 1.2rem;
+  }
+
+  .pageColumnSectionImage {
+    width: 100%;
+  }
+
+  &.desktopRow {
+    @media ($bp-lg) {
+      flex-direction: row;
+      align-items: flex-start;
+
+      .descriptionColumn {
+        align-items: flex-start;
+        margin-right: 6.4rem;
+        text-align: left;
+      }
+    }
+  }
+
+  &.gartner-magic-quadrant-eipaas {
+    .description {
+      margin-bottom: 0;
+    }
+
+    .descriptionColumn {
+      order: 1;
+      padding-top: 2rem;
+      margin-right: 0;
+      margin-bottom: 0;
+
+      @media ($bp-md) {
+        margin-bottom: 0;
+      }
+    }
+
+    .formColumn {
+      display: none;
+      order: 0;
+      padding-top: 0;
+      margin-right: 0;
+      margin-bottom: 4.8rem;
+
+      @media ($bp-md) {
+        margin-right: 6.4rem;
+      }
+
+      @media ($bp-lg) {
+        display: block;
+      }
+    }
+  }
+}

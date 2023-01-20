@@ -1,0 +1,51 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.pageTabSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h1,
+  h2 {
+    max-width: 96rem;
+  }
+
+  p {
+    max-width: 76.8rem;
+  }
+
+  .tabTitleRow {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2.4rem;
+    margin-bottom: 4.8rem;
+
+    @media ($bp-md) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  .tabTitle {
+    @include tabTitle();
+
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+
+    @media ($bp-md) {
+      padding-bottom: 1.6rem;
+    }
+  }
+
+  .tabItemsRow {
+    @include cardRowWrap();
+  }
+
+  .ctaLink {
+    margin-top: 4.8rem;
+  }
+}

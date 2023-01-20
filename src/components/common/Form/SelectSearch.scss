@@ -1,0 +1,160 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+/**
+ * Main wrapper
+ */
+.select-search-container {
+  --select-search-highlight: rgb(238 47 238 / 5%);
+
+  position: relative;
+  font-family: $font-regular;
+}
+
+.select-search-container *,
+.select-search-container *::after,
+.select-search-container *::before {
+  box-sizing: inherit;
+}
+
+.select-search-input {
+  margin-bottom: 0;
+}
+
+.select-search-is-multiple .select-search-input {
+  margin-bottom: -2px;
+}
+
+.select-search-input::-webkit-search-decoration,
+.select-search-input::-webkit-search-cancel-button,
+.select-search-input::-webkit-search-results-button,
+.select-search-input::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+.select-search-input[readonly] {
+  cursor: pointer;
+}
+
+.select-search-is-disabled .select-search-input {
+  cursor: not-allowed;
+}
+
+.select-search-select {
+  position: absolute;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 30rem;
+  padding: 0;
+  margin: 0.8rem 0 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: $font-regular;
+  border-radius: $global-radius;
+  background-color: $background-color;
+  box-shadow: $box-shadow;
+}
+
+.form-error .select-search-input,
+.form-error .select-search-input:focus {
+  border-color: $error-color;
+}
+
+.select-search-row {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  color: $secondary-color;
+}
+
+.select-search-container:not(.select-search-is-multiple) .select-search-select {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  display: none;
+}
+
+.select-search-container:not(.select-search-is-multiple).select-search-has-focus
+  .select-search-select {
+  display: block;
+}
+
+.select-search-options {
+  margin-bottom: 0;
+  list-style: none;
+}
+
+button.select-search-option,
+.select-search-not-found {
+  display: block;
+  min-height: inherit;
+  padding: 1.6rem;
+  font-weight: 400;
+  font-family: $font-regular;
+  text-align: left;
+  color: $text-color;
+  border-radius: 0;
+  background: none;
+
+  &:hover {
+    color: inherit;
+    background-color: var(--select-search-highlight);
+  }
+}
+
+.select-search-option:disabled {
+  background: transparent !important;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.select-search-is-highlighted,
+.select-search-option:not(.select-search-is-selected):hover {
+  background: var(--select-search-highlight);
+}
+
+.select-search-is-selected {
+  font-weight: bold;
+}
+
+.select-search-group-header {
+  padding: 10px 16px;
+  font-size: 12px;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.select-search-row:not(:first-child) .select-search-group-header {
+  margin-top: 10px;
+}
+
+.select-search-row:not(:last-child) .select-search-group-header {
+  margin-bottom: 10px;
+}
+
+.select-search-label {
+  margin-bottom: 0.8rem;
+  font-family: Inter-Regular, helvetica, arial, sans-serif;
+}
+
+.select-search-value::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0.8rem;
+  bottom: 0;
+  width: 2.4rem;
+  height: 100%;
+  padding: 0.6rem;
+  background: url("data:image/svg+xml,%3Csvg role='none' width='100%25' height='100%25' viewBox='0 0 10 6' fill='none' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23ee2fee'%3E%3C/path%3E%3C/svg%3E")
+    center center no-repeat;
+  background-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.select-search-has-focus .select-search-value::before {
+  transform: rotate(180deg);
+}

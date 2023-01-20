@@ -1,0 +1,365 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.customDropdown {
+  position: relative;
+  width: 100%;
+  margin: 0 auto 2.4rem;
+  font-family: $font-regular;
+
+  .disabledArea {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .label {
+    margin-bottom: 0.8rem;
+  }
+
+  &:not(.sortBy) {
+    @include inputSelectGradient();
+
+    .dropdownButton {
+      @include inputSelect();
+
+      cursor: pointer;
+    }
+  }
+
+  .dropdownButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 3.2rem 1.6rem 1.6rem;
+
+    &.errorButton {
+      border-color: $error-color;
+
+      .selectedContent {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        span {
+          color: $text-color;
+        }
+      }
+    }
+
+    .iconContainer {
+      position: absolute;
+      top: 0;
+      right: 0.8rem;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.4rem;
+      height: 100%;
+      padding: 0.6rem;
+      color: $primary-color;
+      transition: all 0.2s ease;
+    }
+
+    &.dropdownOpen {
+      .iconContainer {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  // Styling for the Dropdown while Open
+  .customDropdownList {
+    position: absolute;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 30rem;
+    margin-top: 0.8rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: $global-radius;
+    background-color: $background-color;
+    box-shadow: $box-shadow;
+
+    // Styling for DropDownOption.js
+    .customListItem {
+      position: relative;
+      padding: 1.6rem;
+      color: $secondary-color;
+
+      &:not(.textOnly) {
+        @include dropdownOption();
+      }
+    }
+  }
+}
+
+.sortBy {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: unset;
+  min-width: 18rem;
+  margin-left: 2.4rem;
+
+  .label {
+    margin-right: 0.8rem;
+    margin-bottom: 0;
+  }
+
+  .dropdownButton {
+    @include secondaryLink();
+
+    padding: 0.8rem;
+    padding-right: 3.2rem;
+    margin: -0.8rem;
+    margin-right: 0;
+
+    .iconContainer {
+      right: 0;
+    }
+  }
+
+  .customDropdownList {
+    top: 1.6rem;
+  }
+}
+
+// FOR PRICING
+.pricingDisplay {
+  .dropdownButton {
+    // padding: 1.1rem 3.2rem 1.1rem 1.6rem;
+    .pricingIconContainer {
+      right: 0.8rem;
+      padding: 0.8rem;
+    }
+
+    .operations {
+      color: $text-color;
+    }
+  }
+
+  .priceDropdown {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dropdownPrice {
+    color: $heading-color;
+  }
+
+  .optionName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+// Styling for Error States
+.errorMessage {
+  margin: 0.8rem;
+  margin-bottom: 0;
+  color: $error-color;
+}
+
+.hintMessage {
+  margin: 0.8rem;
+  margin-bottom: 0;
+}
+
+.navigation {
+  position: relative;
+}
+
+.navigation a:link,
+.navigation a:visited {
+  font-size: 1.6rem;
+  letter-spacing: 0;
+  color: black;
+}
+
+.headerContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  height: 11rem;
+}
+
+.navigationContent::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  right: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.2rem;
+  background-color: #fff;
+  transform: translate(50%, 0) rotate(45deg);
+}
+
+.navigation a:hover .navigationContent {
+  color: $primary-color-hover !important;
+}
+
+.navigationContent {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  gap: 2rem;
+  width: 25rem;
+  padding: 2.5rem;
+  margin-top: 1.5rem;
+  text-align: left;
+  white-space: nowrap;
+  border-radius: 0.8rem;
+  background: #fff 0 0 no-repeat padding-box;
+  box-shadow: 0 0 15rem #00000026;
+}
+
+.navigationContentCenterSignIn {
+  top: 5.92rem;
+  left: 50%;
+  gap: 0;
+  width: 27rem;
+  transform: translate(-50%, 0);
+}
+
+.navigationContentCenter {
+  top: 8rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.headerContainer:hover .navigationContent,
+.headerContainer.showHover .navigationContent {
+  display: flex;
+}
+
+.headerContainer:hover .activeIcon {
+  transform: rotate(180deg);
+}
+
+.linkContainer {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 5rem;
+}
+
+.linkContainerSignIn {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 5rem;
+}
+
+.linkContainerSignIn:first-child {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.linkContainerSignIn:nth-child(2) {
+  padding-top: 1.25rem;
+}
+
+.linkContainer:hover a,
+.linkContainer:hover div,
+.linkContainer:hover span,
+.linkContainer:hover svg {
+  color: $primary-color-hover !important;
+}
+
+.linkContainerSignIn:hover a,
+.linkContainerSignIn:hover div,
+.linkContainerSignIn:hover header,
+.linkContainerSignIn:hover span,
+.linkContainerSignIn:hover svg {
+  color: $primary-color-hover !important;
+}
+
+.icons {
+  font-weight: bold;
+  font-size: 2.8rem;
+  color: black;
+}
+
+.imageContainer {
+  position: relative;
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  max-width: 60%;
+  font-size: 1.6rem;
+  font-family: Inter-Light, helvetica, arial, sans-serif;
+  color: #000;
+}
+
+.signInTextMake {
+  color: $primary-color;
+}
+
+.signInTextIntegromat {
+  color: #2f8cbb;
+}
+
+.linkDescription {
+  max-width: 100%;
+  font-weight: 200 !important;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  white-space: normal;
+  overflow-wrap: break-word;
+  color: $light-gray !important;
+}
+
+.checkmarkWrapper {
+  position: absolute;
+  top: calc(50% - 0.8rem);
+  left: 1.7rem;
+  display: inline-block;
+  width: 1.5rem;
+  vertical-align: middle;
+
+  svg {
+    color: $primary-color;
+  }
+
+  + .multiItem::before {
+    border-color: $primary-color;
+  }
+}
+
+.multiItem {
+  position: relative;
+  padding-left: 2.5rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid $input-select-border-color;
+    border-radius: 4px;
+  }
+}

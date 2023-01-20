@@ -1,0 +1,70 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.pageSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h1,
+  h2 {
+    max-width: 96rem;
+  }
+
+  p {
+    max-width: 76.8rem;
+  }
+
+  .statRow {
+    @include cardRowWrap();
+
+    width: 103%;
+  }
+
+  .statContainer {
+    @include cardRowWrapColumn();
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4.8rem 1.6rem 2.4rem;
+    border-radius: $global-radius;
+
+    // box-shadow: $box-shadow;
+    .statImageRow {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.6rem;
+
+      > * {
+        margin-bottom: 0;
+      }
+    }
+
+    .statImage {
+      position: relative;
+      flex-shrink: 0;
+      height: 4.8rem;
+      margin-right: 1.6rem;
+    }
+
+    &.cardImageTop {
+      padding-top: 2.4rem;
+
+      .statImageRow {
+        flex-direction: column;
+      }
+
+      .statImage {
+        margin-right: 0;
+        margin-bottom: 1.6rem;
+      }
+    }
+  }
+
+  .ctaLink {
+    margin-top: 4.8rem;
+  }
+}

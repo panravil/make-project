@@ -1,0 +1,56 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.pricingHeader {
+  text-align: center;
+
+  @media ($bp-md) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0;
+  }
+
+  .titleDescriptionWrapper {
+    width: 100%;
+    max-width: 72rem;
+
+    .pricingTitle,
+    .pricingDescription {
+      @media ($bp-md) {
+        text-align: center;
+      }
+    }
+
+    .pricingDescription {
+      margin-bottom: 6.4rem;
+
+      @media ($bp-md) {
+        margin-bottom: 12rem;
+      }
+    }
+  }
+
+  .monthOrYearContainer {
+    width: 100%;
+    text-align: center;
+
+    .showPlansLabel {
+      color: $secondary-color;
+    }
+
+    .optionsContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .tabTitle {
+        @include tabTitle();
+
+        max-width: 16.35rem;
+        padding-bottom: 1.6rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

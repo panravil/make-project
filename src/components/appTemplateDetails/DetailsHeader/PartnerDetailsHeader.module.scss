@@ -1,0 +1,74 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.partnerImageWrapper {
+  position: relative;
+  display: flex;
+  width: 60%;
+  padding: 1rem;
+  text-align: left;
+  border-radius: $global-radius;
+  background-color: $page-card-background-color-white;
+  box-shadow: $box-shadow;
+
+  @media ($bp-md) {
+    width: 20%;
+  }
+
+  @media ($bp-xl) {
+    width: 10%;
+  }
+}
+
+.partnerImage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 100%;
+}
+
+.appHeader {
+  .companyNameContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @media ($bp-md) {
+      flex-direction: initial;
+      gap: 2rem;
+    }
+
+    @media ($bp-xl) {
+      gap: 4rem;
+    }
+
+    .appLogo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 3.2rem;
+
+      .appIcon {
+        width: 8rem;
+        height: 8rem;
+      }
+
+      .templateIcon {
+        height: 8rem;
+
+        > div {
+          width: 8rem;
+          height: 8rem;
+        }
+      }
+    }
+
+    h1 {
+      align-self: start;
+      margin-bottom: 0;
+
+      @media ($bp-md) {
+        align-self: center;
+      }
+    }
+  }
+}

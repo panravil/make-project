@@ -1,0 +1,60 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.integration {
+  @include searchResultsStyles();
+
+  .integrateAppsImageContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6.4rem;
+  }
+
+  .appIconWrapper,
+  .iconConnectionWrapper,
+  .addAppWrapper,
+  .appIcon {
+    width: 8rem;
+    height: 8rem;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+  .addAppWrapper,
+  .iconConnectionWrapper {
+    color: $grey-background;
+  }
+
+  .addAppWrapper {
+    flex-shrink: 0;
+  }
+
+  .searchResultsSmall {
+    @include searchRowWrapSmall();
+
+    // margin-bottom: 6.4rem;
+    .appWrapper {
+      @include searchRowWrapColumnSmall();
+    }
+  }
+
+  .ctaWrapper {
+    max-width: 40rem;
+    margin: 0 auto;
+
+    // margin-top: 6.4rem;
+    hr {
+      margin-top: 4.8rem;
+      margin-bottom: 4.8rem;
+
+      // margin-top: 2.4rem;
+      // margin-bottom: 2.4rem;
+    }
+
+    .appTryButton {
+      margin: 0 auto;
+    }
+  }
+}

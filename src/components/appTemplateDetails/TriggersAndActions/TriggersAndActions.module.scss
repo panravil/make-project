@@ -1,0 +1,85 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.triggersAndActions {
+  @include searchResultsStyles();
+
+  .triggerWrapper {
+    @include cardLinkLarge();
+
+    display: flex;
+    align-items: flex-start;
+    padding: 2.4rem;
+    margin-bottom: 1.6rem;
+    border-radius: 1rem;
+
+    .heading {
+      margin-bottom: 0.4rem;
+    }
+
+    .searchResultIcon {
+      align-self: center;
+    }
+
+    .appIcon {
+      align-self: center;
+      width: 6.4rem;
+      height: 6.4rem;
+      margin-right: 2.4rem;
+    }
+
+    .templateIcon {
+      height: 6.4rem;
+
+      > div {
+        width: 6.4rem;
+        height: 6.4rem;
+      }
+
+      margin-right: 2.4rem;
+    }
+
+    .description {
+      display: -webkit-box;
+      margin-bottom: 0.8rem;
+
+      // https://stackoverflow.com/questions/3922739/limit-text-length-to-n-lines-using-css
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3; /* number of lines to show */
+      line-clamp: 3;
+
+      @media ($bp-lg) {
+        -webkit-line-clamp: 5; /* number of lines to show */
+        line-clamp: 5;
+      }
+    }
+
+    .integrationType {
+      display: flex;
+
+      .integrationIcon {
+        width: 1.6rem;
+        height: 1.6rem;
+        margin-top: 0.1rem;
+      }
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.5em 0.4em;
+      font-size: 1rem;
+      line-height: 0.5rem;
+      text-transform: uppercase;
+      white-space: nowrap;
+      vertical-align: middle;
+      color: white;
+      border-radius: 0.3rem;
+
+      // background-color: #6d00cc;
+      background-color: rgb(104 0 199 / 60%);
+      cursor: default;
+    }
+  }
+}

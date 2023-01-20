@@ -1,0 +1,129 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.headerContainer {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 50vh;
+
+  .headerImage {
+    display: block;
+  }
+}
+
+.pageSection {
+  display: flex;
+  flex-direction: column;
+
+  &.center {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .richTextImage {
+    width: 100%;
+    margin-bottom: 2.4rem;
+    text-align: center;
+  }
+
+  .richTextVideo {
+    --aspect-ratio: 56.25%;
+
+    position: relative;
+    width: 100%;
+    margin-bottom: 2.4rem;
+    text-align: center;
+
+    &::before {
+      content: "";
+      display: block;
+      padding-top: var(--aspect-ratio);
+    }
+
+    > * {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .pageSectionLink {
+    margin: 0 auto;
+    margin-top: 2.4rem;
+  }
+
+  &.cookie-notice {
+    table {
+      display: table;
+      margin-bottom: 4rem;
+      border-collapse: collapse !important;
+
+      tr {
+        display: table-row;
+        padding: 0;
+
+        td:first-child {
+          width: 20%;
+        }
+
+        td:last-child {
+          width: 20%;
+        }
+
+        td p {
+          white-space: pre-wrap;
+        }
+      }
+
+      td,
+      th {
+        display: table-cell;
+        padding: 1.2rem;
+        text-align: left;
+        vertical-align: top;
+        border: 1px solid rgb(36 3 66 / 10%);
+      }
+    }
+  }
+
+  &.app-ideas,
+  &.app-improvement-ideas,
+  &.platform-ideas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    h1,
+    h2 {
+      max-width: 96rem;
+    }
+
+    p {
+      max-width: 76.8rem;
+
+      @media ($bp-md) {
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+      }
+    }
+
+    h1 + div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
+
+    div[data-canny] {
+      width: 100%;
+    }
+  }
+}

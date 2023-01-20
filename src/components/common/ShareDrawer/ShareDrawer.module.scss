@@ -1,0 +1,91 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+// Styling for the Share link and label
+.shareLabel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+
+  .openShareDrawer {
+    @include secondaryLink();
+
+    display: flex;
+    align-items: center;
+    color: $text-color;
+
+    .shareIcon {
+      display: inline-block;
+      width: 2.4rem;
+      height: 2.4rem;
+      margin-right: 0.8rem;
+    }
+  }
+}
+
+// Styling for the Open Drawer component
+.drawerTitle {
+  margin-bottom: 2.4rem;
+}
+
+.shareLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawerItem {
+  @include secondaryLink();
+
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  margin-bottom: 0.8rem;
+
+  .iconWrapper {
+    display: flex;
+    align-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-right: 2.4rem;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.shareLabel:hover {
+  .drawerContent {
+    display: flex;
+  }
+}
+
+// Styling for the drawer
+.drawerContent {
+  position: absolute;
+  right: 0;
+  bottom: 60px;
+  z-index: 10002;
+  display: none;
+  padding: 1.4rem 2.4rem;
+  border-radius: $global-radius;
+  background-color: $background-color;
+  box-shadow: $box-shadow;
+  transform: translate(50%, 0);
+
+  @media ($bp-md) {
+    right: 1.5rem;
+  }
+}
+
+.drawerContent::before {
+  content: "";
+  position: absolute;
+  bottom: -0.8rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.2rem;
+  background-color: #fff;
+  transform: translate(50%, 0) rotate(45deg);
+}

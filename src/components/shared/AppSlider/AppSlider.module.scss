@@ -1,0 +1,74 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.iconContainer {
+  position: absolute;
+  top: calc(50% - 1.6rem);
+  width: 3.2rem;
+  height: 3.2rem;
+  color: $secondary-color;
+  cursor: pointer;
+
+  &.left {
+    left: -3.2rem;
+  }
+
+  &.right {
+    right: -3.2rem;
+  }
+}
+
+.sliderContainer {
+  width: 100%;
+
+  > div {
+    @include negativeRowMargins();
+
+    @media ($bp-md) {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+
+  > div > div > div {
+    @include negativeRowPaddings();
+
+    @media ($bp-md) {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  &.fullWidth {
+    width: 100vw;
+
+    // @media ($bp-xl) {
+    //   max-width: 118.4rem;
+    // }
+    > div {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    > div > div > div {
+      padding-right: 2.4rem;
+      padding-left: 2.4rem;
+    }
+  }
+
+  &.sliderArrowsContainerPadding {
+    > div {
+      @media ($bp-md) {
+        margin-right: -0.8rem;
+        margin-left: -0.8rem;
+      }
+    }
+
+    > div > div > div {
+      @media ($bp-md) {
+        padding-right: 0.8rem;
+        padding-left: 0.8rem;
+      }
+    }
+  }
+}

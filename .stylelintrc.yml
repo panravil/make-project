@@ -1,0 +1,13 @@
+extends:
+  - "@visionappscz/stylelint-config"
+  - "@visionappscz/stylelint-config/order"
+  - "@visionappscz/stylelint-config/scss"
+
+rules:
+  indentation: 2
+  linebreaks: "unix"
+  unit-allowed-list: ["px", "rem", "%", "s", "deg"]
+
+  # Reset for visionapps
+  selector-nested-pattern: null
+  selector-class-pattern:

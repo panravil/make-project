@@ -1,0 +1,39 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.toggleAccordian {
+  p {
+    margin-bottom: 1.6rem;
+  }
+
+  .toggleTitle {
+    @include secondaryLink();
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1.6rem;
+  }
+
+  .toggleArrow {
+    @include primaryLink();
+
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0.8rem;
+    margin-right: 1.6rem;
+    transition: all 0.2s ease;
+  }
+
+  .toggleOpen {
+    color: $primary-color;
+
+    .toggleArrow {
+      transform: rotate(180deg);
+    }
+  }
+}

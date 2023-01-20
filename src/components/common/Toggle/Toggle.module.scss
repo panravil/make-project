@@ -1,0 +1,59 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.toggle {
+  width: 100%;
+
+  // background-color: $background-color;
+  border-radius: $global-radius;
+
+  // box-shadow: $box-shadow;
+  &:not(:last-child) {
+    margin-bottom: 1.6rem;
+  }
+
+  p {
+    margin-bottom: 1.6rem;
+  }
+
+  .toggleTitle {
+    @include secondaryLink();
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.4rem;
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  .toggleArrow {
+    @include primaryLink();
+
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-left: 1.6rem;
+    transition: all 0.2s ease;
+  }
+
+  .toggleDescription {
+    padding: 0 2.4rem;
+  }
+
+  &.toggleOpen {
+    // .toggleTitle {
+    //   padding-bottom: 1.6rem;
+    // }
+    .toggleDescription {
+      padding-bottom: 0.8rem;
+    }
+
+    .toggleArrow {
+      transform: rotate(180deg);
+    }
+  }
+}

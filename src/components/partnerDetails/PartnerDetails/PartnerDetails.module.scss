@@ -1,0 +1,316 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+$partnerDescription-padding: 3rem;
+
+.partnerDetails {
+  display: flex;
+  flex-direction: initial;
+  flex-wrap: wrap;
+
+  @media ($bp-lg) {
+    flex-direction: initial;
+  }
+
+  .partnerInfoContainer {
+    width: auto;
+    height: fit-content;
+    padding-right: 3.8rem;
+    padding-bottom: 4rem;
+
+    @media ($bp-md) {
+      display: flex;
+      justify-content: space-between;
+      width: 35%;
+
+      /* > div:not(:last-child) {
+        margin-right: 4rem;
+
+        @media ($bp-xl) {
+          margin-right: 3.8rem;
+        }
+      } */
+    }
+
+    @media ($bp-xl) {
+      width: 30%;
+    }
+
+    .partnerDescription {
+      width: 100%;
+      padding: $partnerDescription-padding;
+      margin-bottom: 4rem;
+      border-radius: $global-radius;
+      background-color: $page-card-background-color-white;
+
+      @media ($bp-md) {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+      }
+
+      .headerRow {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2.4rem;
+
+        .descriptionHeader {
+          margin-right: 2.4rem;
+          margin-bottom: 0;
+        }
+      }
+
+      .aboutShareWrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2.4rem;
+
+        div {
+          margin-bottom: 0;
+        }
+
+        .shareDrawerWrapper {
+          width: auto;
+          margin-left: 2.4rem;
+        }
+      }
+
+      .bodyText {
+        p:last-child {
+          margin-bottom: 0;
+        }
+
+        &.truncated {
+          display: -webkit-box;
+
+          // https://stackoverflow.com/questions/3922739/limit-text-length-to-n-lines-using-css
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 4; /* number of lines to show */
+          line-clamp: 4;
+          -webkit-box-orient: vertical;
+        }
+      }
+
+      .truncateArrow {
+        @include primaryLink();
+
+        width: 1.6rem;
+        margin-top: 1.6rem;
+        margin-bottom: 2.4rem;
+
+        @media ($bp-md) {
+          margin-bottom: 6.4rem;
+        }
+
+        &:not(.truncated) {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .appsIncludedWrapper {
+        .appsContainer {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: -1.6rem;
+
+          > * {
+            margin-top: 1.6rem;
+          }
+        }
+
+        margin-bottom: 2.4rem;
+
+        @media ($bp-md) {
+          margin-bottom: 6.4rem;
+        }
+      }
+    }
+
+    .categoriesWrapper {
+      margin-bottom: 4rem;
+
+      @media ($bp-md) {
+        width: fit-content;
+        height: fit-content;
+        padding: 3.2rem 4rem;
+        border-radius: $global-radius;
+        background-color: $background-color;
+      }
+
+      @media ($bp-md) {
+        margin-bottom: 0;
+      }
+
+      .categoriesTitle {
+        margin-bottom: 2.4rem;
+        white-space: nowrap;
+        color: $secondary-color;
+      }
+    }
+
+    .category {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.6rem;
+      white-space: normal;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .placeholderImage {
+        position: relative;
+        flex-shrink: 0;
+        width: 3.2rem;
+        height: 3.2rem;
+        margin-right: 1.2rem;
+        border-radius: 50%;
+      }
+    }
+
+    .partnersInfo {
+      @media ($bp-md) {
+        margin-bottom: 3.8rem;
+      }
+    }
+
+    .buttonContainer {
+      display: flex;
+
+      .appTryButton {
+        margin-bottom: 2.4rem;
+
+        @media ($bp-md) {
+          margin-bottom: 0;
+        }
+      }
+
+      .buttonCaption {
+        margin-bottom: 0;
+
+        @media ($bp-md) {
+          text-align: center;
+        }
+      }
+
+      &.desktop {
+        display: none;
+
+        @media ($bp-md) {
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      &.mobile {
+        display: block;
+
+        @media ($bp-md) {
+          display: none;
+        }
+      }
+    }
+
+    .showToggle {
+      visibility: visible;
+    }
+
+    .hideToggle {
+      visibility: hidden;
+    }
+
+    .infoWebsite {
+      word-break: break-all;
+    }
+  }
+
+  .partnerDetailsContainer {
+    width: auto;
+
+    @media ($bp-md) {
+      width: calc(65% - 3.8rem);
+    }
+
+    @media ($bp-xl) {
+      width: calc(70% - 3.8rem);
+    }
+  }
+
+  padding-top: 0;
+
+  .partnerDetailsRow {
+    display: flex;
+    flex-direction: column;
+
+    h1,
+    h2,
+    h3 {
+      font-size: 2.4rem;
+      line-height: 3rem;
+    }
+  }
+
+  .appsIncludedWrapper {
+    .appsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: -1.6rem;
+
+      > * {
+        margin-top: 1.6rem;
+      }
+    }
+  }
+
+  .detailsColumn {
+    flex: 2;
+  }
+
+  .appsIncludedWrapper,
+  .aboutWrapper,
+  .useCasesColumn {
+    margin-bottom: 4.8rem;
+  }
+
+  .useCasesSlider {
+    margin-bottom: 2.4rem;
+  }
+
+  .useCasesColumn {
+    display: none;
+    flex: 1;
+
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .testimonialSection {
+    > div > div > div {
+      padding-right: 2.4rem;
+    }
+  }
+
+  @media ($bp-lg) {
+    .partnerDetailsRow {
+      flex-direction: row;
+    }
+
+    .appsIncludedWrapper,
+    .aboutWrapper,
+    .useCasesColumn {
+      margin-bottom: 6.4rem;
+    }
+
+    .useCasesColumn {
+      display: block;
+    }
+
+    .useCasesSlider {
+      display: none;
+    }
+  }
+}

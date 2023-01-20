@@ -1,0 +1,194 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+// controlls the background colors for all stat columns
+.free {
+  background-color: $table-free-background;
+}
+
+.core {
+  background-color: $table-core-background;
+}
+
+.pro {
+  background-color: $table-pro-background;
+}
+
+.teams {
+  background-color: $table-teams-background;
+}
+
+.enterprise {
+  background-color: $table-enterprise-background;
+}
+
+// Styling for Chart Title
+.chartTitle {
+  margin-bottom: 4.8rem;
+}
+
+// Styling for the Table
+.tableWrapper {
+  font-size: 1.3rem;
+
+  table {
+    table-layout: fixed;
+
+    .tableHeader {
+      .thStyles {
+        max-width: 12rem;
+        padding: 2.4rem 0 0.8rem;
+        color: $table-base-text-color;
+
+        &:not(:last-child) {
+          margin-right: 0.8rem;
+        }
+
+        &.free {
+          color: $table-free-text-color;
+        }
+
+        &.free,
+        &.core,
+        &.pro,
+        &.teams,
+        &.enterprise {
+          border-radius: $global-radius $global-radius 0 0;
+        }
+
+        &.comparisonHeader {
+          min-width: 15.076rem;
+          max-width: 54.4rem;
+          padding: 1.2rem 0 0.8rem;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+// Styling for the individual Stat Rows
+.statsRow {
+  padding: 0;
+
+  .emptyTitleColumn {
+    min-width: 15.076rem;
+    max-width: 54.4rem;
+    padding: 1.2rem 0;
+    margin-right: 0.8rem;
+  }
+
+  .titleColumn {
+    align-items: center;
+    justify-content: space-between;
+    min-width: 15.076rem;
+    padding: 1.2rem 0.8rem;
+    margin-right: 0.8rem;
+    text-align: start;
+    color: $secondary-color;
+    border-bottom: 1px solid $border-color;
+
+    .iconWrapper {
+      width: 1.6rem;
+      height: 1.6rem;
+
+      @include primaryLink();
+    }
+  }
+
+  &:last-child {
+    .titleColumn {
+      border-bottom: none;
+    }
+  }
+
+  .statTd {
+    max-width: 12rem;
+    padding: 1.6rem 0.8rem;
+    color: $table-base-text-color;
+
+    &.popularRow {
+      padding-top: 0;
+    }
+
+    &:not(.popularRow) {
+      border-bottom: 1px solid;
+    }
+
+    &:not(:last-child) {
+      margin-right: 0.8rem;
+    }
+
+    .checkmarkWrapper {
+      width: 2.4rem;
+      height: 2.4rem;
+      padding: 0.4rem;
+      border-radius: 50%;
+    }
+
+    &.free {
+      color: $table-free-text-color;
+      border-color: $border-color;
+
+      .checkmarkWrapper {
+        color: $table-free-background;
+        background-color: $free-checkmark-background-color;
+      }
+    }
+
+    &.core {
+      .checkmarkWrapper {
+        color: $table-core-background;
+      }
+    }
+
+    &.pro {
+      .checkmarkWrapper {
+        color: $table-pro-background;
+      }
+    }
+
+    &.teams {
+      .checkmarkWrapper {
+        color: $table-teams-background;
+      }
+    }
+
+    &.enterprise {
+      .checkmarkWrapper {
+        color: $table-enterprise-background;
+      }
+    }
+
+    &.core,
+    &.pro,
+    &.teams,
+    &.enterprise {
+      border-color: $dark-cell-border-color;
+
+      .checkmarkWrapper {
+        background-color: $white-checkmark-background-color;
+      }
+    }
+
+    &.popular {
+      display: inline-block;
+      margin-bottom: 0;
+      color: transparent;
+      background-image: $gradient-color;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+  }
+
+  &:last-child {
+    .free,
+    .core,
+    .pro,
+    .teams,
+    .enterprise {
+      border-bottom: none;
+      border-radius: 0 0 $global-radius $global-radius;
+    }
+  }
+}

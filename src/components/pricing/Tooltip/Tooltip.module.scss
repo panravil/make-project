@@ -1,0 +1,42 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.tooltipWrapper {
+  position: relative;
+  display: inline-block;
+
+  .tooltipHint {
+    position: absolute;
+    z-index: 100;
+    width: 24.8rem;
+    padding: 1.6rem;
+    margin-top: 1rem;
+    color: white;
+    border-radius: $global-radius;
+    background: #0d0929;
+    transform: translateX(-90%);
+
+    &.right {
+      transform: translateX(-10%);
+    }
+  }
+
+  .tooltipHint::before {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: 10rem;
+    border: solid transparent;
+    border-width: 0.8rem;
+    border-bottom-color: #0d0929;
+    pointer-events: none;
+  }
+
+  .tooltipHint.right::before {
+    left: 0;
+    margin-left: 2.4rem;
+  }
+}

@@ -1,0 +1,36 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.requestFormContainer {
+  // background-color: $background-color;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+
+  // margin: -1.6rem;
+  // background-color: red;
+  border-radius: $global-radius;
+
+  .formTitle,
+  .formDescription {
+    text-align: center;
+  }
+
+  .formButton {
+    margin-bottom: 0;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+
+    @media ($bp-md) {
+      flex-direction: row;
+
+      > *:first-child {
+        margin-right: 2.4rem;
+      }
+    }
+  }
+}

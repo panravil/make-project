@@ -1,0 +1,23 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.templateAnimationIframeContainer {
+  position: relative;
+  width: 100%;
+  padding-bottom: 40rem;
+
+  @media ($bp-md) {
+    padding-bottom: 70rem;
+  }
+}
+
+.templateAnimationIframe {
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  width: 50%;
+  height: 60%;
+  border: none;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}

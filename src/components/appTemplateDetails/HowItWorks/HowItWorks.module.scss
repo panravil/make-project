@@ -1,0 +1,141 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+// Styling for HowItWorks.js
+.howItWorks {
+  max-width: 100%;
+
+  .header {
+    margin-bottom: 2.4rem;
+
+    @media ($bp-md) {
+      text-align: center;
+    }
+  }
+
+  .paragraph {
+    margin-bottom: 4.8rem;
+
+    @media ($bp-md) {
+      text-align: center;
+    }
+  }
+}
+
+.stepCardsContainer {
+  @include horizontalScrollRow();
+
+  margin-bottom: -4rem;
+
+  &.oneCard {
+    @media ($bp-md) {
+      justify-content: center;
+    }
+  }
+}
+
+// Styling for StepCard.js
+.stepCard {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 33rem;
+  padding: 1.5rem;
+  border-radius: $global-radius;
+  background-color: rgb(255 255 255 / 20%);
+
+  &:not(:last-child) {
+    margin-right: 1.6rem;
+  }
+
+  @media ($bp-md) {
+    max-width: 57.6rem;
+    padding: 2.4rem;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+
+    .title {
+      margin-bottom: 0;
+      font-family: $font-semibold;
+      color: $light-heading-color;
+    }
+
+    .time {
+      font-family: $font-light;
+      color: rgb(255 255 255 / 60%);
+    }
+  }
+
+  .useDescription {
+    margin-bottom: 2.4rem;
+    color: rgb(255 255 255 / 60%);
+  }
+
+  .videoImageContainer {
+    margin: 0 auto;
+    cursor: pointer;
+
+    .videoImage {
+      position: relative;
+      padding-bottom: 56.25%;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: $global-radius;
+
+      .videoPlaceholderContainer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        .textOverlay {
+          position: absolute;
+          top: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          color: $secondary-color;
+
+          .iconWrapper {
+            width: 6rem;
+            height: 6rem;
+            margin-right: 0.8rem;
+          }
+        }
+      }
+
+      .missingPlaceholderImage {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $secondary-color;
+
+        .iconWrapper {
+          width: 6rem;
+          height: 6rem;
+          margin-right: 0.8rem;
+          color: $light-color;
+        }
+      }
+    }
+  }
+
+  &.oneVideo {
+    max-width: 100%;
+
+    @media ($bp-md) {
+      max-width: 76.8rem;
+    }
+  }
+}

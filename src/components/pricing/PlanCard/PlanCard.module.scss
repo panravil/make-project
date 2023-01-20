@@ -1,0 +1,320 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+// Styling for the Current Plancard
+.currentPlanCard {
+  border-radius: $global-radius;
+  background: $gradient-color;
+
+  .planCardContent {
+    border: solid 1px transparent;
+    background: $background-color;
+    background-clip: padding-box;
+
+    .currentPlan {
+      text-align: center;
+
+      .currentPlanTitle {
+        display: inline-block;
+        margin-bottom: 0;
+        color: transparent;
+        background-image: $gradient-color;
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+    }
+  }
+}
+
+// Styling for the Popular Plan Card
+.popularPlanCard {
+  .currentPlanTitle {
+    display: inline-block;
+    margin-bottom: 0;
+    color: transparent;
+    background: $gradient-color;
+    background-image: $gradient-color;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+}
+
+.planCardWrapper {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 32.7rem;
+  margin-bottom: 3.2rem;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  @media ($bp-sm) {
+    max-width: 22.4rem;
+    margin-right: 1.6rem;
+    margin-bottom: 0;
+  }
+
+  .planCard {
+    height: 100%;
+    border-radius: $global-radius;
+    background-color: $price-card-background-color;
+
+    .planCardContent {
+      height: 100%;
+      padding: 2rem 2.4rem;
+      border-radius: inherit;
+      background-color: $price-card-background-color;
+
+      .cardHeader {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 1.8rem;
+        margin-bottom: 1.2rem;
+
+        // Waiting for client to decide if they want this
+        // .toolTip {
+        //   position: absolute;
+        //   right: 0;
+        //   height: 1.6rem;
+        //   width: 1.6rem;
+        //   @include primaryLink();
+        // }
+      }
+
+      .planCardPriceBlock {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 3.2rem;
+
+        .planCardPrice {
+          display: flex;
+          align-items: flex-end;
+          margin-bottom: 1.2rem;
+          color: $secondary-color;
+
+          .optionPrice {
+            display: flex;
+            margin-bottom: 0;
+
+            .price {
+              margin-bottom: 0;
+
+              // Font doesn't change between mobile and desktop
+              font-size: 4.8rem;
+              line-height: 5.8rem;
+            }
+
+            .priceSymbol {
+              padding-top: 0.6rem;
+              margin-right: 0.8rem;
+              margin-bottom: 0;
+
+              @media ($bp-md) {
+                padding-top: 1.2rem;
+              }
+            }
+
+            .changeCol {
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              padding-bottom: 1.3rem;
+
+              @media ($bp-md) {
+                padding-bottom: 1.3rem;
+              }
+
+              .change {
+                margin-bottom: 0;
+              }
+            }
+
+            .perMonth {
+              color: $text-color;
+            }
+          }
+        }
+
+        .priceDescription {
+          margin-bottom: 0;
+        }
+
+        .planName {
+          margin-bottom: 1.2rem;
+          font-family: $font-bold;
+          color: $secondary-color;
+        }
+
+        .planUseDescription {
+          min-height: 5.4rem;
+          margin-bottom: 1.2rem;
+          text-align: center;
+        }
+      }
+
+      // Styling for Free plan card operations
+      .operationsContainer {
+        padding: 1.6rem 3.2rem 1.6rem 1.6rem;
+        border: 1px solid $border-color;
+        border-radius: $global-radius;
+
+        span {
+          color: $secondary-color;
+        }
+      }
+
+      .operationsContainer,
+      .pricingDropdown {
+        margin-bottom: 3.2rem;
+      }
+
+      .cardActionButton {
+        margin: 0 auto;
+        margin-bottom: 1.8rem;
+      }
+
+      .linkWrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 6.4rem;
+
+        @media ($bp-sm) {
+          min-height: 2rem;
+        }
+      }
+
+      .enterpriseLinkWrapper {
+        a {
+          @include lightLink();
+        }
+      }
+
+      .showDetails {
+        @include primaryLink();
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3rem;
+        text-align: center;
+
+        @media ($bp-sm) {
+          display: none;
+        }
+
+        span {
+          margin-right: 0.8rem;
+        }
+
+        .iconWrapper {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+
+        .detailsOpen {
+          transform: rotate(-90deg);
+        }
+      }
+
+      .hideDetails {
+        display: none;
+      }
+
+      .desktopDetails {
+        @media ($bp-sm) {
+          display: unset;
+        }
+
+        hr {
+          margin-bottom: 4rem;
+        }
+
+        .planFeatures {
+          .planFeaturesTitle {
+            margin-bottom: 1.6rem;
+
+            strong {
+              color: $heading-color;
+            }
+          }
+
+          .planFeature {
+            display: flex;
+            margin-bottom: 0.8rem;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            .checkMark {
+              flex-shrink: 0;
+              width: 1.6rem;
+              height: 1.6rem;
+              margin-right: 1rem;
+            }
+          }
+        }
+      }
+    }
+
+    // Styling for the Enterprise Plan Card
+    &.enterpriseCard {
+      .planCardPriceBlock {
+        margin-bottom: 3.2rem;
+      }
+
+      .enterpriseDescription {
+        text-align: center;
+
+        p {
+          margin-bottom: 4rem;
+          color: $secondary-color;
+
+          @media ($bp-sm) {
+            min-height: 13.2rem;
+          }
+        }
+      }
+
+      .planCardContent {
+        background-color: $dark-background-color;
+
+        // Change all of the text to white
+        .cardHeader .toolTip,
+        .planCardPriceBlock .planName,
+        .enterpriseDescription > p,
+        .linkWrapper > a,
+        .planFeature .checkMark,
+        .planFeatures .planFeaturesTitle > p > strong,
+        .showDetails {
+          color: $light-heading-color;
+        }
+
+        .planUseDescription,
+        .planFeature span,
+        .planFeatures .planFeaturesTitle > p {
+          color: $light-text-color;
+        }
+
+        hr {
+          background-color: $light-heading-color;
+        }
+      }
+    }
+  }
+}
+
+// Styling for HR that displays on mobile
+.mobileHr {
+  margin-top: 3.2rem;
+  margin-bottom: 3.2rem;
+
+  @media ($bp-sm) {
+    display: none;
+  }
+}

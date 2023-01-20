@@ -1,0 +1,49 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+// Styling for the pagination controls
+.paginatedItems {
+  display: flex;
+  justify-content: center;
+  padding: 0 1.95rem;
+
+  .iconWrapper,
+  .pageLinks {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    padding: 0.8rem;
+    margin-right: 0.8rem;
+    color: $text-color;
+
+    @include secondaryLink();
+  }
+
+  a {
+    @include secondaryLink();
+
+    color: $text-color;
+  }
+
+  .reactPaginate {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .selectedPage {
+    color: $secondary-color;
+  }
+
+  .break {
+    display: none;
+  }
+
+  .jumpToLastPage {
+    margin-right: 0;
+  }
+}

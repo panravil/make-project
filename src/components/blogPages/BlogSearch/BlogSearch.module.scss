@@ -1,0 +1,74 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.blogSearchContainer {
+  .searchHeader {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+
+    .searchInputs {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 68.6rem;
+    }
+
+    .searchDropdown {
+      flex: 1;
+    }
+
+    .searchInput {
+      flex: 1;
+
+      input {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .filteredResults {
+    display: flex;
+
+    .filteredResultsCaption {
+      flex: 1;
+      flex-shrink: 0;
+    }
+  }
+
+  .blogResultsContainer {
+    @include cardRowWrap();
+
+    align-items: stretch;
+    margin-bottom: -1.6rem;
+  }
+
+  .loadMore {
+    margin: 4.8rem auto 0;
+  }
+
+  .loadLess {
+    margin-top: 2.4rem;
+  }
+
+  @media ($bp-lg) {
+    .searchHeader {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .searchTitle {
+        margin-bottom: 0;
+      }
+
+      .searchInputs {
+        flex-direction: row;
+      }
+
+      .searchDropdown,
+      .searchInput {
+        margin-left: 3.2rem;
+      }
+    }
+  }
+}

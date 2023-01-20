@@ -1,0 +1,30 @@
+@import "@styles/base/variables.scss";
+@import "@styles/base/mixins.scss";
+
+.bodyContentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .bodyContent {
+    width: 100%;
+    max-width: 68rem;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      &:not(:first-child) {
+        padding-top: 2.4rem;
+      }
+    }
+
+    img {
+      width: 100%;
+      max-width: 100% !important;
+      text-align: center;
+    }
+  }
+}

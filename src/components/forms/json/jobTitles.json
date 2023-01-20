@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Business Owner",
+    "value": "business_owner"
+  },
+  {
+    "name": "C-level Executive",
+    "value": "c-level_executive"
+  },
+  {
+    "name": "Freelance / Consultant",
+    "value": "freelancer/consultant"
+  },
+  {
+    "name": "Project Management",
+    "value": "product/project_manager"
+  },
+  {
+    "name": "Sales & Business Development",
+    "value": "sales/business_development"
+  },
+  {
+    "name": "Marketing / growth",
+    "value": "marketing/growth"
+  },
+  {
+    "name": "Support & Operations",
+    "value": "support/operations"
+  },
+  {
+    "name": "Development & Engineering",
+    "value": "development/engineering"
+  },
+  {
+    "name": "Internal IT",
+    "value": "internal_it"
+  },
+  {
+    "name": "Finance & Accounting",
+    "value": "finance/accounting"
+  },
+  {
+    "name": "Procurement",
+    "value": "procurement"
+  },
+  {
+    "name": "HR",
+    "value": "hr"
+  },
+  {
+    "name": "Legal",
+    "value": "legal"
+  },
+  {
+    "name": "Student or Intern",
+    "value": "student/intern"
+  },
+  {
+    "name": "Teacher / Professor",
+    "value": "teacher/professor"
+  },
+  {
+    "name": "Supply Chain",
+    "value": "supply_chain_management"
+  },
+  {
+    "name": "Other",
+    "value": "other"
+  }
+]
