@@ -2,11 +2,11 @@
 @import "@styles/base/mixins.scss";
 
 @mixin matchMeCardWrap {
-  position: fixed;
+  position: sticky;
   bottom: 25%;
-  left: -75px;
+  right: -75px;
   z-index: 10;
-  width: 150px !important;
+  width: 173px !important;
   padding: 0;
   margin: 0;
   border-radius: $global-radius;
@@ -35,6 +35,12 @@
   }
 }
 
+.clearFilterButton {
+  width: fit-content;
+  margin-left: auto;
+  margin-bottom: 1.8rem;
+}
+
 .searchContainer {
   display: flex;
   flex-direction: column;
@@ -45,7 +51,6 @@
     display: none;
     flex-direction: row;
     width: 100%;
-    margin-bottom: 2.4rem;
 
     > *:not(:last-child) {
       margin-right: 3.2rem;

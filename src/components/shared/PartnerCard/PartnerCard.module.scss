@@ -19,6 +19,22 @@
   }
 }
 
+.stickCard {
+  position: fixed;
+  right: -75px;
+}
+
+.closeButton {
+  position: absolute;
+  font-size: 2.5rem;
+  line-height: 1rem;
+  letter-spacing: 0px;
+  top: 9px;
+  right: 9px;
+  color: black;
+}
+
+
 .partnerCard {
   margin-bottom: 1.6rem;
 
@@ -42,25 +58,38 @@
 
   .matchMeCardWrapper {
     display: none;
-    text-align: center;
+    text-align: left;
+    width: 173px;
+    height: 172px;
+    padding: 1.4rem;
 
     @media ($bp-xxl) {
       display: block;
     }
 
+    .gap {
+      margin-top: 1.4rem;
+    }
+
+
+
     .title {
-      font: normal normal normal 16px/16px Sailec-Bold;
+      font: normal normal normal 19px/21px Sailec-Bold;
       letter-spacing: -0.48px;
+      margin-bottom: 0rem;
     }
 
     .description {
-      margin-bottom: 1rem;
-      font-size: 12px;
+      margin-top: 0.7rem;
+      margin-bottom: 0rem;
+      font-size: normal normal normal 12px/14px Inter;
+      color: black;
+      letter-spacing: 0px;
     }
 
     .matchMeCardBtn {
       min-height: auto;
-      padding: 1.25rem 1rem 1rem;
+      padding: 1.1rem 1rem 0.86rem;
       margin-bottom: 0;
     }
   }
@@ -192,7 +221,6 @@
   .row {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 0.6rem;
     margin-top: auto;
   }
 }

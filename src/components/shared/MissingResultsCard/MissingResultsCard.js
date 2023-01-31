@@ -12,7 +12,7 @@ const propTypes = {
     PropTypes.element.isRequired,
     PropTypes.array.isRequired,
   ]),
-  clearFilters: PropTypes.func,
+  // clearFilters: PropTypes.func,
 };
 
 // Component that returns the Missing Results card
@@ -22,7 +22,7 @@ const MissingResultsCard = ({
   productType = "Apps",
   hideImage,
   children,
-  clearFilters,
+  // clearFilters,
 }) => {
   return (
     <>
@@ -53,9 +53,9 @@ const MissingResultsCard = ({
         >
           Match me
         </a>
-        {clearFilters ? (
+        {/* {clearFilters ? (
           <a onClick={clearFilters}>&times; Clear all filters</a>
-        ) : null}
+        ) : null} */}
       </div>
       {children ? children : null}
     </>

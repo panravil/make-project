@@ -98,6 +98,8 @@ const Dropdown = ({
   }
 
   const isOptionSelected = (selectedValue, optionValue) => {
+    console.log('option selected: ', selectedValue);
+    console.log('option value is ', optionValue);
     if (!selectedValue) {
       return false;
     }

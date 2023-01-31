@@ -64,7 +64,6 @@ const PageSearchSection = ({
   const itemDefaultImage = _.get(fields, "itemDefaultImage.fields");
 
   const [showContactModal, setShowContactModal] = useState(false);
-
   return (
     <>
       <PageSectionWrapper fields={fields} sections={sections} index={index}>
@@ -140,10 +139,11 @@ const PageSearchSection = ({
           )}
         </PageContainer>
       </PageSectionWrapper>
+
       {fields.modalForm &&
-      partners &&
-      partners?.length > 0 &&
-      showContactModal ? (
+        partners &&
+        partners?.length > 0 &&
+        showContactModal ? (
         <Modal
           showModal={showContactModal}
           setShowModal={setShowContactModal}
