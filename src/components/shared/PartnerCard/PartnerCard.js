@@ -22,7 +22,6 @@ const propTypes = {
   setShowModal: PropTypes.func,
   extraClasses: PropTypes.array,
   itemDefaultImage: PropTypes.object,
-  isMatchMeModal: PropTypes.bool
 };
 
 // Partner card that can be used to display
@@ -32,15 +31,14 @@ const PartnerCard = ({
   setShowModal,
   extraClasses,
   itemDefaultImage,
-  isMatchMeModal
 }) => {
   const appsIncludedArray = _.get(partner, "appsCollection.items");
   const partnerLink = _.get(partner, "link.slug")
     ? partner?.link
     : {
-      slug: `/partners-directory/${partner?.slug}`,
-      name: partner?.name,
-    };
+        slug: `/partners-directory/${partner?.slug}`,
+        name: partner?.name,
+      };
 
   const linkProps = {};
   if (setShowModal) {
@@ -68,20 +66,13 @@ const PartnerCard = ({
     return string.replace(/<\/?[^>]+(>|$)/g, "");
   };
 
-
   return (
     <Link
       data-cy="partner-card"
-      className={cn(isMatchMeModal ? styles.stickCard : null, styles.partnerCard, ...(extraClasses || []))}
+      className={cn(styles.partnerCard, ...(extraClasses || []))}
       link={partnerLink}
       {...linkProps}
     >
-      {
-        isMatchMeModal && <div className={styles.closeButton}>
-          &times;
-        </div>
-      }
-
       <div
         className={cn(
           styles.contentWrapper,
@@ -113,7 +104,7 @@ const PartnerCard = ({
             />
           ) : null}
 
-          <div className={cn(styles.title, isMatchMeModal ? styles.gap : null)}>{partner?.name}</div>
+          <div className={cn("h6", styles.title)}>{partner?.name}</div>
 
           {partner?.address?.length || partner?.tiers ? (
             <div className={styles.locationWrapper}>
@@ -169,7 +160,7 @@ const PartnerCard = ({
                 )}
               >
                 {_.get(partner, "link")
-                  ? String(_.get(partner, "link.name")).replace(" -->", "")
+                  ? _.get(partner, "link.name")
                   : `View Profile ${"➔"}`}
               </div>
             ) : null}

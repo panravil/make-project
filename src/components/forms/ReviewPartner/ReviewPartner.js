@@ -7,6 +7,7 @@ import { useFormContext } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
 
 import { Input, Rating, TextArea, Modal } from "@components/common";
+import { useGrecaptcha } from "@utils/useGrecaptcha";
 
 const propTypes = {
   fields: PropTypes.shape({
@@ -40,24 +41,28 @@ const ReviewPartner = ({ fields }) => {
   } = fields;
 
   const [showModal, setShowModal] = useState(false);
+  const getGrecaptchaToken = useGrecaptcha();
 
   // Submit handler for the form
-  const onSubmit = (data, event) => {
+  const onSubmit = async (data, event) => {
     event.preventDefault();
     const processedData = data;
-    // Function to encode data to send through fetch
-    fetch(formWebHook, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(processedData),
-    })
-      .then(() => {
-        setShowModal(true);
-        reset();
-      })
-      .catch((err) => alert(err));
+
+    try {
+      const gRecaptcha = await getGrecaptchaToken();
+
+      await fetch(formWebHook, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...processedData, gRecaptcha }),
+      });
+      setShowModal(true);
+      reset();
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (

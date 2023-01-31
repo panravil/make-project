@@ -96,8 +96,8 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(context) {
-  const { page } = context.params;
+export async function getStaticProps({ params }) {
+  const { page } = params;
   const staticProps = await getPageStaticProps(page);
   return staticProps;
 }

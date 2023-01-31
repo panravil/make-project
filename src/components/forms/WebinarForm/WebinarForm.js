@@ -6,6 +6,7 @@ import countries from "../json/countries.json";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
 import styles from "../Form.module.scss";
+import { useGrecaptcha } from "@utils/useGrecaptcha";
 
 const propTypes = {
   fields: PropTypes.shape({
@@ -43,23 +44,27 @@ const PageForm = ({ fields }) => {
     webinarUrl,
   } = fields;
   const [showModal, setShowModal] = useState(false);
+  const getGrecaptchaToken = useGrecaptcha();
 
   // Submit handler for the form
-  const onSubmit = (data, event) => {
+  const onSubmit = async (data, event) => {
     event.preventDefault();
-    // Function to encode data to send through fetch
-    fetch(submitWebHook, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(() => {
-        setShowModal(true);
-        reset();
-      })
-      .catch((err) => alert(err));
+
+    try {
+      const gRecaptcha = await getGrecaptchaToken();
+
+      await fetch(submitWebHook, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...data, gRecaptcha }),
+      });
+      setShowModal(true);
+      reset();
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (

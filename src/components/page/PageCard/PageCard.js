@@ -56,7 +56,7 @@ const PageCard = ({
           </ReactMarkdown>
         ) : null}
         {link ? (
-          <div link={link} className={cn("link bold", styles.pageCardLink)} >
+          <div link={link} className={cn("link bold", styles.pageCardLink)}>
             <span>{link?.name}</span>
           </div>
         ) : null}

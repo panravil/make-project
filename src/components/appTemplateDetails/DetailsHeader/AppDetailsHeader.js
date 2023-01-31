@@ -275,10 +275,12 @@ const AppDetailsHeader = ({ app, app2, app3, appDetails, total }) => {
             )}
           >
             <ReactMarkdown>
-              {replaceRangeWildCard(
-                replaceDetailsWildCard(appDetails?.description, nameArray),
-                total
-              )}
+              {!app2 && app && app.useCustomDescription
+                ? app.description
+                : replaceRangeWildCard(
+                    replaceDetailsWildCard(appDetails?.description, nameArray),
+                    total
+                  )}
             </ReactMarkdown>
           </div>
           <div

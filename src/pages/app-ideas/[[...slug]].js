@@ -91,8 +91,8 @@ export async function getStaticPaths() {
 
 // Get the contentful data of the app that contains the slug passed in & return props.
 // export async function getStaticProps({ params }) {
-
-export async function getStaticProps() {
+export async function getStaticProps({ params }) {
   const staticProps = await getPageStaticProps(currentPageSlug);
+
   return staticProps;
 }

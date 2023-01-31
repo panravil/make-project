@@ -79,18 +79,18 @@ const Search = ({
       ? 27
       : 9
     : productType === "Apps"
-      ? isMobile
-        ? 12
-        : 48
-      : isMobile
-        ? 4
-        : 9;
+    ? isMobile
+      ? 12
+      : 48
+    : isMobile
+    ? 4
+    : 9;
 
   if (productType === "Partners") {
     if (isMobile) {
       itemsPerPage = 3;
     } else {
-      itemsPerPage = 9;
+      itemsPerPage = 8;
     }
   }
 
@@ -103,6 +103,14 @@ const Search = ({
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [numberOfResults, setNumberOfResults] = useState(itemsPerPage);
   const [initialQueryParams, setInitialQueryParams] = useState({});
+
+  const partnerCard = {
+    image: _.get(contactCard, "image"),
+    name: _.get(contactCard, "title"),
+    countries: [_.get(contactCard, "subtitle")],
+    description: _.get(contactCard, "description"),
+    link: _.get(contactCard, "link"),
+  };
 
   // SET UP CATEGORIES
   const allCategories = concatUniqueSortArrays(
@@ -129,16 +137,6 @@ const Search = ({
     null
   );
 
-  //For now there is no option for apps&servces so it is set as an empty array as template
-
-  const startingAppsAndServices = "All Apps & Services";
-
-  const appsAndServices = [
-    'All Apps & Services',
-    'Apps & Service 1',
-    'Apps & Service 2'
-  ];
-
   // if multiple select, dont add default first option to the option array
   /*const locationOptionsArray =
     locations.length > 0 ? [startingLocation, ...locations] : [];*/
@@ -153,7 +151,7 @@ const Search = ({
   );
   const languageOptionsArray =
     languages.length > 0 ? [startingLanguage, ...languages] : [];
-  
+
   // SET UP PARTNER TYPE STATE & OPTIONS FOR DROPDOWN
   const startingPartnerType = "All Partner types";
   const partnerTypes = concatUniqueSortArrays(
@@ -185,7 +183,6 @@ const Search = ({
     "locations",
     "languages",
     "partnerType",
-    "appsAndServices"
   ];
 
   useEffect(() => {
@@ -362,15 +359,12 @@ const Search = ({
     const selectedLocation = watch("locations");
     const selectedLanguage = watch("languages");
     const selectedPartnerType = watch("partnerType");
-    //For Apps & Services:
-    const selectedAppsAndServices = watch("appsAndServices");
 
     if (
       (selectedCategory === startingCategory || !selectedCategory) &&
       (selectedLocation === startingLocation || !selectedLocation) &&
       (selectedLanguage === startingLanguage || !selectedLanguage) &&
-      (selectedPartnerType === startingPartnerType || !selectedPartnerType) &&
-      (selectedAppsAndServices === startingAppsAndServices || !selectedAppsAndServices)
+      (selectedPartnerType === startingPartnerType || !selectedPartnerType)
     ) {
       setCategorySelected(allItemsRef.current);
     } else {
@@ -413,13 +407,7 @@ const Search = ({
                 selectedPartnerType === startingPartnerType ||
                 !selectedPartnerType
               ) {
-                if (
-                  (_.get(item, "appsAndServices") || []).includes(selectedAppsAndServices) ||
-                  selectedAppsAndServices === startingAppsAndServices ||
-                  !selectedAppsAndServices
-                ) {
-                  filteredTemplateArray.push(item);
-                }
+                filteredTemplateArray.push(item);
               }
             }
           }
@@ -442,16 +430,12 @@ const Search = ({
     if (selectedPartnerType && selectedPartnerType !== startingPartnerType) {
       queryObject.partnerType = selectedPartnerType;
     }
-    if (selectedAppsAndServices && selectedAppsAndServices !== startingAppsAndServices) {
-      queryObject.appsAndServices = selectedAppsAndServices;
-    }
     setQueryFilterParams(queryObject);
   }, [
     watch("categories"),
     watch("locations"),
     watch("languages"),
     watch("partnerType"),
-    watch("appsAndServices")
   ]);
 
   // UseEffect to parse the apps based on the search input
@@ -527,29 +511,19 @@ const Search = ({
   };
 
   // Render for displaying number of results based on filter options
-  const renderFilteredResultsCaption = `Showing ${filteredResults.length === 0
-    ? "0"
-    : `1 -
-  ${numberOfResults > filteredResults.length
+  const renderFilteredResultsCaption = `Showing ${
+    filteredResults.length === 0
+      ? "0"
+      : `1 -
+  ${
+    numberOfResults > filteredResults.length
       ? filteredResults.length
       : numberOfResults
-    } of ${filteredResults?.length}`
-    } ${productType === "Partners" ? "" : `results in ${watch("categories")}`}`;
+  } of ${filteredResults?.length}`
+  } ${productType === "Partners" ? "" : `results in ${watch("categories")}`}`;
 
   // .map that renders the items specific for the page that is selected
   // currentItems for pagination
-
-  //For updating Match Me card, exclude image property and then put rest props to PartnerCard component.
-
-  const matchMeProp = {
-    name: "Can't find the right partner?",
-    description: "Create and automate complex workflows",
-    link: {
-      name: "Match Me",
-      slug: "/match-me"
-    }
-  }
-
   const renderCurrentItems =
     filteredResults instanceof Array &&
     filteredResults.slice(0, numberOfResults).map((item, index) => (
@@ -568,17 +542,19 @@ const Search = ({
       </div>
     ));
 
-  const renderPartnerCurrentItems = productType === "Partners" && filteredResults.length > 0 ? [
-
-    <PartnerCard
-      partner={matchMeProp}
-      setShowModal={setShowContactModal}
-      extraClasses={["matchMeCard"]}
-      isMatchMeModal={true}
-    />
-    ,
+  const renderPartnerCurrentItems = [
+    <div
+      className={[styles.currentListItem, styles.matchMeCardWrap].join(" ")}
+      key={-1}
+    >
+      <PartnerCard
+        partner={partnerCard}
+        setShowModal={setShowContactModal}
+        extraClasses={["matchMeCard"]}
+      />
+    </div>,
     ...renderCurrentItems,
-  ] : [];
+  ];
 
   // .map that renders top 20 priority items if no results
   const renderSuggestedItems =
@@ -602,7 +578,7 @@ const Search = ({
   // load more button increases the number of apps displayed
   const loadMoreHandler = () => {
     if (productType === "Partners") {
-      setNumberOfResults(numberOfResults + itemsPerPage);
+      setNumberOfResults(numberOfResults + itemsPerPage + 1);
     } else {
       setNumberOfResults(numberOfResults + itemsPerPage);
     }
@@ -619,11 +595,10 @@ const Search = ({
 
   const clearFilters = (e) => {
     e.preventDefault();
-    setValue("categories", "");
-    setValue("locations", "");
-    setValue("languages", "");
-    setValue("partnerType", "");
-    setValue("appsAndServices", "");
+    setValue("categories", startingCategory);
+    setValue("locations", startingLocation);
+    setValue("languages", startingLanguage);
+    setValue("partnerType", startingPartnerType);
   };
 
   // Function that renders the Page Cards
@@ -688,49 +663,33 @@ const Search = ({
             />
           ) : null}
           {productType === "Partners" ? (
-            <>
-              <div className={styles.partnerFiltersRow}>
-                <Dropdown
-                  name="locations"
-                  label="Locations"
-                  control={control}
-                  setValue={setValue}
-                  optionsArray={locationOptionsArray}
-                  defaultValue={locationOptionsArray[0]}
-                  multiselect={true}
-                />
-                <Dropdown
-                  name="languages"
-                  label="Languages"
-                  control={control}
-                  setValue={setValue}
-                  optionsArray={languageOptionsArray}
-                  defaultValue={languageOptionsArray[0]}
-                  multiselect={true}
-                />
-                <Dropdown
-                  name="partnerType"
-                  label="Partner type"
-                  control={control}
-                  setValue={setValue}
-                  optionsArray={partnerTypeOptionsArray}
-                  defaultValue={partnerTypeOptionsArray[0]}
-                  multiselect={true}
-                />
-
-                {/* Updated: Add "Apps & Services" */}
-                <Dropdown
-                  name="appsAndServices"
-                  label="Apps & Services"
-                  control={control}
-                  setValue={setValue}
-                  optionsArray={appsAndServices}
-                  defaultValue={appsAndServices[0]}
-                  multiselect={true}
-                />
-              </div>
-              <a className={cn(styles.clearFilterButton, styles.advancedDesktopOnly)} onClick={clearFilters}>&times; Clear all filters</a>
-            </>
+            <div className={styles.partnerFiltersRow}>
+              <Dropdown
+                name="locations"
+                label="Locations"
+                control={control}
+                setValue={setValue}
+                optionsArray={locationOptionsArray}
+                defaultValue={locationOptionsArray[0]}
+                multiselect={true}
+              />
+              <Dropdown
+                name="languages"
+                label="Languages"
+                control={control}
+                setValue={setValue}
+                optionsArray={languageOptionsArray}
+                defaultValue={languageOptionsArray[0]}
+              />
+              <Dropdown
+                name="partnerType"
+                label="Partner type"
+                control={control}
+                setValue={setValue}
+                optionsArray={partnerTypeOptionsArray}
+                defaultValue={partnerTypeOptionsArray[0]}
+              />
+            </div>
           ) : null}
           <div className={styles.searchFormWrapper}>
             <div className={styles.searchForm}>
@@ -765,49 +724,49 @@ const Search = ({
                           <>
                             {_.get(category, "subcategoriesCollection.items")
                               ? _.sortBy(
-                                _.get(
-                                  category,
-                                  "subcategoriesCollection.items"
-                                ),
-                                "name"
-                              ).map((subcategory, index) => {
-                                if (
                                   _.get(
-                                    subcategory,
-                                    "templatesCollection.items.length"
-                                  ) > 0 ||
-                                  productType === "Apps" ||
-                                  productType === "Partners"
-                                ) {
-                                  return (
-                                    <div
-                                      key={index}
-                                      className={cn(
-                                        "caption",
-                                        styles.subcategory,
-                                        watch("categories") ===
-                                          subcategory.name
-                                          ? styles.selectedOption
-                                          : ""
-                                      )}
-                                      onClick={() =>
-                                        handleSubcategoryClick(
-                                          subcategory.name
-                                        )
-                                      }
-                                      onKeyPress={() =>
-                                        handleSubcategoryClick(
-                                          subcategory.name
-                                        )
-                                      }
-                                      role="button"
-                                      tabIndex={0}
-                                    >
-                                      {subcategory.name}
-                                    </div>
-                                  );
-                                }
-                              })
+                                    category,
+                                    "subcategoriesCollection.items"
+                                  ),
+                                  "name"
+                                ).map((subcategory, index) => {
+                                  if (
+                                    _.get(
+                                      subcategory,
+                                      "templatesCollection.items.length"
+                                    ) > 0 ||
+                                    productType === "Apps" ||
+                                    productType === "Partners"
+                                  ) {
+                                    return (
+                                      <div
+                                        key={index}
+                                        className={cn(
+                                          "caption",
+                                          styles.subcategory,
+                                          watch("categories") ===
+                                            subcategory.name
+                                            ? styles.selectedOption
+                                            : ""
+                                        )}
+                                        onClick={() =>
+                                          handleSubcategoryClick(
+                                            subcategory.name
+                                          )
+                                        }
+                                        onKeyPress={() =>
+                                          handleSubcategoryClick(
+                                            subcategory.name
+                                          )
+                                        }
+                                        role="button"
+                                        tabIndex={0}
+                                      >
+                                        {subcategory.name}
+                                      </div>
+                                    );
+                                  }
+                                })
                               : null}
                           </>
                         </ToggleAccordion>
@@ -829,51 +788,32 @@ const Search = ({
                     />
                   ) : null}
                   {productType === "Partners" ? (
-                    <>
-                      <div className={styles.partnerFilters}>
-                        <Dropdown
-                          name="locations"
-                          label="Locations"
-                          control={control}
-                          setValue={setValue}
-                          optionsArray={locationOptionsArray}
-                          defaultValue={locationOptionsArray[0]}
-                          // For desktop it was set as multiselectable one. But for mobile, it wasn't so I fixed it.
-                          multiselect={true}
-                        />
-                        <Dropdown
-                          name="languages"
-                          label="Languages"
-                          control={control}
-                          setValue={setValue}
-                          optionsArray={languageOptionsArray}
-                          defaultValue={languageOptionsArray[0]}
-                          multiselect={true}
-                        />
-                        <Dropdown
-                          name="partnerType"
-                          label="Partner type"
-                          control={control}
-                          setValue={setValue}
-                          optionsArray={partnerTypeOptionsArray}
-                          defaultValue={partnerTypeOptionsArray[0]}
-                          multiselect={true}
-                        />
-
-                        {/* Updated: Add "Apps & Services" */}
-
-                        <Dropdown
-                          name="appsAndServices"
-                          label="Apps & Services"
-                          control={control}
-                          setValue={setValue}
-                          optionsArray={appsAndServices}
-                          defaultValue={appsAndServices[0]}
-                          multiselect={true}
-                        />
-                      </div>
-                      <a className={cn(styles.clearFilterButton, styles.advancedMobileOnly)} onClick={clearFilters}>&times; Clear all filters</a>
-                    </>
+                    <div className={styles.partnerFilters}>
+                      <Dropdown
+                        name="locations"
+                        label="Locations"
+                        control={control}
+                        setValue={setValue}
+                        optionsArray={locationOptionsArray}
+                        defaultValue={locationOptionsArray[0]}
+                      />
+                      <Dropdown
+                        name="languages"
+                        label="Languages"
+                        control={control}
+                        setValue={setValue}
+                        optionsArray={languageOptionsArray}
+                        defaultValue={languageOptionsArray[0]}
+                      />
+                      <Dropdown
+                        name="partnerType"
+                        label="Partner type"
+                        control={control}
+                        setValue={setValue}
+                        optionsArray={partnerTypeOptionsArray}
+                        defaultValue={partnerTypeOptionsArray[0]}
+                      />
+                    </div>
                   ) : null}
                 </div>
               </div>
@@ -897,16 +837,30 @@ const Search = ({
               {/* If there's no results, let user know */}
               {filteredResults?.length === 0 ? (
                 productType === "Partners" ? (
-                  <div className={styles.missingWrapper}>
-                    <MissingResultsCard
-                      missingSearchResultsTitle={missingSearchResultsTitle}
-                      missingSearchResultsDescription={
-                        missingSearchResultsDescription
-                      }
-                      productType={productType}
-                      hideImage
-                    // clearFilters={clearFilters}
-                    />
+                  <div className={styles.missingPartners}>
+                    <div
+                      className={[
+                        styles.partnerCard,
+                        styles.matchMeCardWrap,
+                      ].join(" ")}
+                    >
+                      <PartnerCard
+                        partner={partnerCard}
+                        setShowModal={setShowContactModal}
+                        extraClasses={["matchMeCard"]}
+                      />
+                    </div>
+                    <div className={styles.missingWrapper}>
+                      <MissingResultsCard
+                        missingSearchResultsTitle={missingSearchResultsTitle}
+                        missingSearchResultsDescription={
+                          missingSearchResultsDescription
+                        }
+                        productType={productType}
+                        hideImage
+                        clearFilters={clearFilters}
+                      />
+                    </div>
                   </div>
                 ) : (
                   <MissingResultsCard

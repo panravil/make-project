@@ -20,6 +20,7 @@ import languages from "../json/languages.json";
 import industries from "../json/industries.json";
 import jobTitles from "../json/jobTitles.json";
 import states from "../json/states-us-partners.json";
+import { useGrecaptcha } from "@utils/useGrecaptcha";
 
 const propTypes = {
   fields: PropTypes.shape({
@@ -58,6 +59,7 @@ const PageForm = ({ fields }) => {
   const [showModal, setShowModal] = useState(false);
   const [showLStatesDropdown, setLStatesDropdown] = useState(false);
   const [showPStatesDropdown, setPStatesDropdown] = useState(false);
+  const getGrecaptchaToken = useGrecaptcha();
 
   useEffect(() => {
     const selectedLCountry = watch("L_Country");
@@ -78,21 +80,24 @@ const PageForm = ({ fields }) => {
   }, [showPStatesDropdown, watch("P_Country")]);
 
   // Submit handler for the form
-  const onSubmit = (data, event) => {
+  const onSubmit = async (data, event) => {
     event.preventDefault();
-    // Function to encode data to send through fetch
-    fetch(submitWebHook, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(() => {
-        setShowModal(true);
-        reset();
-      })
-      .catch((err) => alert(err));
+
+    try {
+      const gRecaptcha = await getGrecaptchaToken();
+
+      await fetch(submitWebHook, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...data, gRecaptcha }),
+      });
+      setShowModal(true);
+      reset();
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
@@ -109,16 +114,6 @@ const PageForm = ({ fields }) => {
         <div className={cn("h4", styles.formTitle)}>{formTitle}</div>
         <form name="ORFForm" onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.row}>
-            <p>
-              If you are a Make partner already, please register the opportunity
-              in the{" "}
-              <a href="https://partnerportal.integromat.com/aspx/PublicPartnerProgram">
-                Make partner portal
-              </a>
-              .
-            </p>
-          </div>
-          <div className={styles.row}>
             <Dropdown
               name="P_partner"
               label="Are you a Make partner already?"
@@ -130,6 +125,16 @@ const PageForm = ({ fields }) => {
               labelClassName={styles.dropdownLabel}
               containerClassName={styles.dropdownContainer}
             />
+          </div>
+          <div className={styles.row}>
+            <p>
+              If you are a Make partner already, please register the opportunity
+              in the{" "}
+              <a href="https://partnerportal.integromat.com/aspx/PublicPartnerProgram">
+                Make partner portal
+              </a>
+              .
+            </p>
           </div>
           <h5>
             <b>About your company</b>{" "}
@@ -350,12 +355,7 @@ const PageForm = ({ fields }) => {
               label="Estimated revenue from your last year in USD?"
               control={control}
               setValue={setValue}
-              optionsArray={[
-                "0-100k",
-                "100k-500k",
-                "500k-5M",
-                "5M +",
-              ]}
+              optionsArray={["0-100k", "100k-500k", "500k-5M", "5M+"]}
               errors={errors}
               errorMessage="Please select an option"
               labelClassName={styles.dropdownLabel}

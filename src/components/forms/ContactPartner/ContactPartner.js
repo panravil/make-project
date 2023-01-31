@@ -1,12 +1,17 @@
 import styles from "../Form.module.scss";
-import { useState } from "react";
+import styles2 from "../../common/Form/Form.module.scss";
+import { useState, useEffect } from "react";
 import cn from "classnames";
 import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
 
-import { Checkbox, Input, Dropdown, TextArea, Modal } from "@components/common";
+import { Checkbox, Input, Dropdown, DropdownSearch, TextArea, Modal } from "@components/common";
 import countries from "../json/countries.json";
+import { useGrecaptcha } from "@utils/useGrecaptcha";
+import industries from "../json/industries.json";
+import languages from "../json/languages.json";
+import states from "../json/states-us-partners.json";
 
 const propTypes = {
   fields: PropTypes.shape({
@@ -26,7 +31,7 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
   const {
     register,
     control,
-    // watch,
+    watch,
     handleSubmit,
     setValue,
     formState: { errors },
@@ -43,24 +48,40 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
     agreementText,
   } = fields;
   const [showModal, setShowModal] = useState(false);
+  const getGrecaptchaToken = useGrecaptcha();
+  const [showStatesDropdown, setStatesDropdown] = useState(false);
+  useEffect(() => {
+    const selectedCountry = watch("Country");
+    if (selectedCountry && selectedCountry.includes("US")) {
+      setStatesDropdown(true);
+    } else {
+      setStatesDropdown(false);
+    }
+  }, [showStatesDropdown, watch("Country")]);
 
   // Submit handler for the form
-  const onSubmit = (data, event) => {
+  const onSubmit = async (data, event) => {
     event.preventDefault();
-    // Function to encode data to send through fetch
-    fetch(submitWebHook, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(() => {
-        setShowModal(true);
 
-        reset();
-      })
-      .catch((err) => alert(err));
+    try {
+      const gRecaptcha = await getGrecaptchaToken();
+
+      await fetch(submitWebHook, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          gRecaptcha,
+        }),
+      });
+
+      setShowModal(true);
+      reset();
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
@@ -121,7 +142,7 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
             />
           </div>
           <div className={styles.row}>
-            <Input
+          <Input
               name="company"
               type="text"
               label="Company"
@@ -130,7 +151,7 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
               errors={errors}
               trigger={trigger}
               validations={{
-                required: false,
+                required: "Please enter your company name",
               }}
             />
             <Dropdown
@@ -140,28 +161,25 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
               setValue={setValue}
               optionsArray={["1-15", "15-20", "50-200", "200 - above"]}
               placeholder="Your Company Size"
-              errors={errors}
-              errorMessage="Please select an option"
               labelClassName={styles.dropdownLabel}
               containerClassName={styles.dropdownContainer}
             />
           </div>
           <div className={styles.row}>
-            <Input
-              name="industry"
-              type="text"
+          <Dropdown
+              name="Industry"
               label="Industry"
-              placeholder="Your Industry"
-              register={register}
+              control={control}
+              setValue={setValue}
+              optionsArray={industries}
               errors={errors}
-              trigger={trigger}
-              validations={{
-                required: false,
-              }}
+              errorMessage="Please select an option"
+              labelClassName={styles.dropdownLabel}
+              containerClassName={styles.dropdownContainer}
             />
             <Dropdown
               name="experience"
-              label="Experience"
+              label="Experience with Make"
               control={control}
               setValue={setValue}
               optionsArray={[
@@ -208,7 +226,7 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
               errors={errors}
               trigger={trigger}
               validations={{
-                required: "Please enter a valid phone number",
+                required: false,
                 pattern: {
                   value:
                     /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
@@ -219,18 +237,6 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
             />
           </div>
           <div className={styles.row}>
-            <Dropdown
-              name="communication"
-              label="Prefered communication channel"
-              control={control}
-              setValue={setValue}
-              optionsArray={["Phone", "Whatsapp", "Email"]}
-              placeholder="Your prefered communication channel"
-              errors={errors}
-              errorMessage="Please enter your prefered communication channel"
-              labelClassName={styles.dropdownLabel}
-              containerClassName={styles.dropdownContainer}
-            />
             <Dropdown
               name="plan"
               label="Make plan"
@@ -250,30 +256,64 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
               labelClassName={styles.dropdownLabel}
               containerClassName={styles.dropdownContainer}
             />
-          </div>
-          <div className={styles.row}>
-            <Input
-              name="website"
+          <Input
+              name="Website"
               type="url"
               label="Website"
-              placeholder="Your Website"
+              placeholder="Your website"
               register={register}
               errors={errors}
               trigger={trigger}
+              validations={{
+                required: "Please enter a valid url",
+              }}
             />
-            <Dropdown
-              name="country"
+          </div>
+          <div className={styles.row}>
+          <DropdownSearch
+              name="Country"
               label="Country"
               control={control}
               setValue={setValue}
               optionsArray={countries}
-              placeholder="Country"
+              placeholder="Please select"
               errors={errors}
               errorMessage="Please select an option"
               labelClassName={styles.dropdownLabel}
               containerClassName={styles.dropdownContainer}
             />
+            {showStatesDropdown ? (
+              <DropdownSearch
+                name="State"
+                label="US state"
+                control={control}
+                setValue={setValue}
+                optionsArray={states}
+                placeholder="Please select"
+                errors={errors}
+                errorMessage="Please select an option"
+                labelClassName={styles.dropdownLabel}
+                containerClassName={styles.dropdownContainer}
+              />
+            ) : (
+              <div className={styles2.formElementWrapper}></div>
+            )}
           </div>
+          <div className={styles.row}><p></p></div>
+          <div className={styles.row}>
+          <Dropdown
+              name="Languages_Operated_in__c"
+              label="Preferred language"
+              control={control}
+              setValue={setValue}
+              optionsArray={languages}
+              errors={errors}
+              errorMessage="Please select an option"
+              labelClassName={styles.dropdownLabel}
+              containerClassName={styles.dropdownContainer}
+              multiselect
+            />
+            </div>
           <TextArea
             name="projectDescription"
             type="text"
@@ -289,7 +329,7 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
           <div className={styles.row}>
             <Dropdown
               name="projectDuration"
-              label="Project duration"
+              label="One time or ongoing support?"
               control={control}
               setValue={setValue}
               optionsArray={["One-time help", "Ongoing support"]}
@@ -302,19 +342,19 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
             <Input
               name="deliveryTimeframe"
               type="date"
-              label="Delivery timeframe"
-              placeholder="Your delivery timeframe"
+              label="Delivery date"
+              placeholder="Your delivery date"
               register={register}
               errors={errors}
               trigger={trigger}
               validations={{
-                required: "Please enter your delivery timeframe",
+                required: "Please enter your delivery date",
               }}
             />
           </div>
           <Input
             name="budget"
-            type="text"
+            type="number"
             label="Budget in USD"
             placeholder="Your budget in USD"
             register={register}

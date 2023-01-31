@@ -128,7 +128,7 @@ const Layout = ({ children, pageProps }) => {
                 alt="Make - Design, build and automate your work | Product Hunt"
                 height={54}
                 width={250}
-                // quality={90}
+                quality={90}
               />
             </a>
           </div>

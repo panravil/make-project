@@ -19,7 +19,6 @@ export default function HomePage({
   categories,
   subcategories,
 }) {
-
   const sections = _.get(pageData, "fields.sections") || [];
   return (
     <>
@@ -32,8 +31,7 @@ HomePage.propTypes = propTypes;
 
 HomePage.Layout = Layout;
 
-export async function getStaticProps(context) {
-  // console.log('regeneration called!', context);
+export async function getStaticProps() {
   const staticProps = await getPageStaticProps("home");
   return staticProps;
 }

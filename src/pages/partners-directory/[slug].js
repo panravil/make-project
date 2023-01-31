@@ -121,12 +121,11 @@ export const getAllPaths = gql`
 
 // Get the slugs of all apps in contentful & pass as a param to get static props.
 export async function getStaticPaths() {
-
-  if(process.env.NEXT_SKIP_BUILD_STATIC_GENERATION) {
+  if (process.env.NEXT_SKIP_BUILD_STATIC_GENERATION) {
     return {
       paths: [],
-      fallback: "blocking"
-    }
+      fallback: "blocking",
+    };
   }
 
   const { data } = await apolloClient.query({

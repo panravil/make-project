@@ -5,7 +5,15 @@ import cn from "classnames";
 import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
-import { Checkbox, Input, Dropdown, DropdownSearch, TextArea, Modal } from "@components/common";
+import { useGrecaptcha } from "@utils/useGrecaptcha";
+import {
+  Checkbox,
+  Input,
+  Dropdown,
+  DropdownSearch,
+  TextArea,
+  Modal,
+} from "@components/common";
 import countries from "../json/countries.json";
 import industries from "../json/industries.json";
 import jobTitles from "../json/jobTitles.json";
@@ -50,6 +58,7 @@ const PageForm = ({ fields }) => {
   const [showCosellingPartnerDropdowns, setShowCosellingPartnerDropdowns] =
     useState(false);
   const [showStatesDropdown, setStatesDropdown] = useState(false);
+  const getGrecaptchaToken = useGrecaptcha();
 
   useEffect(() => {
     const selectedCountry = watch("Country");
@@ -111,21 +120,26 @@ const PageForm = ({ fields }) => {
   }, [watch("imt_Partner_Partnership_Type__c")]);
 
   // Submit handler for the form
-  const onSubmit = (data, event) => {
+  const onSubmit = async (data, event) => {
     event.preventDefault();
-    // Function to encode data to send through fetch
-    fetch(submitWebHook, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(() => {
-        setShowModal(true);
-        reset();
-      })
-      .catch((err) => alert(err));
+
+    try {
+      const gRecaptcha = await getGrecaptchaToken();
+      await fetch(submitWebHook, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          gRecaptcha,
+        }),
+      });
+      setShowModal(true);
+      reset();
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
@@ -344,12 +358,7 @@ const PageForm = ({ fields }) => {
               label="Estimated revenue from your last year in USD?"
               control={control}
               setValue={setValue}
-              optionsArray={[
-                "0-100k",
-                "100k-500k",
-                "500k-5M",
-                "5M +",
-              ]}
+              optionsArray={["0-100k", "100k-500k", "500k-5M", "5M+"]}
               errors={errors}
               errorMessage="Please select an option"
               labelClassName={styles.dropdownLabel}
@@ -593,7 +602,7 @@ const PageForm = ({ fields }) => {
                   errorMessage="Please select an option"
                   labelClassName={styles.dropdownLabel}
                   containerClassName={styles.dropdownContainer}
-                // multiselect
+                  // multiselect
                 />
                 <Dropdown
                   name="imt_Partner_Automation_Resold__c"

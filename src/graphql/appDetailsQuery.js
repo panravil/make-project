@@ -29,6 +29,7 @@ const appDetailsQuery = `
       beta
       premium
       description
+      useCustomDescription
       keywords
       subTitle
       videoUrl
