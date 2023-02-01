@@ -3,10 +3,9 @@
 
 @mixin matchMeCardWrap {
   position: fixed;
-  bottom: 25%;
   left: -75px;
   z-index: 10;
-  width: 150px !important;
+  width: 173px !important;
   padding: 0;
   margin: 0;
   border-radius: $global-radius;
@@ -15,6 +14,13 @@
 
 .advancedDesktopOnly {
   display: none;
+}
+
+.clearFilterButton {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 0px;  
+  margin-bottom: 20px;
 }
 
 @media ($bp-lg) {
@@ -45,7 +51,7 @@
     display: none;
     flex-direction: row;
     width: 100%;
-    margin-bottom: 2.4rem;
+    // margin-bottom: 2.4rem;
 
     > *:not(:last-child) {
       margin-right: 3.2rem;

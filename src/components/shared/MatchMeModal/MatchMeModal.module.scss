@@ -1,0 +1,73 @@
+.matchMeContainer {
+    width: 173px;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    transition: all 0s ease;
+    cursor: pointer;
+    color: black;
+
+    .image {
+        width: 30px;
+        height: 30px;
+    }
+
+    .title {
+        font-size: 14px;
+        text-align: center;
+        line-height: 16px;
+        font-weight: 800;
+        max-width: 120px;
+    }
+
+    .content {
+        font-size: 12px;
+        display: none;
+        text-align: center;
+    }
+
+    .matchmeButton {
+        background: linear-gradient(253deg, #e24dff 0%, #ac53c6 100%);
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 4px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        display: none;
+        margin: 0px;
+    }
+
+    &:hover {
+        flex-direction: column;
+        padding: 20px 10px 10px 10px;
+
+
+        .image {
+            width: 60px;
+            height: 60px;
+        }
+
+        .title {
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .content {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .matchmeButton {
+            display: block;
+            margin-top: 10px;
+        }
+    }
+
+}

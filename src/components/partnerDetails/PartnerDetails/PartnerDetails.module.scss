@@ -17,6 +17,8 @@ $partnerDescription-padding: 3rem;
     height: fit-content;
     padding-right: 3.8rem;
     padding-bottom: 4rem;
+    position: sticky;
+    top: 410px;
 
     @media ($bp-md) {
       display: flex;

@@ -66,6 +66,8 @@ const PartnerCard = ({
     return string.replace(/<\/?[^>]+(>|$)/g, "");
   };
 
+  console.log('partner is ', partner.image);
+
   return (
     <Link
       data-cy="partner-card"

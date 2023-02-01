@@ -41,7 +41,7 @@ const Dropdown = ({
   optionsArray = [],
   // OPTIONAL FIELDS
   defaultValue,
-  placeholder = "Please select from dropdown",
+  placeholder = "All categories",
   label,
   labelClassName,
   containerClassName,
@@ -104,7 +104,8 @@ const Dropdown = ({
     return (
       selectedValue === optionValue ||
       selectedValue.includes(`${optionValue},`) ||
-      selectedValue.includes(`, ${optionValue}`)
+      selectedValue.includes(`, ${optionValue}`) ||
+      selectedValue.includes(optionValue?.value)
     );
   };
 
@@ -124,13 +125,13 @@ const Dropdown = ({
               {multiselect ? (
                 <>
                   {isOptionSelected(value, option) ? (
-                    <span className={styles.checkmarkWrapper}>
+                    <div className={styles.checkmarkWrapper}>
                       <CheckMark />
-                    </span>
+                    </div>
                   ) : null}
-                  <span className={styles.multiItem}>
+                  <div className={styles.multiItem}>
                     {option?.name || option}
-                  </span>
+                  </div>
                 </>
               ) : (
                 <span className={styles.optionName}>
@@ -150,8 +151,8 @@ const Dropdown = ({
     const optionObject = _.find(optionsArray, (option) => {
       return option?.value === value;
     });
-    const renderedName = optionObject?.name || value || placeholder;
 
+    const renderedName = optionObject?.name || value || placeholder;
     return (
       <div
         className={cn(
@@ -177,6 +178,11 @@ const Dropdown = ({
       </div>
     );
   };
+
+  const clearFilter = (e) => {
+    e.preventDefault();
+    setValue(name, "");
+  }
 
   return (
     <Controller
@@ -222,7 +228,12 @@ const Dropdown = ({
           {/* if the dropdown is open, show the list of options */}
           {dropdownOpen && (
             <div className={styles.customDropdownList}>
-              {renderDropdownOptions(value)}
+              <div className={styles.customDropdownListBody}>
+                {renderDropdownOptions(value)}
+              </div>
+              <div className={styles.clearFilterButton}>
+                <a onClick={clearFilter}>&times; Clear Filter</a>
+              </div>
             </div>
           )}
           {errors && errors[name] && (

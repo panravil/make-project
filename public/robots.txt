@@ -1,15 +1,15 @@
+# *
 User-agent: *
 Allow: /
 Disallow: *en/hq*
 
 # Host
-Host: https://www.make.com/en/
+Host: https://www.make.com/en
 
 # Sitemaps
 Sitemap: https://www.make.com/en/sitemap.xml
 Sitemap: https://www.make.com/en/blog-sitemap.xml
 Sitemap: https://www.make.com/en/integrations-sitemap.xml
 Sitemap: https://www.make.com/en/templates-sitemap.xml
-Sitemap: https://www.make.com/en/partners-directory-sitemap.xml
 Sitemap: https://www.make.com/en/use-cases-sitemap.xml
 Sitemap: https://www.make.com/en/webinars-sitemap.xml
