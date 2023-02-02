@@ -55,6 +55,7 @@ const PartnerDetails = ({
   setShowReviewModal,
   setShowContactModal,
 }) => {
+  console.log('partner is ', partner);
   // Render a list of apps styled with the AppCard component
   const appsIncludedArray = _.get(partner, "appsCollection.items") || [];
   const renderAppsIncluded = appsIncludedArray.map((app, index) => {
@@ -141,6 +142,13 @@ const PartnerDetails = ({
 
   const partnerTier = _.last(partner?.tiers);
 
+  const tierImageLink = partner?.tiers.length > 0 ? 
+      (partner.tiers[0] === 'silver' ? '/en/logos/Silver.png'
+      : partner.tiers[0] === 'bronze' ? '/en/logos/Platinum.png'
+      : partner.tiers[0] === 'gold' ? '/en/logos/Golf.png'
+      : '/en/logos/certified.png')
+      : null;
+
   return (
     <div className={cn("container", styles.partnerDetails)}>
       <div className={styles.partnerInfoContainer}>
@@ -151,7 +159,7 @@ const PartnerDetails = ({
                 {
                   partner?.image && (
                     <Image
-                      src={partner.image.url}
+                      src={ tierImageLink }
                       alt={'Partner avatar'}
                       width={60}
                       height={60}

@@ -131,7 +131,7 @@ const Search = ({
     .value();
 
   // SET UP LOCATION STATE & OPTIONS FOR DROPDOWN
-  const startingLocation = "All categories";
+  const startingLocation = "All Locations";
   const locations = concatUniqueSortArrays(
     _.map(allItems, "countries"),
     null,
@@ -144,7 +144,7 @@ const Search = ({
   const locationOptionsArray = locations.length > 0 ? locations : [];
 
   // SET UP LANGUAGE STATE & OPTIONS FOR DROPDOWN
-  const startingLanguage = "All categories";
+  const startingLanguage = "All Languages";
   const languages = concatUniqueSortArrays(
     _.map(allItems, "languages"),
     null,
@@ -154,7 +154,7 @@ const Search = ({
     languages.length > 0 ? [startingLanguage, ...languages] : [];
 
   // SET UP PARTNER TYPE STATE & OPTIONS FOR DROPDOWN
-  const startingPartnerType = "All categories";
+  const startingPartnerType = "All Partners";
   const partnerTypes = concatUniqueSortArrays(
     _.map(allItems, "partnerType"),
     null,
@@ -178,9 +178,9 @@ const Search = ({
     };
   });
 
-  const startingappsCollectionType = "All categories";
+  const startingappsCollectionType = "All Apps & Services";
   const appsCollectionOptionsArray = [
-    'All categories',
+    'All Apps & Services',
     'Airtable',
     'Asana',
     'HTTP'
@@ -693,7 +693,8 @@ const Search = ({
               <div className={styles.partnerFiltersRow}>
                 <Dropdown
                   name="locations"
-                  label="Filter"
+                  label="Locations"
+                  placeholder={startingLocation}
                   control={control}
                   setValue={setValue}
                   optionsArray={locationOptionsArray}
@@ -702,7 +703,8 @@ const Search = ({
                 />
                 <Dropdown
                   name="languages"
-                  label="Filter"
+                  label="Languages"
+                  placeholder={startingLanguage}
                   control={control}
                   setValue={setValue}
                   optionsArray={languageOptionsArray}
@@ -711,7 +713,8 @@ const Search = ({
                 />
                 <Dropdown
                   name="partnerType"
-                  label="Filter"
+                  label="Partner Types"
+                  placeholder={startingPartnerType}
                   control={control}
                   setValue={setValue}
                   optionsArray={partnerTypeOptionsArray}
@@ -720,7 +723,8 @@ const Search = ({
                 />
                 <Dropdown
                   name="appsCollection"
-                  label="Filter"
+                  label="Apps & Services"
+                  placeholder={startingappsCollectionType}
                   control={control}
                   setValue={setValue}
                   optionsArray={appsCollectionOptionsArray}
@@ -834,7 +838,8 @@ const Search = ({
                       <div className={styles.partnerFilters}>
                         <Dropdown
                           name="locations"
-                          label="Filter"
+                          label="Locations"
+                          placeholder={startingLocation}
                           control={control}
                           setValue={setValue}
                           optionsArray={locationOptionsArray}
@@ -843,7 +848,8 @@ const Search = ({
                         />
                         <Dropdown
                           name="languages"
-                          label="Filter"
+                          label="Languages"
+                          placeholder={startingLanguage}
                           control={control}
                           setValue={setValue}
                           optionsArray={languageOptionsArray}
@@ -852,7 +858,8 @@ const Search = ({
                         />
                         <Dropdown
                           name="partnerType"
-                          label="Filter"
+                          label="Partner Types"
+                          placeholder={startingPartnerType}
                           control={control}
                           setValue={setValue}
                           optionsArray={partnerTypeOptionsArray}
@@ -861,7 +868,8 @@ const Search = ({
                         />
                         <Dropdown
                           name="appsCollection"
-                          label="Filter"
+                          label="Apps & Services"
+                          placeholder={startingappsCollectionType}
                           control={control}
                           setValue={setValue}
                           optionsArray={appsCollectionOptionsArray}
