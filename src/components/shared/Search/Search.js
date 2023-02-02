@@ -178,11 +178,12 @@ const Search = ({
     };
   });
 
-  const startingAppsAndServicesType = "All categories";
-  const appsAndServicesOptionsArray = [
+  const startingappsCollectionType = "All categories";
+  const appsCollectionOptionsArray = [
     'All categories',
-    'Gmail',
-    'Telegram'
+    'Airtable',
+    'Asana',
+    'HTTP'
   ];
 
   const validQueryParams = [
@@ -190,7 +191,7 @@ const Search = ({
     "locations",
     "languages",
     "partnerType",
-    "appsAndServices"
+    "appsCollection"
   ];
 
   useEffect(() => {
@@ -243,6 +244,7 @@ const Search = ({
 
   useEffect(() => {
     let newQuery = { ...initialQueryParams, ...queryFilterParams };
+    console.log('newQuery is ', newQuery);
     if (currentCategory) {
       newQuery = { ...initialQueryParams };
     }
@@ -367,14 +369,15 @@ const Search = ({
     const selectedLocation = watch("locations");
     const selectedLanguage = watch("languages");
     const selectedPartnerType = watch("partnerType");
-    const selectedAppsAndServices = watch("appsAndServices");
+    const selectedappsCollection = watch("appsCollection");
+    console.log("selectedappsCollection is ", selectedappsCollection);
 
     if (
       (selectedCategory === startingCategory || !selectedCategory) &&
       (selectedLocation === startingLocation || !selectedLocation) &&
       (selectedLanguage === startingLanguage || !selectedLanguage) &&
       (selectedPartnerType === startingPartnerType || !selectedPartnerType) &&
-      (selectedAppsAndServices === startingAppsAndServicesType || !selectedAppsAndServices)
+      (selectedappsCollection === startingappsCollectionType || !selectedappsCollection)
     ) {
       setCategorySelected(allItemsRef.current);
     } else {
@@ -418,11 +421,11 @@ const Search = ({
                 !selectedPartnerType
               ) {
                 if (
-                  (_.get(item, "appsAndServices") || []).includes(
-                    selectedAppsAndServices
-                  ) ||
-                  selectedAppsAndServices === startingAppsAndServicesType ||
-                  !selectedAppsAndServices
+                  _.filter((_.get(item, "appsCollection.items") || []), (item) => {
+                    return selectedappsCollection.includes(item.name)
+                  }).length > 0 ||
+                  selectedappsCollection === startingappsCollectionType ||
+                  !selectedappsCollection
                 ) {
                   filteredTemplateArray.push(item);
                 }
@@ -448,8 +451,8 @@ const Search = ({
     if (selectedPartnerType && selectedPartnerType !== startingPartnerType) {
       queryObject.partnerType = selectedPartnerType;
     }
-    if (selectedAppsAndServices && selectedAppsAndServices !== startingAppsAndServicesType) {
-      queryObject.appsAndServices = selectedAppsAndServices
+    if (selectedappsCollection && selectedappsCollection !== startingappsCollectionType) {
+      queryObject.appsCollection = selectedappsCollection
     }
 
     setQueryFilterParams(queryObject);
@@ -458,7 +461,7 @@ const Search = ({
     watch("locations"),
     watch("languages"),
     watch("partnerType"),
-    watch("appsAndServices")
+    watch("appsCollection")
   ]);
 
   // UseEffect to parse the apps based on the search input
@@ -621,7 +624,7 @@ const Search = ({
     setValue("locations", "");
     setValue("languages", "");
     setValue("partnerType", "");
-    setValue("appsAndServices", "")
+    setValue("appsCollection", "")
   };
 
   // Function that renders the Page Cards
@@ -716,12 +719,12 @@ const Search = ({
                   multiselect={true}
                 />
                 <Dropdown
-                  name="appsAndServices"
+                  name="appsCollection"
                   label="Filter"
                   control={control}
                   setValue={setValue}
-                  optionsArray={appsAndServicesOptionsArray}
-                  defaultValue={appsAndServicesOptionsArray[0]}
+                  optionsArray={appsCollectionOptionsArray}
+                  defaultValue={appsCollectionOptionsArray[0]}
                   multiselect={true}
                 />
               </div>
@@ -857,12 +860,12 @@ const Search = ({
                           multiselect={true}
                         />
                         <Dropdown
-                          name="appsAndServices"
+                          name="appsCollection"
                           label="Filter"
                           control={control}
                           setValue={setValue}
-                          optionsArray={appsAndServicesOptionsArray}
-                          defaultValue={appsAndServicesOptionsArray[0]}
+                          optionsArray={appsCollectionOptionsArray}
+                          defaultValue={appsCollectionOptionsArray[0]}
                           multiselect={true}
                         />
                       </div>

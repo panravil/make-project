@@ -114,6 +114,16 @@ const PageForm = ({ fields }) => {
         <div className={cn("h4", styles.formTitle)}>{formTitle}</div>
         <form name="ORFForm" onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.row}>
+            <p>
+              If you are a Make partner already, please register the opportunity
+              in the{" "}
+              <a href="https://partnerportal.integromat.com/aspx/PublicPartnerProgram">
+                Make partner portal
+              </a>
+              .
+            </p>
+          </div>
+          <div className={styles.row}>
             <Dropdown
               name="P_partner"
               label="Are you a Make partner already?"
@@ -125,16 +135,6 @@ const PageForm = ({ fields }) => {
               labelClassName={styles.dropdownLabel}
               containerClassName={styles.dropdownContainer}
             />
-          </div>
-          <div className={styles.row}>
-            <p>
-              If you are a Make partner already, please register the opportunity
-              in the{" "}
-              <a href="https://partnerportal.integromat.com/aspx/PublicPartnerProgram">
-                Make partner portal
-              </a>
-              .
-            </p>
           </div>
           <h5>
             <b>About your company</b>{" "}

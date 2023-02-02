@@ -22,6 +22,11 @@ const templateDetailsQuery = `
       slug
       makeId
       usage
+      seoFields {
+        title
+        description
+        noindex
+      }
       appsCollection {
         items {
           name

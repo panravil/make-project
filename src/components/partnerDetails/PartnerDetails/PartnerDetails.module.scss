@@ -177,6 +177,32 @@ $partnerDescription-padding: 3rem;
       @media ($bp-md) {
         margin-bottom: 3.8rem;
       }
+
+      .headerContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 10px;
+        justify-content: space-around;
+        
+        .imageContainer {
+          width: 60px;
+          height: 60px;
+          border-radius: 100%;
+        }
+
+        .avatarImage {
+          object-fit: cover;
+          object-position: center;
+          width: 60px;
+          height: 60px;
+        }
+
+        .title {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
     }
 
     .buttonContainer {

@@ -1,17 +1,13 @@
 import styles from "../Form.module.scss";
-import styles2 from "../../common/Form/Form.module.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import cn from "classnames";
 import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
 
-import { Checkbox, Input, Dropdown, DropdownSearch, TextArea, Modal } from "@components/common";
+import { Checkbox, Input, Dropdown, TextArea, Modal } from "@components/common";
 import countries from "../json/countries.json";
 import { useGrecaptcha } from "@utils/useGrecaptcha";
-import industries from "../json/industries.json";
-import languages from "../json/languages.json";
-import states from "../json/states-us-partners.json";
 
 const propTypes = {
   fields: PropTypes.shape({
@@ -31,7 +27,7 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
   const {
     register,
     control,
-    watch,
+    // watch,
     handleSubmit,
     setValue,
     formState: { errors },
@@ -49,15 +45,6 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
   } = fields;
   const [showModal, setShowModal] = useState(false);
   const getGrecaptchaToken = useGrecaptcha();
-  const [showStatesDropdown, setStatesDropdown] = useState(false);
-  useEffect(() => {
-    const selectedCountry = watch("Country");
-    if (selectedCountry && selectedCountry.includes("US")) {
-      setStatesDropdown(true);
-    } else {
-      setStatesDropdown(false);
-    }
-  }, [showStatesDropdown, watch("Country")]);
 
   // Submit handler for the form
   const onSubmit = async (data, event) => {
@@ -142,7 +129,7 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
             />
           </div>
           <div className={styles.row}>
-          <Input
+            <Input
               name="company"
               type="text"
               label="Company"
@@ -151,7 +138,7 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
               errors={errors}
               trigger={trigger}
               validations={{
-                required: "Please enter your company name",
+                required: false,
               }}
             />
             <Dropdown
@@ -161,25 +148,28 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
               setValue={setValue}
               optionsArray={["1-15", "15-20", "50-200", "200 - above"]}
               placeholder="Your Company Size"
-              labelClassName={styles.dropdownLabel}
-              containerClassName={styles.dropdownContainer}
-            />
-          </div>
-          <div className={styles.row}>
-          <Dropdown
-              name="Industry"
-              label="Industry"
-              control={control}
-              setValue={setValue}
-              optionsArray={industries}
               errors={errors}
               errorMessage="Please select an option"
               labelClassName={styles.dropdownLabel}
               containerClassName={styles.dropdownContainer}
             />
+          </div>
+          <div className={styles.row}>
+            <Input
+              name="industry"
+              type="text"
+              label="Industry"
+              placeholder="Your Industry"
+              register={register}
+              errors={errors}
+              trigger={trigger}
+              validations={{
+                required: false,
+              }}
+            />
             <Dropdown
               name="experience"
-              label="Experience with Make"
+              label="Experience"
               control={control}
               setValue={setValue}
               optionsArray={[
@@ -226,7 +216,7 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
               errors={errors}
               trigger={trigger}
               validations={{
-                required: false,
+                required: "Please enter a valid phone number",
                 pattern: {
                   value:
                     /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
@@ -237,6 +227,18 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
             />
           </div>
           <div className={styles.row}>
+            <Dropdown
+              name="communication"
+              label="Prefered communication channel"
+              control={control}
+              setValue={setValue}
+              optionsArray={["Phone", "Whatsapp", "Email"]}
+              placeholder="Your prefered communication channel"
+              errors={errors}
+              errorMessage="Please enter your prefered communication channel"
+              labelClassName={styles.dropdownLabel}
+              containerClassName={styles.dropdownContainer}
+            />
             <Dropdown
               name="plan"
               label="Make plan"
@@ -256,64 +258,30 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
               labelClassName={styles.dropdownLabel}
               containerClassName={styles.dropdownContainer}
             />
-          <Input
-              name="Website"
+          </div>
+          <div className={styles.row}>
+            <Input
+              name="website"
               type="url"
               label="Website"
-              placeholder="Your website"
+              placeholder="Your Website"
               register={register}
               errors={errors}
               trigger={trigger}
-              validations={{
-                required: "Please enter a valid url",
-              }}
             />
-          </div>
-          <div className={styles.row}>
-          <DropdownSearch
-              name="Country"
+            <Dropdown
+              name="country"
               label="Country"
               control={control}
               setValue={setValue}
               optionsArray={countries}
-              placeholder="Please select"
+              placeholder="Country"
               errors={errors}
               errorMessage="Please select an option"
               labelClassName={styles.dropdownLabel}
               containerClassName={styles.dropdownContainer}
             />
-            {showStatesDropdown ? (
-              <DropdownSearch
-                name="State"
-                label="US state"
-                control={control}
-                setValue={setValue}
-                optionsArray={states}
-                placeholder="Please select"
-                errors={errors}
-                errorMessage="Please select an option"
-                labelClassName={styles.dropdownLabel}
-                containerClassName={styles.dropdownContainer}
-              />
-            ) : (
-              <div className={styles2.formElementWrapper}></div>
-            )}
           </div>
-          <div className={styles.row}><p></p></div>
-          <div className={styles.row}>
-          <Dropdown
-              name="Languages_Operated_in__c"
-              label="Preferred language"
-              control={control}
-              setValue={setValue}
-              optionsArray={languages}
-              errors={errors}
-              errorMessage="Please select an option"
-              labelClassName={styles.dropdownLabel}
-              containerClassName={styles.dropdownContainer}
-              multiselect
-            />
-            </div>
           <TextArea
             name="projectDescription"
             type="text"
@@ -329,7 +297,7 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
           <div className={styles.row}>
             <Dropdown
               name="projectDuration"
-              label="One time or ongoing support?"
+              label="Project duration"
               control={control}
               setValue={setValue}
               optionsArray={["One-time help", "Ongoing support"]}
@@ -342,19 +310,19 @@ const PageForm = ({ fields, partner, setShowParentModal }) => {
             <Input
               name="deliveryTimeframe"
               type="date"
-              label="Delivery date"
-              placeholder="Your delivery date"
+              label="Delivery timeframe"
+              placeholder="Your delivery timeframe"
               register={register}
               errors={errors}
               trigger={trigger}
               validations={{
-                required: "Please enter your delivery date",
+                required: "Please enter your delivery timeframe",
               }}
             />
           </div>
           <Input
             name="budget"
-            type="number"
+            type="text"
             label="Budget in USD"
             placeholder="Your budget in USD"
             register={register}

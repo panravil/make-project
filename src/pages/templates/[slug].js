@@ -98,10 +98,11 @@ export default function TemplateDetails({
         seoFields={replaceSeoWildCard(
           _.get(templateDetails, "seoFields"),
           total,
-          template?.name,
-          template?.description
+          template.seoFields?.title || template?.name,
+          template.seoFields?.description || template?.description
         )}
         canonical={`${seoConfigData?.canonicalUrl}/templates/${template.slug}`}
+        noindex={template.seoFields?.noindex ?? true}
       />
       <PageSectionWrapper
         fields={{

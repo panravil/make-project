@@ -146,6 +146,26 @@ const PartnerDetails = ({
       <div className={styles.partnerInfoContainer}>
         <div className={styles.partnerDescription}>
           <div className={cn(styles.partnersInfo)}>
+            <div className={styles.headerContainer}>
+              <div className={styles.imageContainer}>
+                {
+                  partner?.image && (
+                    <Image
+                      src={partner.image.url}
+                      alt={'Partner avatar'}
+                      width={60}
+                      height={60}
+                      className={styles.avatarImage}
+                    />
+                  )
+                }
+              </div>
+              <div className={styles.title}>
+                {
+                  partner?.name
+                }
+              </div>
+            </div>
             {partner?.address ? (
               <div className={cn("caption heading", styles.category)}>
                 <div className={styles.placeholderImage}>
