@@ -90,6 +90,11 @@ const partnerDetailsQuery = `
         items {
           name
           slug
+          categoriesCollection {
+            items{
+              name
+            }
+          }
           icon {
             title
             url

@@ -244,7 +244,6 @@ const Search = ({
 
   useEffect(() => {
     let newQuery = { ...initialQueryParams, ...queryFilterParams };
-    console.log('newQuery is ', newQuery);
     if (currentCategory) {
       newQuery = { ...initialQueryParams };
     }
@@ -370,7 +369,6 @@ const Search = ({
     const selectedLanguage = watch("languages");
     const selectedPartnerType = watch("partnerType");
     const selectedappsCollection = watch("appsCollection");
-    console.log("selectedappsCollection is ", selectedappsCollection);
 
     if (
       (selectedCategory === startingCategory || !selectedCategory) &&

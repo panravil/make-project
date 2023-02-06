@@ -55,11 +55,16 @@ const PartnerDetails = ({
   setShowReviewModal,
   setShowContactModal,
 }) => {
-  console.log('partner is ', partner);
   // Render a list of apps styled with the AppCard component
   const appsIncludedArray = _.get(partner, "appsCollection.items") || [];
   const renderAppsIncluded = appsIncludedArray.map((app, index) => {
     return <AppCard key={index} app={app} smallHorizontal />;
+  });
+  const appServices = [];
+  appsIncludedArray.forEach((item) => {
+    return item.categoriesCollection.items.map((item) => {
+      return !appServices.includes(item.name) && appServices.push(item.name);
+    })
   });
   // Render a list of use cases using the blog card component
   const useCasesArray = _.get(partner, "useCasesCollection.items") || [];
@@ -142,12 +147,12 @@ const PartnerDetails = ({
 
   const partnerTier = _.last(partner?.tiers);
 
-  const tierImageLink = partner?.tiers.length > 0 ? 
-      (partner.tiers[0] === 'silver' ? '/en/logos/Silver.png'
-      : partner.tiers[0] === 'bronze' ? '/en/logos/Platinum.png'
-      : partner.tiers[0] === 'gold' ? '/en/logos/Golf.png'
-      : '/en/logos/certified.png')
-      : null;
+  const tierImageLink = partner?.tiers.length > 0 ?
+    (partner.tiers[0] === 'silver' ? '/en/logos/Silver.png'
+      : partner.tiers[0] === 'platinum' ? '/en/logos/Platinum.png'
+        : partner.tiers[0] === 'gold' ? '/en/logos/Golf.png'
+          : '/en/logos/Platinum.png')
+    : '/en/logos/Platinum.png';
 
   return (
     <div className={cn("container", styles.partnerDetails)}>
@@ -159,10 +164,10 @@ const PartnerDetails = ({
                 {
                   partner?.image && (
                     <Image
-                      src={ tierImageLink }
+                      src={tierImageLink}
                       alt={'Partner avatar'}
-                      width={60}
-                      height={60}
+                      width={77}
+                      height={77}
                       className={styles.avatarImage}
                     />
                   )
@@ -276,6 +281,14 @@ const PartnerDetails = ({
         <div className={styles.detailsColumn}>
           {appsIncludedArray?.length ? (
             <div className={styles.appsIncludedWrapper}>
+              <div className={cn("h4", styles.appsIncludedTitle)}>
+                Type of Services
+              </div>
+              <ReactMarkdown className={cn(styles.description)}>
+                {
+                  appServices.join(", ")
+                }
+              </ReactMarkdown>
               <div className={cn("h4", styles.appsIncludedTitle)}>
                 Apps Included
               </div>

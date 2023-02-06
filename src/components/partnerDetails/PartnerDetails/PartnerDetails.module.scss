@@ -156,7 +156,7 @@ $partnerDescription-padding: 3rem;
     .category {
       display: flex;
       align-items: center;
-      margin-bottom: 1.6rem;
+      margin-bottom: 2rem;
       white-space: normal;
 
       &:last-child {
@@ -184,10 +184,11 @@ $partnerDescription-padding: 3rem;
         align-items: center;
         margin-bottom: 10px;
         justify-content: space-around;
+        margin-bottom: 27px;
         
         .imageContainer {
-          width: 60px;
-          height: 60px;
+          width: 77px;
+          height: 77px;
           border-radius: 100%;
         }
 
@@ -199,8 +200,8 @@ $partnerDescription-padding: 3rem;
         }
 
         .title {
-          font-size: 18px;
-          font-weight: 600;
+          color: #20083F;
+          font: normal normal normal 16px/18px Sailec-Bold;
         }
       }
     }
@@ -291,6 +292,18 @@ $partnerDescription-padding: 3rem;
         margin-top: 1.6rem;
       }
     }
+  }
+
+  .appsIncludedTitle {
+    color: #20083F;
+    font: normal normal 600 20px/24px Inter;
+    letter-spacing: 0px;
+  }
+
+  .description {
+    color: #20083F;
+    font: normal normal 300 15px/21px Inter;
+    letter-spacing: 0px;
   }
 
   .detailsColumn {

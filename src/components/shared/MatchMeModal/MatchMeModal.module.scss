@@ -1,7 +1,7 @@
 .matchMeContainer {
     width: 173px;
     border-radius: 10px;
-    padding: 10px;
+    padding: 12px 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -11,8 +11,8 @@
     color: black;
 
     .image {
-        width: 30px;
-        height: 30px;
+        width: 33px;
+        height: 29px;
     }
 
     .title {
@@ -30,26 +30,28 @@
     }
 
     .matchmeButton {
-        background: linear-gradient(253deg, #e24dff 0%, #ac53c6 100%);
+        background: linear-gradient(236deg, #6D00CC 0%, #E657FF 100%) 0% 0% no-repeat padding-box;
         width: 100%;
         padding-top: 10px;
         padding-bottom: 10px;
         border-radius: 4px;
         color: white;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 14px;
+        font-weight: normal;
+        letter-spacing: 0px;
         display: none;
+        line-height: 14px;
         margin: 0px;
     }
 
     &:hover {
         flex-direction: column;
-        padding: 20px 10px 10px 10px;
+        padding: 23px 16px 16px 16px;
 
 
         .image {
-            width: 60px;
-            height: 60px;
+            width: 71px;
+            height: 64px;
         }
 
         .title {
