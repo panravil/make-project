@@ -17,6 +17,7 @@ export default function replaceRangeWildCard(string, int) {
       new RegExp("{count}", "g"),
       `${int}`
     );
+
     return countString;
   } else {
     return string;

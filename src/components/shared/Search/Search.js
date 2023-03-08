@@ -16,6 +16,7 @@ import concatUniqueSortArrays from "@utils/concatUniqueSortArrays";
 import MissingResultsCard from "../MissingResultsCard";
 import scrollTo from "@utils/scrollTo";
 import MatchMeModal from "../MatchMeModal";
+import { APPS_COLLECTION_ARRAY } from "@utils/constants";
 
 const propTypes = {
   allItems: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
@@ -179,12 +180,7 @@ const Search = ({
   });
 
   const startingappsCollectionType = "All Apps & Services";
-  const appsCollectionOptionsArray = [
-    'All Apps & Services',
-    'Airtable',
-    'Asana',
-    'HTTP'
-  ];
+  const appsCollectionOptionsArray = [startingappsCollectionType, ...APPS_COLLECTION_ARRAY];
 
   const validQueryParams = [
     "categories",

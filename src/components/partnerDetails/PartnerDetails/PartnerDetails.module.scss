@@ -1,5 +1,5 @@
-@import "@styles/base/variables.scss";
-@import "@styles/base/mixins.scss";
+@import "@styles/base/_variables.scss";
+@import "@styles/base/_mixins.scss";
 
 $partnerDescription-padding: 3rem;
 
@@ -13,18 +13,25 @@ $partnerDescription-padding: 3rem;
   }
 
   .partnerInfoContainer {
-    width: auto;
+    width: 30%;
     height: fit-content;
     padding-right: 3.8rem;
     padding-bottom: 4rem;
     position: sticky;
     top: 410px;
 
-    @media ($bp-md) {
-      display: flex;
-      justify-content: space-between;
-      width: 35%;
+    @media ($bp-xs-max) {
+      position: relative;
+      top: unset;
+    }
 
+    @media ($bp-md-max) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 400px;
+      position: relative;
+      top: unset;
       /* > div:not(:last-child) {
         margin-right: 4rem;
 
@@ -34,8 +41,7 @@ $partnerDescription-padding: 3rem;
       } */
     }
 
-    @media ($bp-xl) {
-      width: 30%;
+    @media ($bp-xl-max) {
     }
 
     .partnerDescription {

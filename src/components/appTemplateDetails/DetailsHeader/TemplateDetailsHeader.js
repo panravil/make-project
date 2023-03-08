@@ -124,6 +124,17 @@ const TemplateDetailsHeader = ({ template, templateDetails, total }) => {
     }
   }, [windowWidth]);
 
+  const testString = replaceRangeWildCard(
+    replaceDetailsWildCard(
+      templateDetails?.description,
+      template?.name,
+      template?.description
+    ),
+    total
+  )
+
+  console.log('testString is ', testString, template.description);
+
   return (
     <div
       data-cy="TemplateDetailsHeader"
@@ -169,14 +180,10 @@ const TemplateDetailsHeader = ({ template, templateDetails, total }) => {
             )}
           >
             <ReactMarkdown>
-              {replaceRangeWildCard(
-                replaceDetailsWildCard(
-                  templateDetails?.description,
-                  template?.name,
-                  template?.description
-                ),
-                total
-              )}
+              {
+                "The [Google](http://localhost:3000/en) Sheets [module](http://localhost:3000/en) checks for matches between the sender’s email address and the list of client email addresses." +
+                "If a match is found, the label `client_mailbox` is added to the email. More information [here](https://bit.ly/3X6QuwR)."
+              }
             </ReactMarkdown>
           </div>
           <div

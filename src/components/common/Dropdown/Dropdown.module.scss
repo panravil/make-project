@@ -100,6 +100,21 @@
     overflow-x: hidden;
     overflow-y: auto;
     
+    // According to the design, there is no part for scrollbar.
+    // &::-webkit-scrollbar {
+    //   width: 20px;
+    // }
+    // &::-webkit-scrollbar-track {
+    //   box-shadow: inset 0 0 5px black; 
+    //   border-radius: 10px;
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //   width: 20px;
+    //   height: 30px;
+    //   background-color: green;
+    //   border-radius: 20px;
+    // }
 
     &::-webkit-scrollbar {
       width: 0px;
@@ -108,6 +123,7 @@
       box-shadow: inset 0 0 5px black; 
       border-radius: 10px;
     }
+     
      
 
     // Styling for DropDownOption.js
